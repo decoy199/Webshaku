@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>尺八奏者 山田太郎</title>
+  <style>
+    /* 全体のスタイル */
+    body {
+      font-family: 'Yu Mincho', serif;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f5ef;
+      color: #333;
+    }
+
+    /* ヘッダー */
+    header {
+      background-image: url('shakuhachi_bg.jpg'); /* 尺八のイメージ画像を背景に */
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      text-align: center;
+      padding: 4rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin: 1rem 0 0;
+    }
+
+    nav {
+      margin-top: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      margin: 0 1rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* メインコンテンツ */
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      border-left: 4px solid #804000;
+      padding-left: 0.5rem;
+      color: #804000;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      text-indent: 1em;
+    }
+
+    img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin: 1rem 0;
+    }
+
+    /* フッター */
+    footer {
+      background-color: #804000;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    footer a {
+      color: #ffdbac;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>尺八奏者 山田太郎</h1>
+    <p>伝統と心を音に込めて</p>
+    <nav>
+      <a href="#profile">プロフィール</a>
+      <a href="#music">演奏について</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="profile">
+      <h2>プロフィール</h2>
+      <p>山田太郎は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、20年以上にわたり演奏活動を続けています。国内外での演奏経験を持ち、尺八の音色で多くの人々を魅了しています。</p>
+      <img src="yamada_taro.jpg" alt="尺八奏者 山田太郎">
+    </section>
+
+    <section id="music">
+      <h2>演奏について</h2>
+      <p>尺八はその深い音色と瞑想的な雰囲気で知られています。山田太郎は伝統的な曲目だけでなく、現代的なアプローチを取り入れた演奏も得意としています。コンサートや個別指導も行っています。</p>
+      <img src="shakuhachi_music.jpg" alt="尺八演奏の様子">
+    </section>
+  </main>
+
+  <footer id="contact">
+    <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+    <p><a href="mailto:info@example.com">info@example.com</a></p>
+    <p>&copy; 2025 尺八奏者 山田太郎</p>
+  </footer>
+</body>
+</html>
