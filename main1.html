@@ -17,34 +17,32 @@
 
         /* ヘッダー */
         header {
-            background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large'); /* 尺八のイメージ画像を背景に */
-            background-size: cover;
-            background-position: center;
-            color: #333;
+            position: relative;
+            color: #333; /* テキストカラー */
             text-align: center;
             padding: 4rem 1rem;
-            position: relative;
-            opacity: 0.6;
+            overflow: hidden; /* 疑似要素のはみ出しを防ぐ */
         }
 
-        header::after {
+        header::before {
             content: "";
-            background-image: url('shakuhachi_bg.jpg'); /* 名前とキャッチフレーズの裏に透かし画像 */
+            background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large'); /* 背景画像 */
             background-size: cover;
             background-position: center;
-            opacity: 0.2;
+            opacity: 0.3; /* 背景画像のみの透明度 */
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
+            z-index: 1; /* 背景用 */
         }
 
         header h1,
-        header p {
+        header p,
+        nav {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* テキストを前面に配置 */
         }
 
         header h1 {
@@ -60,8 +58,6 @@
 
         nav {
             margin-top: 1.5rem;
-            position: relative;
-            z-index: 2;
         }
 
         nav a {
