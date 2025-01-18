@@ -1,11 +1,9 @@
-<html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shakuhachi World</title>
+    <title>Shakuhachi Video</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,7 +57,6 @@
     </style>
 </head>
 <body>
-    <!-- 動画を表示 -->
     <div class="video-container">
         <video id="videoPlayer" controls>
             <source src="sample.mp4" type="video/mp4">
@@ -67,7 +64,6 @@
         </video>
     </div>
 
-    <!-- メインコンテンツ -->
     <div class="content">
         <h1>尺八の世界へようこそ</h1>
         <p>下のボタンをクリックして、尺八の世界に進んでください。</p>
@@ -78,8 +74,10 @@
         document.addEventListener("DOMContentLoaded", () => {
             const welcomeBtn = document.getElementById("welcomeBtn");
 
-            // ボタンをクリックしたときにページを遷移
+            // 次のページに移動
             welcomeBtn.addEventListener("click", () => {
+                // 現在のページ履歴を置き換える
+                history.replaceState(null, "", "redirected");
                 window.location.href = "main1.html";
             });
 
