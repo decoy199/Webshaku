@@ -1,193 +1,198 @@
-<html>
-    <!DOCTYPE html>
-    <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>尺八奏者 石橋紅童</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-        <style>
-            /* 全体のスタイル */
-            body {
-                font-family: 'Yu Mincho', serif;
-                line-height: 1.8;
-                margin: 0;
-                padding: 0;
-                background-color: #f9f5ef;
-                color: #333;
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh; /* ビューポート全体の高さを確保 */
-            }
-    
-            /* ヘッダー */
-            header {
-                position: relative;
-                color: #333;
-                text-align: center;
-                padding: 4rem 1rem;
-                overflow: hidden;
-            }
-    
-            header::before {
-                content: "";
-                background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large');
-                background-size: cover;
-                background-position: center;
-                opacity: 0.3;
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                z-index: 1;
-            }
-    
-            header h1,
-            header p,
-            nav {
-                position: relative;
-                z-index: 2;
-            }
-    
-            header h1 {
-                margin: 0;
-                font-size: 2.5rem;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            }
-    
-            header p {
-                font-size: 1.2rem;
-                margin: 1rem 0 0;
-            }
-    
-            nav {
-                margin-top: 1.5rem;
-            }
-    
-            nav a {
-                text-decoration: none;
-                color: #333;
-                margin: 0 1rem;
-                font-weight: bold;
-                font-size: 1.1rem;
-            }
-    
-            nav a:hover {
-                text-decoration: underline;
-            }
-    
-            /* メインコンテンツ */
-            main {
-                flex: 1; /* メインコンテンツが残りの高さを埋める */
-                padding: 2rem;
-                max-width: 800px;
-                margin: 0 auto;
-            }
-    
-            section {
-                margin-bottom: 3rem;
-            }
-    
-            h2 {
-                border-left: 4px solid #804000;
-                padding-left: 0.5rem;
-                color: #804000;
-                margin-bottom: 1rem;
-            }
-    
-            p {
-                text-indent: 1em;
-            }
-    
-            img {
-                display: block;
-                margin: 1rem auto;
-                max-width: 600px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            }
-    
-            /* フッター */
-            footer {
-                background-color: #804000;
-                color: #fff;
-                text-align: center;
-                padding: 1rem 0;
-                /*position: sticky;*/
-                bottom: 0;
-                width: 100%;
-            }
-    
-            footer a {
-                color: #ffdbac;
-                text-decoration: none;
-                font-weight: bold;
-            }
-    
-            footer a:hover {
-                text-decoration: underline;
-            }
-    
-            /* ソーシャルアイコン */
-            .social-icons {
-                margin-top: 1rem;
-            }
-    
-            .social-icons a {
-                margin: 0 0.5rem;
-                color: #fff;
-                font-size: 1.5rem;
-                text-decoration: none;
-            }
-    
-            .social-icons a:hover {
-                color: #ffdbac;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1>尺八奏者 石橋紅童</h1>
-            <p>伝統と心を音に込めて</p>
-            <nav>
-                <a href="#profile">プロフィール</a>
-                <a href="#schedule">スケジュール</a>
-                <a href="#appearance">出演情報</a>
-            </nav>
-        </header>
-        <main>
-            <section id="profile">
-                <h2>プロフィール</h2>
-                <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="尺八奏者 石橋紅童">
-            </section>
-            <section id="schedule">
-                <h2>スケジュール</h2>
-                <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
-                <ul>
-                    <li>2025年2月15日: 東京国際フォーラム 尺八ソロコンサート</li>
-                    <li>2025年3月3日: 京都市民会館 特別演奏会</li>
-                    <li>2025年4月10日: オンラインワークショップ</li>
-                </ul>
-            </section>
-            <section id="appearance">
-                <h2>出演情報</h2>
-                <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
-                <ul>
-                    <li>2024年12月10日: NHKスペシャル「和の響き」</li>
-                    <li>2024年11月20日: 京都国際尺八フェスティバル</li>
-                    <li>2024年10月5日: 朝日新聞文化講演会</li>
-                </ul>
-            </section>
-        </main>
-        <footer id="contact">
-            <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
-            <p><a href="mailto:info@example.com">info@example.com</a></p>
-            <div class="social-icons">
-                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            </div>
-            <p>&copy; 2025 尺八奏者 石橋紅童</p>
-        </footer>
-    </body>
-    </html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尺八奏者 石橋紅童</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 全体のスタイル */
+        body {
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f5ef;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ヘッダー */
+        header {
+            position: relative;
+            color: #333;
+            text-align: center;
+            padding: 4rem 1rem;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        header h1,
+        header p,
+        nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 1rem 0 0;
+        }
+
+        nav {
+            margin-top: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* メインコンテンツ */
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            border-left: 4px solid #804000; /* 左側の縦線 */
+            padding-left: 1rem;
+        }
+
+        h2 {
+            color: #804000;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 span {
+            display: block;
+            font-size: 0.9rem;
+            color: #666; /* 薄い文字色 */
+            font-weight: normal;
+        }
+
+        p {
+            text-indent: 1em;
+        }
+
+        img {
+            display: block;
+            margin: 1rem auto;
+            max-width: 600px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* フッター */
+        footer {
+            background-color: #804000;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ソーシャルアイコン */
+        .social-icons {
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            margin: 0 0.5rem;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #ffdbac;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>尺八奏者 石橋紅童</h1>
+        <p>伝統と心を音に込めて</p>
+        <nav>
+            <a href="#profile">プロフィール</a>
+            <a href="#schedule">スケジュール</a>
+            <a href="#appearance">出演情報</a>
+        </nav>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>Profile <span>プロフィール</span></h2>
+            <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="尺八奏者 石橋紅童">
+        </section>
+        <section id="schedule">
+            <h2>Schedule <span>公演予定</span></h2>
+            <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+            <ul>
+                <li>2025年2月15日: 東京国際フォーラム 尺八ソロコンサート</li>
+                <li>2025年3月3日: 京都市民会館 特別演奏会</li>
+                <li>2025年4月10日: オンラインワークショップ</li>
+            </ul>
+        </section>
+        <section id="appearance">
+            <h2>Appearance <span>出演作品</span></h2>
+            <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
+            <ul>
+                <li>2024年12月10日: NHKスペシャル「和の響き」</li>
+                <li>2024年11月20日: 京都国際尺八フェスティバル</li>
+                <li>2024年10月5日: 朝日新聞文化講演会</li>
+            </ul>
+        </section>
+    </main>
+    <footer id="contact">
+        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+        <p><a href="mailto:info@example.com">info@example.com</a></p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 尺八奏者 石橋紅童</p>
+    </footer>
+</body>
+</html>
