@@ -92,12 +92,12 @@
         h2 {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* 左寄せ */
+            align-items: flex-start;
             position: relative;
             color: #804000;
             margin-bottom: 0.5rem;
-            padding-left: 2rem; /* 縦線と文字の間隔 */
-            text-align: left; /* タイトルを左寄せ */
+            padding-left: 2rem;
+            text-align: left;
         }
 
         h2::before {
@@ -108,7 +108,7 @@
             height: 100%;
             width: 4px;
             background-color: #804000;
-            margin-right: 1rem; /* タイトルと縦線の間隔 */
+            margin-right: 1rem;
         }
 
         h2 span {
@@ -127,6 +127,26 @@
             margin: 1rem auto;
             max-width: 600px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* プロフィールの画像のレイアウト */
+        .profile-images {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .profile-images img {
+            width: 45%; /* 画像の幅 */
+            margin-bottom: 1rem;
+        }
+
+        .profile-images .left {
+            align-self: flex-start; /* 左に配置 */
+        }
+
+        .profile-images .right {
+            align-self: flex-end; /* 右に配置 */
         }
 
         /* フッター */
@@ -179,8 +199,12 @@
     <main>
         <section id="profile">
             <h2>Profile <span>プロフィール</span></h2>
+            <div class="profile-images">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="尺八奏者 石橋紅童" class="left">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlFM7tACrSfg3oMEcJ6w0TbkeO5-R2WpWxkcwmd-R_UA&s=10" alt="尺八奏者 石橋紅童" class="right">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXRaZjle6eKvph8AX4tiyTlfYV6K3Pz6jDqTc9j9pvOQ&s=10" alt="尺八奏者 石橋紅童" class="left">
+            </div>
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="尺八奏者 石橋紅童">
         </section>
         <section id="schedule">
             <h2>Schedule <span>公演予定</span></h2>
