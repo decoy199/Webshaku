@@ -133,14 +133,21 @@
             width: 45%;
             margin-bottom: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
         }
 
         .profile-images .left {
             align-self: flex-start; /* 左に配置 */
+            margin-right: -10px; /* 画像同士を少し重ねる */
         }
 
         .profile-images .right {
             align-self: flex-end; /* 右に配置 */
+            margin-left: -10px; /* 画像同士を少し重ねる */
+        }
+
+        .profile-images img:hover {
+            transform: scale(1.05); /* ホバー時に画像を少し拡大 */
         }
 
         /* フッター */
