@@ -122,23 +122,17 @@
             text-indent: 1em;
         }
 
-        img {
-            display: block;
-            margin: 1rem auto;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         /* プロフィールの画像のレイアウト */
         .profile-images {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            gap: 20px;
         }
 
         .profile-images img {
-            width: 45%; /* 画像の幅 */
-            margin-bottom: 1rem;
+            width: 45%;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .profile-images .left {
@@ -196,7 +190,6 @@
             <a href="#appearance">出演情報</a>
         </nav>
     </header>
-
     <main>
         <section id="profile">
             <h2>Profile <span>プロフィール</span></h2>
