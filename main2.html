@@ -16,7 +16,7 @@
             color: #333;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* ビューポート全体の高さを確保 */
+            min-height: 100vh;
         }
 
         /* ヘッダー */
@@ -78,7 +78,7 @@
 
         /* メインコンテンツ */
         main {
-            flex: 1; /* メインコンテンツが残りの高さを埋める */
+            flex: 1;
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
@@ -99,48 +99,35 @@
             text-indent: 1em;
         }
 
-        img {
-            max-width: 300px;
-            display: block;
-            margin: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            position: absolute;
-        }
-
         .image-container {
             position: relative;
-            height: 500px;
             margin-bottom: 2rem;
         }
 
-        .image-container .left {
-            left: 0;
-            top: 0;
-            z-index: 1;
+        .image-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
         }
 
-        .image-container .right {
-            right: 0;
-            top: 0;
-            z-index: 2;
+        .image-item img {
+            max-width: 250px;
+            margin-right: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .image-container .third {
-            left: 50%;
-            top: 40%;
-            transform: translateX(-50%);
-            z-index: 3;
+        .image-item.reverse img {
+            margin-left: 20px;
+            margin-right: 0;
         }
 
         .text-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
+            flex: 1;
         }
 
         .text-container p {
-            flex: 1;
+            font-size: 1rem;
+            color: #333;
         }
 
         /* フッター */
@@ -179,15 +166,31 @@
         <section id="profile">
             <h2>プロフィール</h2>
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
+            
             <div class="image-container">
-                <img class="left" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="画像1">
-                <img class="right" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJEPd0D3ot1rqo0uyWba2jjzZsyGOlZO1nHByu4SGBStc-6O3V7ZCeAH7&s=10" alt="画像2">
-                <img class="third" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqaSM_iiy7f3gHbS2iA4cHh6hI6E29Z1z5ysLRn40vByZ0FcwNnYq7r_kz&s=10" alt="画像3">
-            </div>
-            <div class="text-container">
-                <p>画像1の説明文です。石橋紅童の演奏を記録した一場面です。</p>
-                <p>画像2の説明文です。尺八の美しい音色が響くシーンです。</p>
-                <p>画像3の説明文です。演奏会の様子が伝わる一枚です。</p>
+                <!-- 画像1: 左側に画像、右側に文章 -->
+                <div class="image-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="画像1">
+                    <div class="text-container">
+                        <p>画像1の説明文です。石橋紅童の演奏を記録した一場面です。</p>
+                    </div>
+                </div>
+
+                <!-- 画像2: 右側に画像、左側に文章 -->
+                <div class="image-item reverse">
+                    <div class="text-container">
+                        <p>画像2の説明文です。尺八の美しい音色が響くシーンです。</p>
+                    </div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJEPd0D3ot1rqo0uyWba2jjzZsyGOlZO1nHByu4SGBStc-6O3V7ZCeAH7&s=10" alt="画像2">
+                </div>
+
+                <!-- 画像3: 左側に画像、右側に文章 -->
+                <div class="image-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqaSM_iiy7f3gHbS2iA4cHh6hI6E29Z1z5ysLRn40vByZ0FcwNnYq7r_kz&s=10" alt="画像3">
+                    <div class="text-container">
+                        <p>画像3の説明文です。演奏会の様子が伝わる一枚です。</p>
+                    </div>
+                </div>
             </div>
         </section>
 
