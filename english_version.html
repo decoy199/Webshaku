@@ -301,6 +301,32 @@
         function closeNav() {
             document.getElementById('menu').checked = false;
         }
-    </script>
+    
+    // 現在の日付を取得
+    const today = new Date();
+
+    // スケジュールセクション内のリストアイテムを取得
+    const scheduleItems = document.querySelectorAll("#schedule ul li");
+
+    // 各リストアイテムを処理
+    scheduleItems.forEach(item => {
+        // テキストから日付を抽出（例: "2025年2月15日"）
+        const text = item.textContent.trim();
+        const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+
+        if (dateMatch) {
+            // 抽出した年、月、日を使って日付オブジェクトを作成
+            const year = parseInt(dateMatch[1], 10);
+            const month = parseInt(dateMatch[2], 10) - 1; // JavaScriptの月は0から始まる
+            const day = parseInt(dateMatch[3], 10);
+            const itemDate = new Date(year, month, day);
+
+            // 現在の日付と比較して、過去の日付の場合は非表示
+            if (itemDate < today) {
+                item.style.display = "none";
+            }
+        }
+    });
+</script>
 </body>
 </html>
