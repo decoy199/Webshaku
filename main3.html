@@ -40,7 +40,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2); /* 背景画像の暗さを調整 */
+            background: rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -217,22 +217,77 @@
             text-decoration: underline;
         }
 
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
+        .details-wrap {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
         }
 
-        .event-image {
+        details {
+            position: relative;
+            width: 20%;
+            height: 350px;
+            transition: width 0.5s;
+        }
+
+        details:hover {
+            width: 880px;
+        }
+
+        details[open] .details-summary::before {
+            display: none;
+        }
+
+        .details-summary {
+            display: block;
+            position: absolute;
+            color: #fff;
+            font-size: 18px;
+            height: 100%;
             width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
         }
 
+        .details-summary::before {
+            content: '';
+            background-color: rgba(0, 0, 0, 0.3);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 2;
+        }
+
+        .details-summary:hover::before {
+            display: none;
+        }
+
+        .details-summary img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .details-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            background-color: #fff;
+            padding: 20px;
+            z-index: 1;
+        }
     </style>
+
 </head>
 <body>
     <input type="checkbox" id="menu" />
@@ -262,44 +317,42 @@
     </header>
 
     <main>
-        <section id="schedule">
-            <h2>スケジュール</h2>
-            <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
-            <ul>
-                <li>
-                    <details>
-                        <summary>2024年2月15日: 東京国際フォーラム 尺八ソロコンサート</summary>
-                        <div class="event-detail">
-                            <img src="tokyo_concert.jpg" alt="東京国際フォーラム 尺八ソロコンサート" class="event-image">
-                            <p>東京国際フォーラムで開催される尺八ソロコンサート。伝統音楽と現代のアプローチを融合した演奏です。</p>
-                            <p><strong>時間:</strong> 18:00開場 / 19:00開演</p>
-                            <p><strong>場所:</strong> 東京国際フォーラム ホールA</p>
-                        </div>
-                    </details>
-                </li>
-                <li>
-                    <details>
-                        <summary>2025年3月3日: 京都市民会館 特別演奏会</summary>
-                        <div class="event-detail">
-                            <img src="kyoto_event.jpg" alt="京都市民会館 特別演奏会" class="event-image">
-                            <p>京都市民会館での特別演奏会。新作の披露が予定されています。</p>
-                            <p><strong>時間:</strong> 17:30開場 / 18:30開演</p>
-                            <p><strong>場所:</strong> 京都市民会館 メインホール</p>
-                        </div>
-                    </details>
-                </li>
-                <li>
-                    <details>
-                        <summary>2025年4月10日: オンラインワークショップ</summary>
-                        <div class="event-detail">
-                            <img src="online_workshop.jpg" alt="オンラインワークショップ" class="event-image">
-                            <p>オンラインで尺八の基礎から応用まで学べるワークショップ。</p>
-                            <p><strong>時間:</strong> 10:00 - 12:00</p>
-                            <p><strong>参加方法:</strong> Zoomリンクは事前登録後に送付されます。</p>
-                        </div>
-                    </details>
-                </li>
-            </ul>
+       <section id="interactive-events">
+            <h2>詳細イベント</h2>
+            <div class="details-wrap">
+                <details class="details js-details">
+                    <summary class="details-summary js-details-summary">
+                        <img src="tokyo_concert.jpg" alt="東京国際フォーラム 尺八ソロコンサート">
+                    </summary>
+                    <div class="details-content js-details-content">
+                        <p>東京国際フォーラムで開催される尺八ソロコンサート。伝統音楽と現代のアプローチを融合した演奏です。</p>
+                        <p><strong>時間:</strong> 18:00開場 / 19:00開演</p>
+                        <p><strong>場所:</strong> 東京国際フォーラム ホールA</p>
+                    </div>
+                </details>
+
+                <details class="details js-details">
+                    <summary class="details-summary js-details-summary">
+                        <img src="kyoto_event.jpg" alt="京都市民会館 特別演奏会">
+                    </summary>
+                    <div class="details-content js-details-content">
+                        <p>京都市民会館での特別演奏会。新作の披露が予定されています。</p>
+                        <p><strong>時間:</strong> 17:30開場 / 18:30開演</p>
+                        <p><strong>場所:</strong> 京都市民会館 メインホール</p>
+                    </div>
+                </details>
+
+                <details class="details js-details">
+                    <summary class="details-summary js-details-summary">
+                        <img src="online_workshop.jpg" alt="オンラインワークショップ">
+                    </summary>
+                    <div class="details-content js-details-content">
+                        <p>オンラインで尺八の基礎から応用まで学べるワークショップ。</p>
+                        <p><strong>時間:</strong> 10:00 - 12:00</p>
+                        <p><strong>参加方法:</strong> Zoomリンクは事前登録後に送付されます。</p>
+                    </div>
+                </details>
+            </div>
         </section>
 
         <section id="appearance">
