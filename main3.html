@@ -270,8 +270,8 @@
             <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
             <ul>
                 <li>2024年12月10日: NHKスペシャル「和の響き」</li>
-                <li>2024年11月20日: 京都国際尺八フェスティバル</li>
-                <li>2024年10月5日: 朝日新聞文化講演会</li>
+                <li>2025年11月20日: 京都国際尺八フェスティバル</li>
+                <li>2025年10月5日: 朝日新聞文化講演会</li>
             </ul>
         </section>
     </main>
@@ -310,6 +310,37 @@
             document.getElementById('menu').checked = false; // メニューを閉じる
         });
     });
+
+
+    
+    // 日付以降予定けし
+    const today = new Date();
+
+    // 出演情報のセクション内のリストアイテムを取得
+    const appearanceItems = document.querySelectorAll("#appearance ul li");
+
+    // 各リストアイテムを処理
+    appearanceItems.forEach(item => {
+        // テキストから日付を抽出（例: "2024年12月10日"）
+        const text = item.textContent.trim();
+        const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+
+        if (dateMatch) {
+            // 抽出した年、月、日を使って日付オブジェクトを作成
+            const year = parseInt(dateMatch[1], 10);
+            const month = parseInt(dateMatch[2], 10) - 1; // JavaScriptの月は0から始まる
+            const day = parseInt(dateMatch[3], 10);
+            const itemDate = new Date(year, month, day);
+
+            // 現在の日付と比較して、過去の日付の場合は非表示
+            if (itemDate < today) {
+                item.style.display = "none";
+            }
+        }
+    });
+
+
+
 </script>
     
     
