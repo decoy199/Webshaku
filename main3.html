@@ -223,6 +223,35 @@
             text-decoration: underline;
         }
 
+        /* ボタン */
+        .back {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            z-index: 200;
+        }
+
+        .button_base {
+            display: flex;
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            justify-content: space-between;
+        }
+
+        .button_base div {
+            width: 100%;
+            height: 10%;
+            background-color: #804000;
+            transition: transform 0.3s ease;
+        }
+
+        .button_base:hover div {
+            transform: rotate(45deg);
+        }
+
     </style>
 </head>
 <body>
@@ -248,7 +277,6 @@
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
         <div class="language-toggle">
-            
             <button onclick="setLanguage('en')">English</button>
         </div>
     </header>
@@ -276,41 +304,16 @@
     </main>
 
     <footer id="contact">
-        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
-        <p><a href="mailto:info@example.com">info@example.com</a></p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 尺八奏者 石橋紅童</p>
+        <p>&copy; 2025 石橋紅童 All Rights Reserved.</p>
+        <p><a href="mailto:info@ishibashikoudo.com">お問い合わせ</a></p>
     </footer>
+
     <script>
-        function setLanguage(lang) {
-            if (lang === 'en') {
-                location.href = 'english_version.html'; // 英語ページに遷移
-            } else if (lang === 'ja') {
-                location.href = 'main3.html'; // 日本語ページに遷移
+        function setLanguage(language) {
+            if(language === 'en') {
+                alert('Switching to English');
             }
         }
     </script>
-    <script>
-    // 言語設定の関数
-    function setLanguage(lang) {
-        if (lang === 'en') {
-            location.href = 'english_version.html'; // 英語ページに遷移
-        } else if (lang === 'ja') {
-            location.href = 'main3.html'; // 日本語ページに遷移
-        }
-    }
-
-    // ナビゲーションメニューのリンククリックでメニューを閉じる
-    document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById('menu').checked = false; // メニューを閉じる
-        });
-    });
-</script>
-    
-    
 </body>
 </html>
