@@ -1,174 +1,247 @@
-<html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>サンプルサイト</title>
+    <title>尺八奏者 石橋紅童</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* 全体のスタイル */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            background-color: #f9f5ef;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
+        /* ヘッダー */
+        header {
+            position: relative;
+            color: #333;
+            text-align: center;
+            padding: 5rem 1rem;
+            overflow: hidden;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uBYJ5QsYbKMLYGRO9g_KKJeRTO0GrmSzxsXxJnQXwRllr06NPF1KXa8&s=10');
+            background-size: cover;
+            background-position: center;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* 背景画像の暗さを調整 */
+            z-index: 1;
+        }
+
+        header h1,
+        header p,
+        header .profile,
+        nav {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: #ffdbac;
+        }
+
+        header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.1); /* 背景に半透明の黒を追加 */
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        nav {
+            margin-top: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+            color: #ffdbac;
+        }
+
+        /* メニュー部分 */
+        .wrap {
+            position: relative;
+            width: 80vmin;
+            height: 80vmin;
+            margin: 3rem auto;
+            background: inherit;
+            transform: scale(0.2) translateZ(0px);
+            opacity: 0;
+            transition: transform .5s, opacity .5s;
+        }
+
+        .wrap a {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 47.5%;
+            height: 47.5%;
+            overflow: hidden;
+            transform: scale(0.5);
+            background: #585247;
+            border-radius: 40vmin;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .wrap a div {
+            height: 100%;
+            background-size: cover;
+            opacity: 0.5;
+            transition: opacity 0.5s;
+        }
+
+        .wrap a:nth-child(1) {
+            transform-origin: 110% 110%;
+        }
+
+        .wrap a:nth-child(1) div {
+            background-image: url('https://via.placeholder.com/150');
+        }
+
+        .wrap a:nth-child(2) {
+            left: 52.5%;
+            transform-origin: -10% 110%;
+        }
+
+        .wrap a:nth-child(2) div {
+            background-image: url('https://via.placeholder.com/150');
+        }
+
+        .wrap a:nth-child(3) {
+            top: 52.5%;
+            transform-origin: 110% -10%;
+        }
+
+        .wrap a:nth-child(3) div {
+            background-image: url('https://via.placeholder.com/150');
+        }
+
+        .wrap:hover {
+            transform: scale(0.8);
+            opacity: 1;
+        }
+
+        .wrap a:hover div {
+            opacity: 1;
+        }
+
+        /* メインコンテンツ */
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .header {
-            background: #333;
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            border-left: 4px solid #804000;
+            padding-left: 0.5rem;
+            color: #804000;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            text-indent: 1em;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #804000;
             color: #fff;
-            padding: 10px 0;
+            text-align: center;
+            padding: 1rem 0;
+            bottom: 0;
+            width: 100%;
         }
 
-        .header .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .nav li {
-            margin: 0 10px;
-        }
-
-        .nav a {
-            color: #fff;
+        footer a {
+            color: #ffdbac;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .section {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .section h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #444;
-        }
-
-        .service-list {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .service-item {
-            border: 1px solid #ccc;
-            padding: 20px;
-            border-radius: 5px;
-            width: 45%;
-        }
-
-        footer.footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        form input, form textarea, form button {
-            width: 80%;
-            max-width: 400px;
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        form button {
-            background: #333;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        form button:hover {
-            background: #555;
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">My Website</h1>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+    <header>
+        <h1>尺八奏者 石橋紅童</h1>
+        <p>伝統と心を音に込めて</p>
+        <div class="profile">
+            <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
     </header>
+    <!-- メニュー -->
+    <div class="wrap">
+        <a href="#schedule"><div></div></a>
+        <a href="#appearance"><div></div></a>
+        <a href="#contact"><div></div></a>
+    </div>
     <main>
-        <section id="about" class="section">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>Welcome to our website! We are dedicated to providing the best service.</p>
-            </div>
+        <section id="schedule">
+            <h2>スケジュール</h2>
+            <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+            <ul>
+                <li>2025年2月15日: 東京国際フォーラム 尺八ソロコンサート</li>
+                <li>2025年3月3日: 京都市民会館 特別演奏会</li>
+                <li>2025年4月10日: オンラインワークショップ</li>
+            </ul>
         </section>
-        <section id="services" class="section">
-            <div class="container">
-                <h2>Our Services</h2>
-                <div class="service-list">
-                    <div class="service-item">
-                        <h3>Service 1</h3>
-                        <p>Details about Service 1.</p>
-                    </div>
-                    <div class="service-item">
-                        <h3>Service 2</h3>
-                        <p>Details about Service 2.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="contact" class="section">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <form id="contactForm">
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="email" id="email" placeholder="Your Email" required>
-                    <textarea id="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </div>
+        <section id="appearance">
+            <h2>出演情報</h2>
+            <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
+            <ul>
+                <li>2024年12月10日: NHKスペシャル「和の響き」</li>
+                <li>2024年11月20日: 京都国際尺八フェスティバル</li>
+                <li>2024年10月5日: 朝日新聞文化講演会</li>
+            </ul>
         </section>
     </main>
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 My Website. All rights reserved.</p>
-        </div>
+    <footer id="contact">
+        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+        <p><a href="mailto:info@example.com">info@example.com</a></p>
+        <p>&copy; 2025 尺八奏者 石橋紅童</p>
     </footer>
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (name && email && message) {
-                alert(`Thank you, ${name}! We have received your message.`);
-            } else {
-                alert('Please fill in all fields.');
-            }
-        });
-    </script>
+    
 </body>
 </html>
