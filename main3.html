@@ -80,7 +80,7 @@
         .menu {
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px; /* 右上に配置 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -108,12 +108,6 @@
 
         #menu:checked ~ .menu {
             background-color: transparent;
-            span:nth-of-type(1) {
-                transform: translateY(6px) rotate(45deg);
-            }
-            span:nth-of-type(3) {
-                transform: translateY(-6px) rotate(-45deg);
-            }
         }
 
         #menu:checked ~ .nav {
@@ -223,6 +217,31 @@
             text-decoration: underline;
         }
 
+        /* 新しいボタンスタイル */
+        .button_base {
+            margin: 0;
+            border: 0;
+            font-size: 18px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-user-select: none;
+            cursor: pointer;
+            background-color: #804000;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .button_base:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
     </style>
 </head>
 <body>
@@ -248,10 +267,18 @@
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
         <div class="language-toggle">
-            
             <button onclick="setLanguage('en')">English</button>
         </div>
     </header>
+
+    <div class="back">
+        <div class="button_base b07_3d_double_roll">
+            <div>01_Button</div>
+            <div>01_Button</div>
+            <div>01_Button</div>
+            <div>01_Button</div>
+        </div>
+    </div>
 
     <main>
         <section id="schedule">
@@ -270,47 +297,27 @@
             <ul>
                 <li>2024年12月10日: NHKスペシャル「和の響き」</li>
                 <li>2024年11月20日: 京都国際尺八フェスティバル</li>
-                <li>2024年10月5日: 朝日新聞文化講演会</li>
+                <li>2024年10月5日: 朝日新聞文化賞授賞式</li>
             </ul>
+        </section>
+
+        <section id="contact">
+            <h2>お問い合わせ</h2>
+            <p>お仕事の依頼や質問などがある場合は、以下のフォームをご利用ください。</p>
         </section>
     </main>
 
-    <footer id="contact">
-        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
-        <p><a href="mailto:info@example.com">info@example.com</a></p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 尺八奏者 石橋紅童</p>
+    <footer>
+        <p>&copy; 2025 石橋紅童. All Rights Reserved.</p>
     </footer>
+
     <script>
-        function setLanguage(lang) {
-            if (lang === 'en') {
-                location.href = 'english_version.html'; // 英語ページに遷移
-            } else if (lang === 'ja') {
-                location.href = 'main3.html'; // 日本語ページに遷移
+        function setLanguage(language) {
+            if (language === 'en') {
+                document.documentElement.lang = 'en';
+                // Additional changes for English language
             }
         }
     </script>
-    <script>
-    // 言語設定の関数
-    function setLanguage(lang) {
-        if (lang === 'en') {
-            location.href = 'english_version.html'; // 英語ページに遷移
-        } else if (lang === 'ja') {
-            location.href = 'main3.html'; // 日本語ページに遷移
-        }
-    }
-
-    // ナビゲーションメニューのリンククリックでメニューを閉じる
-    document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById('menu').checked = false; // メニューを閉じる
-        });
-    });
-</script>
-    
-    
 </body>
 </html>
