@@ -108,12 +108,14 @@
 
         #menu:checked ~ .menu {
             background-color: transparent;
-            span:nth-of-type(1) {
-                transform: translateY(6px) rotate(45deg);
-            }
-            span:nth-of-type(3) {
-                transform: translateY(-6px) rotate(-45deg);
-            }
+        }
+
+        #menu:checked ~ .menu span:nth-of-type(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        #menu:checked ~ .menu span:nth-of-type(3) {
+            transform: translateY(-6px) rotate(-45deg);
         }
 
         #menu:checked ~ .nav {
@@ -165,15 +167,18 @@
             padding: 0.4em 1.6em;
             text-decoration: none;
             user-select: none;
-            border-top: 1px solid #00b5ad;
-            border-bottom: 1px solid #00b5ad;
+            border-top: 1px solid #804000;  /* 茶色 */
+            border-bottom: 1px solid #804000;  /* 茶色 */
+            background-color: #804000;  /* 背景色を茶色 */
+            color: #fff;  /* テキスト色を白 */
             z-index: 3;
+            margin-right: 10px;  /* ボタン間の間隔 */
         }
 
         .content {
             margin: 0;
             font-size: 0.8em;
-            color: #00b5ad;
+            color: #fff;
         }
 
         .left-line,
@@ -182,7 +187,7 @@
             top: 50%;
             width: 1px;
             height: 140%;
-            background: #00b5ad;
+            background: #fff;  /* 線の色を白 */
             transition: 0.3s;
             -webkit-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
@@ -249,7 +254,6 @@
         footer a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
