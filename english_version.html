@@ -1,12 +1,15 @@
+英語
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shakuhachi Performer Koji Ishibashi</title>
+    <title>Shakuhachi Player Koji Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Styles */
+        /* Global styles */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
@@ -76,7 +79,7 @@
             text-align: left;
         }
 
-        /* Menu Button */
+        /* Menu button */
         .menu {
             position: fixed;
             top: 20px;
@@ -108,21 +111,19 @@
 
         #menu:checked ~ .menu {
             background-color: transparent;
-        }
-
-        #menu:checked ~ .menu span:nth-of-type(1) {
-            transform: translateY(6px) rotate(45deg);
-        }
-
-        #menu:checked ~ .menu span:nth-of-type(3) {
-            transform: translateY(-6px) rotate(-45deg);
+            span:nth-of-type(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            span:nth-of-type(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
         }
 
         #menu:checked ~ .nav {
             left: 0;
         }
 
-        /* Side Menu */
+        /* Side menu */
         .nav {
             position: fixed;
             top: 0;
@@ -158,61 +159,31 @@
             background-color: #444;
         }
 
-        /* Language Switch Button */
-        .button-17 {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: inline-block;
-            padding: 0.4em 1.6em;
-            text-decoration: none;
-            user-select: none;
-            border-top: 1px solid #804000;
-            border-bottom: 1px solid #804000;
-            background-color: #804000;
-            color: #fff;
-            z-index: 3;
-            margin-right: 10px;
-        }
-
-        .content {
-            margin: 0;
-            font-size: 0.8em;
-            color: #fff;
-        }
-
-        .left-line,
-        .right-line {
+        .language-toggle {
             position: absolute;
-            top: 50%;
-            width: 1px;
-            height: 140%;
-            background: #fff;
-            transition: 0.3s;
-            -webkit-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
         }
 
-        .left-line {
-            left: 5%;
+        .language-toggle button {
+            background-color: #804000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
         }
 
-        .right-line {
-            left: 95%;
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
         }
 
-        .button-17:hover .left-line {
-            left: 0;
-            height: 100%;
-        }
-
-        .button-17:hover .right-line {
-            left: 100%;
-            height: 100%;
-        }
-
-        /* Main Content */
+        /* Main content */
         main {
             flex: 1;
             padding: 2rem;
@@ -254,6 +225,7 @@
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
@@ -266,32 +238,28 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#appearance">Appearances</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
+            <li><a href="#appearance" onclick="closeNav()">Performances</a></li>
+            <li><a href="#contact" onclick="closeNav()">Contact</a></li>
         </ul>
     </nav>
 
     <header>
-        <h1>Shakuhachi Performer Koji Ishibashi</h1>
-        <p>Bringing Tradition and Heart into Sound</p>
+        <h1>Shakuhachi Player Koji Ishibashi</h1>
+        <p>Incorporating Tradition and Spirit into Music</p>
         <div class="profile">
-            <p>Koji Ishibashi is a Shakuhachi performer from Japan. Fascinated by the Shakuhachi from a young age, he has been performing for over 10 years, captivating audiences with the unique sound of this traditional Japanese instrument.</p>
+            <p>Koji Ishibashi is a shakuhachi player who has been captivated by the instrument since his childhood. With over 10 years of experience, he continues to enchant audiences with the unique sound of the shakuhachi.</p>
+        </div>
+        <div class="language-toggle">
+            <button onclick="setLanguage('ja')">日本語</button>
+            <button onclick="setLanguage('en')">English</button>
         </div>
     </header>
-
-    <a href="#!" class="button-17" onclick="setLanguage('ja')">
-        <p class="content">日本語</p>
-        <span class="left-line"></span>
-        <span class="right-line"></span>
-    </a>
-
-    
 
     <main>
         <section id="schedule">
             <h2>Schedule</h2>
-            <p>Upcoming concerts and workshops:</p>
+            <p>Here are the upcoming concerts and workshops:</p>
             <ul>
                 <li>February 15, 2025: Shakuhachi Solo Concert at Tokyo International Forum</li>
                 <li>March 3, 2025: Special Performance at Kyoto City Hall</li>
@@ -300,8 +268,8 @@
         </section>
 
         <section id="appearance">
-            <h2>Appearances</h2>
-            <p>Past performances by Koji Ishibashi:</p>
+            <h2>Past Performances</h2>
+            <p>Here are some of Koji Ishibashi's past performances:</p>
             <ul>
                 <li>December 10, 2024: NHK Special "Sounds of Japan"</li>
                 <li>November 20, 2024: Kyoto International Shakuhachi Festival</li>
@@ -311,13 +279,13 @@
     </main>
 
     <footer id="contact">
-        <p>For inquiries or performance requests, please contact us at:</p>
+        <p>If you have any questions or performance requests, please contact us at:</p>
         <p><a href="mailto:info@example.com">info@example.com</a></p>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2025 Shakuhachi Performer Koji Ishibashi</p>
+        <p>&copy; 2025 Shakuhachi Player Koji Ishibashi</p>
     </footer>
 
     <script>
@@ -329,8 +297,10 @@
             }
         }
 
+        // Close the menu when a link is clicked
         function closeNav() {
-            document.getElementById('menu').checked = false;}
+            document.getElementById('menu').checked = false;
+        }
     </script>
 </body>
 </html>
