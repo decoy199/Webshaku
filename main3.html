@@ -313,15 +313,15 @@
 
 
     
-    // 日付以降予定けし
+    // 現在の日付を取得
     const today = new Date();
 
-    // 出演情報のセクション内のリストアイテムを取得
-    const appearanceItems = document.querySelectorAll("#appearance ul li");
+    // スケジュールセクション内のリストアイテムを取得
+    const scheduleItems = document.querySelectorAll("#schedule ul li");
 
     // 各リストアイテムを処理
-    appearanceItems.forEach(item => {
-        // テキストから日付を抽出（例: "2024年12月10日"）
+    scheduleItems.forEach(item => {
+        // テキストから日付を抽出（例: "2025年2月15日"）
         const text = item.textContent.trim();
         const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
 
@@ -340,7 +340,7 @@
     });
 
 
-
+    
 </script>
     
     
