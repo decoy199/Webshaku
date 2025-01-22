@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shakuhachi Player Koji Ishibashi</title>
+    <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global styles */
+        /* 全体のスタイル */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
 
-        /* Header */
+        /* ヘッダー */
         header {
             position: relative;
             color: #333;
@@ -40,7 +40,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.2); /* 背景画像の暗さを調整 */
             z-index: 1;
         }
 
@@ -76,7 +76,7 @@
             text-align: left;
         }
 
-        /* Menu button */
+        /* メニューボタン */
         .menu {
             position: fixed;
             top: 20px;
@@ -120,7 +120,7 @@
             left: 0;
         }
 
-        /* Side menu */
+        /* サイドメニュー */
         .nav {
             position: fixed;
             top: 0;
@@ -180,7 +180,7 @@
             color: #804000;
         }
 
-        /* Main content */
+        /* メインコンテンツ */
         main {
             flex: 1;
             padding: 2rem;
@@ -203,7 +203,7 @@
             text-indent: 1em;
         }
 
-        /* Footer */
+        /* フッター */
         footer {
             background-color: #804000;
             color: #fff;
@@ -235,17 +235,17 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
-            <li><a href="#appearance" onclick="closeNav()">Performances</a></li>
-            <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+            <li><a href="#schedule">スケジュール</a></li>
+            <li><a href="#appearance">出演情報</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
 
     <header>
-        <h1>Shakuhachi Player Koji Ishibashi</h1>
-        <p>Incorporating Tradition and Spirit into Music</p>
+        <h1>尺八奏者 石橋紅童</h1>
+        <p>伝統と心を音に込めて</p>
         <div class="profile">
-            <p>Koji Ishibashi is a shakuhachi player who has been captivated by the instrument since his childhood. With over 10 years of experience, he continues to enchant audiences with the unique sound of the shakuhachi.</p>
+            <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
         <div class="language-toggle">
             <button onclick="setLanguage('ja')">日本語</button>
@@ -255,49 +255,49 @@
 
     <main>
         <section id="schedule">
-            <h2>Schedule</h2>
-            <p>Here are the upcoming concerts and workshops:</p>
+            <h2>スケジュール</h2>
+            <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
             <ul>
-                <li>February 15, 2025: Shakuhachi Solo Concert at Tokyo International Forum</li>
-                <li>March 3, 2025: Special Performance at Kyoto City Hall</li>
-                <li>April 10, 2025: Online Workshop</li>
+                <li>2025年2月15日: 東京国際フォーラム 尺八ソロコンサート</li>
+                <li>2025年3月3日: 京都市民会館 特別演奏会</li>
+                <li>2025年4月10日: オンラインワークショップ</li>
             </ul>
         </section>
 
         <section id="appearance">
-            <h2>Past Performances</h2>
-            <p>Here are some of Koji Ishibashi's past performances:</p>
+            <h2>出演情報</h2>
+            <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
             <ul>
-                <li>December 10, 2024: NHK Special "Sounds of Japan"</li>
-                <li>November 20, 2024: Kyoto International Shakuhachi Festival</li>
-                <li>October 5, 2024: Asahi Newspaper Cultural Lecture</li>
+                <li>2024年12月10日: NHKスペシャル「和の響き」</li>
+                <li>2024年11月20日: 京都国際尺八フェスティバル</li>
+                <li>2024年10月5日: 朝日新聞文化講演会</li>
             </ul>
         </section>
     </main>
 
     <footer id="contact">
-        <p>If you have any questions or performance requests, please contact us at:</p>
+        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
         <p><a href="mailto:info@example.com">info@example.com</a></p>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2025 Shakuhachi Player Koji Ishibashi</p>
+        <p>&copy; 2025 尺八奏者 石橋紅童</p>
     </footer>
-
     <script>
         function setLanguage(lang) {
             if (lang === 'en') {
-                location.href = 'english_version.html'; // Redirect to English version
+                location.href = 'english_version.html'; // 英語ページに遷移
             } else if (lang === 'ja') {
-                location.href = 'main2.html'; // Redirect to Japanese version
+                location.href = 'main3.html'; // 日本語ページに遷移
             }
         }
-
-        // Close the menu when a link is clicked
+    </script>
+    <script>
         function closeNav() {
             document.getElementById('menu').checked = false;
         }
     </script>
+    
 </body>
 </html>

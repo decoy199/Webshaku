@@ -235,9 +235,9 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#appearance">Performances</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
+            <li><a href="#appearance" onclick="closeNav()">Performances</a></li>
+            <li><a href="#contact" onclick="closeNav()">Contact</a></li>
         </ul>
     </nav>
 
@@ -284,13 +284,19 @@
         </div>
         <p>&copy; 2025 Shakuhachi Player Koji Ishibashi</p>
     </footer>
+
     <script>
         function setLanguage(lang) {
             if (lang === 'en') {
                 location.href = 'english_version.html'; // Redirect to English version
             } else if (lang === 'ja') {
-                location.href = 'main3.html'; // Redirect to Japanese version
+                location.href = 'main2.html'; // Redirect to Japanese version
             }
+        }
+
+        // Close the menu when a link is clicked
+        function closeNav() {
+            document.getElementById('menu').checked = false;
         }
     </script>
 </body>
