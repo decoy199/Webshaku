@@ -248,7 +248,7 @@
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
         <div class="language-toggle">
-            <button onclick="setLanguage('ja')">日本語</button>
+            
             <button onclick="setLanguage('en')">English</button>
         </div>
     </header>
@@ -294,22 +294,22 @@
         }
     </script>
     <script>
-        // 言語設定の関数
-        function setLanguage(lang) {
-            if (lang === 'en') {
-                location.href = 'english_version.html'; // 英語ページに遷移
-            } else if (lang === 'ja') {
-                location.href = 'main3.html'; // 日本語ページに遷移
-            }
+    // 言語設定の関数
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'english_version.html'; // 英語ページに遷移
+        } else if (lang === 'ja') {
+            location.href = 'main3.html'; // 日本語ページに遷移
         }
-    
-        // ナビゲーションメニューのリンククリックでメニューを閉じる
-        document.querySelectorAll('.nav a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('menu').checked = false; // メニューを閉じる
-            });
+    }
+
+    // ナビゲーションメニューのリンククリックでメニューを閉じる
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // メニューを閉じる
         });
-    </script>
+    });
+</script>
     
     
 </body>
