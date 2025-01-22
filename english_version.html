@@ -1,13 +1,12 @@
-<html>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shakuhachi Performer Kodo Ishibashi</title>
+    <title>Shakuhachi Player Koji Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* General styles */
+        /* Global styles */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
@@ -25,56 +24,136 @@
             position: relative;
             color: #333;
             text-align: center;
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
             overflow: hidden;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uBYJ5QsYbKMLYGRO9g_KKJeRTO0GrmSzxsXxJnQXwRllr06NPF1KXa8&s=10');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         header::before {
             content: "";
-            background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
         header h1,
         header p,
-        nav {
+        header .profile {
             position: relative;
             z-index: 2;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
         header p {
-            font-size: 1.2rem;
-            margin: 1rem 0 0;
+            font-size: 1.3rem;
+            color: #ffdbac;
         }
 
-        nav {
-            margin-top: 1.5rem;
+        header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
         }
 
-        nav a {
+        /* Menu button */
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+            span:nth-of-type(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            span:nth-of-type(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* Side menu */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
             text-decoration: none;
-            color: #333;
-            margin: 0 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .nav ul li a:hover {
+            background-color: #444;
         }
 
         .language-toggle {
@@ -124,40 +203,6 @@
             text-indent: 1em;
         }
 
-        .image-container {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .image-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .image-item img {
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .image-item.reverse img {
-            margin-left: 20px;
-            margin-right: 0;
-        }
-
-        .text-container {
-            flex: 1;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .text-container p {
-            font-size: 1rem;
-            color: #333;
-        }
-
         /* Footer */
         footer {
             background-color: #804000;
@@ -177,64 +222,53 @@
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#appearance">Performances</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <h1>Shakuhachi Performer Kodo Ishibashi</h1>
-        <p>Conveying tradition and heart through sound</p>
-        <nav>
-            <a href="#profile">Profile</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#appearance">Appearances</a>
-        </nav>
+        <h1>Shakuhachi Player Koji Ishibashi</h1>
+        <p>Incorporating Tradition and Spirit into Music</p>
+        <div class="profile">
+            <p>Koji Ishibashi is a shakuhachi player who has been captivated by the instrument since his childhood. With over 10 years of experience, he continues to enchant audiences with the unique sound of the shakuhachi.</p>
+        </div>
         <div class="language-toggle">
-            <button onclick="location.href='main2.html'">日本語</button>
-            <button onclick="location.href='english_version.html'">English</button>
+            <button onclick="setLanguage('ja')">日本語</button>
+            <button onclick="setLanguage('en')">English</button>
         </div>
     </header>
-    <main>
-        <section id="profile">
-            <h2>Profile</h2>
-            <p>Kodo Ishibashi is a performer of the traditional Japanese instrument, the shakuhachi. Captivated by its charm since childhood, he has been performing for over 10 years, enchanting many with its sound.</p>
-            
-            <div class="image-container">
-                <div class="image-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="Image 1">
-                    <div class="text-container">
-                        <p>Description of Image 1: A moment captured during Kodo Ishibashi's performance.</p>
-                    </div>
-                </div>
-                <div class="image-item reverse">
-                    <div class="text-container">
-                        <p>Description of Image 2: A scene where the beautiful sound of the shakuhachi resonates.</p>
-                    </div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJEPd0D3ot1rqo0uyWba2jjzZsyGOlZO1nHByu4SGBStc-6O3V7ZCeAH7&s=10" alt="Image 2">
-                </div>
-                <div class="image-item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqaSM_iiy7f3gHbS2iA4cHh6hI6E29Z1z5ysLRn40vByZ0FcwNnYq7r_kz&s=10" alt="Image 3">
-                    <div class="text-container">
-                        <p>Description of Image 3: A photograph capturing the atmosphere of a concert.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
+    <main>
         <section id="schedule">
             <h2>Schedule</h2>
-            <p>Upcoming concerts and workshops are as follows:</p>
+            <p>Here are the upcoming concerts and workshops:</p>
             <ul>
                 <li>February 15, 2025: Shakuhachi Solo Concert at Tokyo International Forum</li>
-                <li>March 3, 2025: Special Performance at Kyoto Civic Hall</li>
+                <li>March 3, 2025: Special Performance at Kyoto City Hall</li>
                 <li>April 10, 2025: Online Workshop</li>
             </ul>
         </section>
 
         <section id="appearance">
-            <h2>Appearances</h2>
-            <p>Here is a list of Kodo Ishibashi's past appearances:</p>
+            <h2>Past Performances</h2>
+            <p>Here are some of Koji Ishibashi's past performances:</p>
             <ul>
-                <li>December 10, 2024: NHK Special "Harmony of Japan"</li>
+                <li>December 10, 2024: NHK Special "Sounds of Japan"</li>
                 <li>November 20, 2024: Kyoto International Shakuhachi Festival</li>
                 <li>October 5, 2024: Asahi Newspaper Cultural Lecture</li>
             </ul>
@@ -242,13 +276,22 @@
     </main>
 
     <footer id="contact">
-        <p>For inquiries or performance requests, please contact us at the email address below.</p>
+        <p>If you have any questions or performance requests, please contact us at:</p>
         <p><a href="mailto:info@example.com">info@example.com</a></p>
         <div class="social-icons">
             <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
-        <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
+        <p>&copy; 2025 Shakuhachi Player Koji Ishibashi</p>
     </footer>
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                location.href = 'english_version.html'; // Redirect to English version
+            } else if (lang === 'ja') {
+                location.href = 'main2.html'; // Redirect to Japanese version
+            }
+        }
+    </script>
 </body>
 </html>
