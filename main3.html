@@ -156,28 +156,31 @@
             background-color: #444;
         }
 
-        .language-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
-
-        .language-toggle button {
-            background-color: #804000;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
+        /* 言語切り替えボタン */
+        a.btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ffffff;
+            background-size: 120%;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #ec6d51;
+            width: 120px;
+            height: 120px;
+            padding: 40px 0;
+            line-height: 20px;
+            border: double 4px;
+            border-radius: 50%;
+            vertical-align: middle;
+            overflow: hidden;
+            transition: .6s;
             font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 5px;
         }
 
-        .language-toggle button:hover {
-            background-color: #ffdbac;
-            color: #804000;
+        a.btn:hover {
+            transform: rotateY(360deg);
         }
 
         /* メインコンテンツ */
@@ -247,11 +250,10 @@
         <div class="profile">
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
-        <div class="language-toggle">
-            <button onclick="setLanguage('ja')">日本語</button>
-            <button onclick="setLanguage('en')">English</button>
-        </div>
     </header>
+
+    <a class="btn" href="javascript:void(0)" onclick="setLanguage('ja')">日本語</a>
+    <a class="btn" href="javascript:void(0)" onclick="setLanguage('en')">English</a>
 
     <main>
         <section id="schedule">
@@ -284,6 +286,7 @@
         </div>
         <p>&copy; 2025 尺八奏者 石橋紅童</p>
     </footer>
+    
     <script>
         function setLanguage(lang) {
             if (lang === 'en') {
@@ -293,24 +296,5 @@
             }
         }
     </script>
-    <script>
-        // 言語設定の関数
-        function setLanguage(lang) {
-            if (lang === 'en') {
-                location.href = 'english_version.html'; // 英語ページに遷移
-            } else if (lang === 'ja') {
-                location.href = 'main3.html'; // 日本語ページに遷移
-            }
-        }
-    
-        // ナビゲーションメニューのリンククリックでメニューを閉じる
-        document.querySelectorAll('.nav a').forEach(function(link) {
-            link.addEventListener('click', function() {
-                document.getElementById('menu').checked = false; // メニューを閉じる
-            });
-        });
-    </script>
-    
-    
 </body>
 </html>
