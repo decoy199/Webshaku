@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -40,7 +41,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.2); /* 背景画像の暗さを調整 */
             z-index: 1;
         }
 
@@ -76,41 +77,131 @@
             text-align: left;
         }
 
-        /* スケジュール */
-        #schedule {
+        /* メニューボタン */
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+        }
+
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+            span:nth-of-type(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            span:nth-of-type(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* サイドメニュー */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+
+        .language-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+
+        .language-toggle button {
+            background-color: #804000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
+
+        /* メインコンテンツ */
+        main {
+            flex: 1;
             padding: 2rem;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        #schedule h2 {
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
             border-left: 4px solid #804000;
             padding-left: 0.5rem;
             color: #804000;
-        }
-
-        #schedule ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        #schedule li {
-            margin-bottom: 2rem;
-        }
-
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .event-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
             margin-bottom: 1rem;
-            border-radius: 8px;
+        }
+
+        p {
+            text-indent: 1em;
         }
 
         /* フッター */
@@ -119,6 +210,8 @@
             color: #fff;
             text-align: center;
             padding: 1rem 0;
+            bottom: 0;
+            width: 100%;
         }
 
         footer a {
@@ -130,76 +223,126 @@
         footer a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#schedule">スケジュール</a></li>
+            <li><a href="#appearance">出演情報</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
     <header>
         <h1>尺八奏者 石橋紅童</h1>
         <p>伝統と心を音に込めて</p>
         <div class="profile">
             <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
         </div>
+        <div class="language-toggle">
+            
+            <button onclick="setLanguage('en')">English</button>
+        </div>
     </header>
 
-    <main id="schedule">
-        <h2>スケジュール</h2>
-        <ul>
-            <li>
-                <details>
-                    <summary>2024年2月15日: 東京国際フォーラム 尺八ソロコンサート</summary>
-                    <div class="event-detail">
-                        <img src="tokyo_concert.jpg" alt="東京国際フォーラム" class="event-image">
-                        <p>東京国際フォーラムで開催される尺八ソロコンサート。伝統音楽と現代のアプローチを融合した演奏です。</p>
-                        <p><strong>時間:</strong> 18:00開場 / 19:00開演</p>
-                        <p><strong>場所:</strong> 東京国際フォーラム ホールA</p>
-                    </div>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>2025年3月3日: 京都市民会館 特別演奏会</summary>
-                    <div class="event-detail">
-                        <img src="kyoto_event.jpg" alt="京都市民会館" class="event-image">
-                        <p>京都市民会館での特別演奏会。新作の披露が予定されています。</p>
-                        <p><strong>時間:</strong> 17:30開場 / 18:30開演</p>
-                        <p><strong>場所:</strong> 京都市民会館 メインホール</p>
-                    </div>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>2025年4月10日: オンラインワークショップ</summary>
-                    <div class="event-detail">
-                        <img src="online_workshop.jpg" alt="オンラインワークショップ" class="event-image">
-                        <p>オンラインで尺八の基礎から応用まで学べるワークショップ。</p>
-                        <p><strong>時間:</strong> 10:00 - 12:00</p>
-                        <p><strong>参加方法:</strong> Zoomリンクは事前登録後に送付されます。</p>
-                    </div>
-                </details>
-            </li>
-        </ul>
+    <main>
+        <section id="schedule">
+            <h2>スケジュール</h2>
+            <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+            <ul>
+                <li>2024年2月15日: 東京国際フォーラム 尺八ソロコンサート</li>
+                <li>2025年3月3日: 京都市民会館 特別演奏会</li>
+                <li>2025年4月10日: オンラインワークショップ</li>
+            </ul>
+        </section>
+
+        <section id="appearance">
+            <h2>出演情報</h2>
+            <p>石橋紅童の過去の出演情報を以下に掲載します。</p>
+            <ul>
+                <li>2024年12月10日: NHKスペシャル「和の響き」</li>
+                <li>2024年11月20日: 京都国際尺八フェスティバル</li>
+                <li>2024年10月5日: 朝日新聞文化講演会</li>
+            </ul>
+        </section>
     </main>
 
-    <footer>
-        <p>お問い合わせ: <a href="mailto:info@example.com">info@example.com</a></p>
+    <footer id="contact">
+        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+        <p><a href="mailto:info@example.com">info@example.com</a></p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
         <p>&copy; 2025 尺八奏者 石橋紅童</p>
     </footer>
-
     <script>
-        // 過去のイベントを非表示
-        const today = new Date();
-        const scheduleItems = document.querySelectorAll("#schedule ul li");
-        scheduleItems.forEach(item => {
-            const text = item.querySelector('summary').textContent;
-            const match = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-            if (match) {
-                const [year, month, day] = match.slice(1).map(Number);
-                const eventDate = new Date(year, month - 1, day);
-                if (eventDate < today) {
-                    item.style.display = "none";
-                }
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                location.href = 'english_version.html'; // 英語ページに遷移
+            } else if (lang === 'ja') {
+                location.href = 'main3.html'; // 日本語ページに遷移
             }
-        });
+        }
     </script>
+    <script>
+    // 言語設定の関数
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'english_version.html'; // 英語ページに遷移
+        } else if (lang === 'ja') {
+            location.href = 'main3.html'; // 日本語ページに遷移
+        }
+    }
+
+    // ナビゲーションメニューのリンククリックでメニューを閉じる
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // メニューを閉じる
+        });
+    });
+
+
+    
+    // 現在の日付を取得
+    const today = new Date();
+
+    // スケジュールセクション内のリストアイテムを取得
+    const scheduleItems = document.querySelectorAll("#schedule ul li");
+
+    // 各リストアイテムを処理
+    scheduleItems.forEach(item => {
+        // テキストから日付を抽出（例: "2025年2月15日"）
+        const text = item.textContent.trim();
+        const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+
+        if (dateMatch) {
+            // 抽出した年、月、日を使って日付オブジェクトを作成
+            const year = parseInt(dateMatch[1], 10);
+            const month = parseInt(dateMatch[2], 10) - 1; // JavaScriptの月は0から始まる
+            const day = parseInt(dateMatch[3], 10);
+            const itemDate = new Date(year, month, day);
+
+            // 現在の日付と比較して、過去の日付の場合は非表示
+            if (itemDate < today) {
+                item.style.display = "none";
+            }
+        }
+    });
+
+
+    
+</script>
+    
+    
 </body>
 </html>
