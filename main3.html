@@ -23,18 +23,20 @@
         }
 
         /* ヘッダー */
-        header {
-            position: relative;
-            color: #333;
-            text-align: center;
-            padding: 5rem 1rem;
-            overflow: hidden;
-            background-image: url(profile1.jpg);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
+        /* ヘッダー */
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0; /* パディングを0に設定 */
+    overflow: hidden;
+    background-image: url(profile1.jpg);
+    background-size: cover; /* 画像を要素に合わせて拡大縮小 */
+    background-repeat: no-repeat;
+    background-position: center; /* 画像が中央に来るように設定 */
+    background-attachment: fixed;
+}
+
 
         header::before {
             content: "";
