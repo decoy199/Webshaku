@@ -1,40 +1,76 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Kodo Ishibashi is a shakuhachi player performing a fusion of traditional Japanese music and contemporary approaches. Concert and performance details available.">
+    <meta name="keywords" content="Kodo Ishibashi, shakuhachi, shakuhachi player, Japanese traditional music, concert, Kodo Ishibashi schedule">
+    <meta name="author" content="Kodo Ishibashi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shakuhachi Player Koji Ishibashi</title>
+    <title>Shakuhachi Player Kodo Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global styles */
+        /* Similar CSS as the previous one, but you can customize it further as needed */
+        html {
+    margin: 0;
+    padding: 0;
+    
+}
+        /* 全体のスタイル */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f9f5ef;
-            color: #333;
+            
+            
+            color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* Header */
-        header {
-            position: relative;
-            color: #333;
-            text-align: center;
-            padding: 5rem 1rem;
-            overflow: hidden;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uBYJ5QsYbKMLYGRO9g_KKJeRTO0GrmSzxsXxJnQXwRllr06NPF1KXa8&s=10');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
+ /* ヘッダーの調整 */
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('profile1.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInBg 1s ease-in-out forwards;
+    animation-delay: 1s;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    background-attachment: scroll;
+}
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.5;
+    }
+}
+
+
+
+
+        /* ヘッダーが透明になる状態 */
+        header.hidden {
+            opacity: 0; /* 透明度を0に */
         }
+
+
 
         header::before {
             content: "";
@@ -43,27 +79,36 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            z-index: 1;
+            
+            
+            z-index: -1;
         }
 
+
+        
         header h1,
-        header p,
-        header .profile {
+        header p{
             position: relative;
             z-index: 2;
         }
-
-        header h1 {
+        
+                header h1 {
             margin: 0;
             font-size: 2.8rem;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl; /* 縦書きにする */
+            position: absolute;
+            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
+            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
+            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
+            font-size: 4rem; /* フォントサイズ調整 */
         }
 
         header p {
-            font-size: 1.3rem;
-            color: #ffdbac;
+            font-size: 1.1rem;
+            color: #180614;
+            margin-top: 100px; /* pの位置調整 */
         }
 
         header .profile {
@@ -71,31 +116,31 @@
             color: #fff;
             font-size: 1rem;
             line-height: 1.8;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0);
             padding: 1rem;
             border-radius: 10px;
             display: inline-block;
             max-width: 600px;
             text-align: left;
+            
         }
 
-        /* Menu button */
-        .menu {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 200;
-        }
-
+ /* メニューとヘッダーが重ならないようにするための調整 */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background-color: #deb068;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
         .menu span {
             display: block;
             width: 50%;
@@ -111,19 +156,13 @@
 
         #menu:checked ~ .menu {
             background-color: transparent;
-            span:nth-of-type(1) {
-                transform: translateY(6px) rotate(45deg);
-            }
-            span:nth-of-type(3) {
-                transform: translateY(-6px) rotate(-45deg);
-            }
         }
 
         #menu:checked ~ .nav {
             left: 0;
         }
 
-        /* Side menu */
+        /* サイドメニュー */
         .nav {
             position: fixed;
             top: 0;
@@ -131,7 +170,7 @@
             width: 250px;
             height: 100%;
             background-color: #333;
-            color: #fff;
+            color: #ffffff;
             transition: left 0.3s ease;
             z-index: 100;
         }
@@ -159,17 +198,24 @@
             background-color: #444;
         }
 
-        .language-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
+/* 言語切替ボタンの位置調整 */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+/* mainの下に移動するためのクラス */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* mainの下に配置 */
+        right: 20px;
+    }
 
         .language-toggle button {
-            background-color: #804000;
+            background-color: #deb068;
             color: white;
             border: none;
             padding: 0.5rem 1rem;
@@ -183,13 +229,175 @@
             color: #804000;
         }
 
-        /* Main content */
-        main {
-            flex: 1;
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+       .c-accordion {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.7s ease;
+}
+
+.c-accordion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.c-accordion[open] {
+    border-color: #804000;
+    background-color: #fdf7f0;
+}
+
+.c-accordion__header {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.7s ease;
+    background-color: #fff;
+}
+
+.c-accordion__close-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: block;
+}
+
+.c-accordion__open-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__close-heading {
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__open-heading {
+    display: block;
+}
+
+.c-accordion__content {
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
+}
+
+.c-accordion__plus {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #804000;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.c-accordion__plus::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #804000;
+    transform: rotate(90deg);
+    transition: transform 0.3s;
+}
+
+.c-accordion[open] .c-accordion__plus::before {
+    transform: rotate(0deg);
+}
+
+
+
+
+/* アニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スマホサイズ対応 */
+
+   
+        @media (max-width: 767px) {
+    header {
+        min-height: 50px; /* 必要に応じて調整 */
+        padding: 10px 0;  /* 上下の余白を調整 */
+        background-size: cover; /* Ensures the image covers the entire header */
+        background-position: center top 20px;
+        background-attachment: scroll;
+       
+    }
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
         }
+
+        
+
+    
+
+    
+}
+    
+
+
+
+        /* メインコンテンツ */
+        main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    background-image: url('japanese-paper.jpg');
+    background-size: 100% 100%; /* Stretches the image both horizontally and vertically */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+
 
         section {
             margin-bottom: 3rem;
@@ -206,7 +414,7 @@
             text-indent: 1em;
         }
 
-        /* Footer */
+        /* フッター */
         footer {
             background-color: #804000;
             color: #fff;
@@ -226,6 +434,24 @@
             text-decoration: underline;
         }
 
+        .event-detail {
+            margin-top: 1rem;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .event-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+
+    </style>
+
     </style>
 </head>
 <body>
@@ -238,97 +464,89 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="#schedule" onclick="closeNav()">Schedule</a></li>
-            <li><a href="#appearance" onclick="closeNav()">Performances</a></li>
-            <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#appearance">Performances</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <header>
-        <h1>Shakuhachi Player Koji Ishibashi</h1>
-        <p>Incorporating Tradition and Spirit into Music</p>
-        <div class="profile">
-            <p>Koji Ishibashi is a shakuhachi player who has been captivated by the instrument since his childhood. With over 10 years of experience, he continues to enchant audiences with the unique sound of the shakuhachi.</p>
-        </div>
+        <h1>Shakuhachi Player Kodo Ishibashi</h1>
+
         <div class="language-toggle">
             <button onclick="setLanguage('ja')">日本語</button>
-            
         </div>
     </header>
 
     <main>
+
+        <div class="profile">
+            <p>
+                Born in Tokyo in 2000. Participated in a hands-on class hosted by the Setagaya San-kyoku Association and began learning shakuhachi at the age of 9 under the guidance of <strong>Haruto Fujii</strong>.
+            </p>
+            <p><strong>Graduated from the Tokyo University of the Arts Music High School and Department of Japanese Traditional Music, currently enrolled in the master's program of the same university.</strong></p>
+            <p>During my studies, I have trained under <strong>Seibo Aoki, Ko Mei Takemura, Yoji Kawase, and other renowned teachers in the Koto-Koryu and Tozan-Ryu schools.</strong></p>
+            <p>While at university, she received the <strong>"Ataka Prize", "Ryohei Miyata Prize", "Doho-kai Prize", and "Acanthus Music Prize".</strong></p>
+            <p>she performed at the Imperial Palace’s Tokyo Music Hall in the "2022 Graduation Concert of Music Universities."</p>
+            <p>she is actively involved in both traditional and contemporary music, including pop music, expanding my performance repertoire.</p>
+            <p><strong>Member of the Nihon Sankyoku Association, Koto-Koryu Association, Setagaya Sankyoku Association, and Doho-kai.</strong></p>
+        </div>
+
         <section id="schedule">
             <h2>Schedule</h2>
-            <p>Here are the upcoming concerts and workshops:</p>
+            <p>Upcoming concerts and workshops:</p>
             <ul>
-                <li>February 15, 2024: Shakuhachi Solo Concert at Tokyo International Forum</li>
-                <li>March 3, 2025: Special Performance at Kyoto City Hall</li>
-                <li>April 10, 2025: Online Workshop</li>
+                <li>
+                    <details class="c-accordion">
+                        <summary class="c-accordion__header">
+                            <p class="c-accordion__close-heading">Feb 27-28, 2025 (Thu/Fri) Rehearsal/Performance: Open</p>
+                            <p class="c-accordion__open-heading">Close</p>
+                            <div class="c-accordion__plus"></div>
+                        </summary>
+                        <div class="c-accordion__content">
+                            <img src="tokyo_concert.jpg" alt="Tokyo International Forum Shakuhachi Solo Concert" class="event-image">
+                            <p>A solo shakuhachi concert at the Tokyo International Forum, blending traditional and contemporary approaches.</p>
+                            <p><strong>Time:</strong> Doors open at 18:00 / Performance starts at 19:00</p>
+                            <p><strong>Location:</strong> Tokyo International Forum Hall A</p>
+                        </div>
+                    </details>
+                </li>
+                <li>
+                    <details class="c-accordion">
+                        <summary class="c-accordion__header">
+                            <p class="c-accordion__close-heading">March 3, 2025: Open</p>
+                            <p class="c-accordion__open-heading">Close</p>
+                            <div class="c-accordion__plus"></div>
+                        </summary>
+                        <div class="c-accordion__content">
+                            <img src="kyoto_event.jpg" alt="Kyoto City Hall Special Performance" class="event-image">
+                            <p>A special performance at Kyoto City Hall, featuring new works.</p>
+                            <p><strong>Time:</strong> Doors open at 17:30 / Performance starts at 18:30</p>
+                            <p><strong>Location:</strong> Kyoto City Hall Main Hall</p>
+                        </div>
+                    </details>
+                </li>
             </ul>
         </section>
 
         <section id="appearance">
             <h2>Past Performances</h2>
-            <p>Here are some of Koji Ishibashi's past performances:</p>
+            <p>Below are some past performances by Kodo Ishibashi:</p>
             <ul>
-                <li>December 10, 2024: NHK Special "Sounds of Japan"</li>
-                <li>November 20, 2024: Kyoto International Shakuhachi Festival</li>
-                <li>October 5, 2024: Asahi Newspaper Cultural Lecture</li>
+                <li>Dec 10, 2024: NHK Special "Sounds of Japan"</li>
+                <li>Nov 20, 2024: Kyoto International Shakuhachi Festival</li>
+                <li>Oct 15, 2024: Tokyo National Theatre, Traditional Shakuhachi Showcase</li>
             </ul>
         </section>
-    </main>
 
-    <footer id="contact">
-        <p>If you have any questions or performance requests, please contact us at:</p>
-        <p><a href="mailto:info@example.com">info@example.com</a></p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2025 Shakuhachi Player Koji Ishibashi</p>
-    </footer>
-
-    <script>
-        function setLanguage(lang) {
-            if (lang === 'en') {
-                location.href = 'english_version.html'; // Redirect to English version
-            } else if (lang === 'ja') {
-                location.href = 'main3.html'; // Redirect to Japanese version
-            }
-        }
-
-        // Close the menu when a link is clicked
-        function closeNav() {
-            document.getElementById('menu').checked = false;
-        }
-    
-    document.addEventListener("DOMContentLoaded", () => {
-        // 現在の日付を取得
-        const today = new Date();
-
-        // Schedule セクション内のリストアイテムを取得
-        const scheduleItems = document.querySelectorAll("#schedule ul li");
-
-        // 各リストアイテムを処理
-        scheduleItems.forEach(item => {
-            // テキストから日付を抽出（例: "February 15, 2025"）
-            const text = item.textContent.trim();
-            const dateMatch = text.match(/(\w+)\s(\d{1,2}),\s(\d{4})/);
-
-            if (dateMatch) {
-                // 抽出した月、日、年を使って日付オブジェクトを作成
-                const month = new Date(`${dateMatch[1]} 1, 2000`).getMonth(); // 月名をインデックスに変換
-                const day = parseInt(dateMatch[2], 10);
-                const year = parseInt(dateMatch[3], 10);
-                const itemDate = new Date(year, month, day);
-
-                // 現在の日付と比較して、過去の日付の場合は非表示
-                if (itemDate < today) {
-                    item.style.display = "none";
-                }
-            }
-        });
-    });
-</script>
+        <footer id="contact">
+            <p>If you would like to inquire about bookings or have any other questions, feel free to get in touch:</p>
+            <p><a href="mailto:info@example.com">info@example.com</a></p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2025 Kodo Ishibashi. All rights reserved.</p>
+        </footer>
 </body>
 </html>
