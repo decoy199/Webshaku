@@ -28,7 +28,7 @@ html {
             
 
             
-            color: #333;
+            color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -82,16 +82,23 @@ header {
             z-index: 2;
         }
 
-        header h1 {
+                header h1 {
             margin: 0;
             font-size: 2.8rem;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl; /* 縦書きにする */
+            position: absolute;
+            right: 20px; /* 右端に配置 */
+            top: 50%; /* 画面の中央に配置 */
+            transform: translateY(-50%); /* 中央揃え */
+            font-size: 4rem; /* フォントサイズを少し大きくする */
         }
+
 
         header p {
             font-size: 1.1rem;
-            color: #485859;
+            color: #180614;
         }
 
         header .profile {
