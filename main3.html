@@ -81,7 +81,6 @@ header {
             position: relative;
             z-index: 2;
         }
-
                 header h1 {
             margin: 0;
             font-size: 2.8rem;
@@ -89,16 +88,16 @@ header {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
             writing-mode: vertical-rl; /* 縦書きにする */
             position: absolute;
-            right: 20px; /* 右端に配置 */
-            top: 50%; /* 画面の中央に配置 */
-            transform: translateY(-50%); /* 中央揃え */
-            font-size: 4rem; /* フォントサイズを少し大きくする */
+            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
+            top: 25%; /* 上から40%の位置に変更（真ん中寄り） */
+            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
+            font-size: 4rem; /* フォントサイズ調整 */
         }
-
 
         header p {
             font-size: 1.1rem;
             color: #180614;
+            margin-top: 100px; /* pの位置調整 */
         }
 
         header .profile {
@@ -315,16 +314,30 @@ header {
 
 /* スマホサイズ対応 */
 
-    @media (max-width: 767px) {
+   
+        @media (max-width: 767px) {
     header h1 {
         font-size: 2rem;
-        margin-top: 120px; /* タイトルの位置調整 */
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
     }
 
     header p {
-        font-size: 1.0rem;
-        margin-top: 10px; /* 余白調整 */
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
     }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
     header .profile {
             margin: 2rem 0 1.5rem;
             color: #fff;
@@ -339,24 +352,11 @@ header {
             
         }
 
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
+    
 
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    /* ヘッダーが小さくなるときの調整 */
-    header p {
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
+    
 }
-
-
+    
 
 
 
@@ -442,6 +442,7 @@ header {
     <header>
         
         <h1>尺八奏者 石橋紅童</h1>
+        <br>
         <br>
         <br>
         <br>
