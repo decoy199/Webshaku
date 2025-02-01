@@ -9,6 +9,12 @@
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
         /* 全体のスタイル */
         body {
             font-family: 'Yu Mincho', serif;
@@ -22,20 +28,21 @@
             min-height: 100vh;
         }
 
-        header {
+ /* ヘッダーの調整 */
+header {
     position: relative;
     color: #333;
     text-align: center;
-    padding: 0; /* パディングを0に設定 */
+    padding: 0;
     overflow: hidden;
     background-image: url(profile1.jpg);
-    background-size: contain; /* 画像が親要素内に収まるようにサイズを調整 */
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: center top; /* 画像の中央を基準に配置（上部が切れないように） */
-    background-attachment: fixed; /* スクロール時に背景画像が動かない */
-    height: 100vh; /* ビューポートの高さに合わせてヘッダーを縦長に */
-    background-color: rgba(0, 0, 0, 0); /* 余計な背景色を透明に設定 */
-    transition: opacity 0.3s ease; 
+    background-position: center top;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: opacity 0.3s ease;
     z-index: 10;
 }
 
@@ -91,25 +98,25 @@
             display: inline-block;
             max-width: 600px;
             text-align: left;
+            
         }
 
-        /* メニューボタン */
-        .menu {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 50px;
-            height: 50px;
-            background-color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 200;
-        }
-
+ /* メニューとヘッダーが重ならないようにするための調整 */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
         .menu span {
             display: block;
             width: 50%;
@@ -167,14 +174,15 @@
             background-color: #444;
         }
 
-        .language-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
+/* 言語切替ボタンの位置調整 */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
 
         .language-toggle button {
             background-color: #804000;
@@ -285,6 +293,30 @@
     }
 }
 
+/* スマホサイズ対応 */
+@media (max-width: 767px) {
+    header h1 {
+        font-size: 2rem; /* ヘッダータイトルのフォントサイズを小さくする */
+        margin-top: 120px; /* メニューや言語ボタンに被らないようにタイトル位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    /* ヘッダーが小さくなるときの調整 */
+    header p {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+}
+
 
 
 
@@ -369,8 +401,7 @@
     
 
     <header>
-        <br>
-        <br>
+        
         <h1>尺八奏者 石橋紅童</h1>
         <br>
         <br>
