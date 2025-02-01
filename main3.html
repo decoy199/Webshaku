@@ -183,6 +183,12 @@ header {
     gap: 10px;
     z-index: 3;
 }
+/* mainの下に移動するためのクラス */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* mainの下に配置 */
+        right: 20px;
+    }
 
         .language-toggle button {
             background-color: #804000;
@@ -566,6 +572,20 @@ header {
         }
         });
 
+    </script>
+    <script>
+        // ヘッダー要素を取得
+        const languageToggle = document.querySelector('.language-toggle');
+    
+        // スクロールイベントをリスン
+        window.addEventListener('scroll', function() {
+            // スクロール量が100pxを超えたらボタン位置を変更
+            if (window.scrollY > 580) {
+                languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+            } else {
+                languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+            }
+        });
     </script>
 </body>
 </html>
