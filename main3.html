@@ -588,7 +588,7 @@ header {
         // スクロールイベントをリスン
         window.addEventListener('scroll', function() {
         // スクロール量が100pxを超えたら透明に
-        if (window.scrollY > 400) {
+        if (window.scrollY > 600) {
             header.classList.add('hidden'); // 透明にするクラスを追加
         } else {
             header.classList.remove('hidden'); // 元の状態に戻す
@@ -603,7 +603,7 @@ header {
         // スクロールイベントをリスン
         window.addEventListener('scroll', function() {
             // スクロール量が100pxを超えたらボタン位置を変更
-            if (window.scrollY > 400) {
+            if (window.scrollY > 600) {
                 languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
             } else {
                 languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
