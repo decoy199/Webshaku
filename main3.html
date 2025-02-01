@@ -294,10 +294,16 @@ header {
 }
 
 /* スマホサイズ対応 */
-@media (max-width: 767px) {
+
+    @media (max-width: 767px) {
     header h1 {
-        font-size: 2rem; /* ヘッダータイトルのフォントサイズを小さくする */
-        margin-top: 120px; /* メニューや言語ボタンに被らないようにタイトル位置を調整 */
+        font-size: 2rem;
+        margin-top: 120px; /* タイトルの位置調整 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 10px; /* 余白調整 */
     }
 
     .menu {
