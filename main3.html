@@ -22,19 +22,21 @@
             min-height: 100vh;
         }
 
-        /* ヘッダー */
-        header {
-            position: relative;
-            color: #333;
-            text-align: center;
-            padding: 5rem 1rem;
-            overflow: hidden;
-            background-image: url(profile1.jpg);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
+       /* ヘッダー */
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0; /* パディングを0に設定 */
+    overflow: hidden;
+    background-image: url(profile1.jpg);
+    background-size: contain; /* 画像全体が見えるようにサイズ調整 */
+    background-repeat: no-repeat;
+    background-position: center; /* 画像が中央に配置される */
+    background-attachment: fixed;
+    height: 100vh; /* ビューポートの高さに合わせてヘッダーを縦長に */
+}
+
 
         header::before {
             content: "";
@@ -382,7 +384,7 @@
         <li>
             <details class="c-accordion">
                 <summary class="c-accordion__header">
-                    <p class="c-accordion__close-heading">2025年2月27日/28日(木/金) リハーサル/本番:    開きます</p>
+                    <p class="c-accordion__close-heading">2025年2月27日/28日(木/金) リハーサル/本番:   開きます</p>
                     
                     <p class="c-accordion__open-heading">閉じます</p>
                     <div class="c-accordion__plus"></div>
