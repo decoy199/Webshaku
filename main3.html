@@ -92,7 +92,7 @@ header {
             writing-mode: vertical-rl; /* 縦書きにする */
             position: absolute;
             right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 25%; /* 上から40%の位置に変更（真ん中寄り） */
+            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
             transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
             font-size: 4rem; /* フォントサイズ調整 */
         }
@@ -457,7 +457,17 @@ header {
         
 
 
+        
+        
+        <div class="language-toggle">
+            <button onclick="setLanguage('en')">English</button>
+        </div>
+    </header>
+
+    <main>
+
         <div class="profile">
+           
             <p>
                 2000年東京都生まれ。世田谷三曲協会主催の体験教室に参加し、9歳より藤井治童氏に師事。
                 東京藝術大学音楽学部附属音楽高等学校、東京藝術大学音楽学部邦楽科尺八専攻を経て、現在同大学大学院修士課程2年に在籍中。
@@ -467,13 +477,6 @@ header {
                 古典作品を中心に、ポップスや現代邦楽にも積極的に取り組み、活躍の幅を広げている。
                 日本三曲協会、琴古流協会、世田谷三曲協会、同声会、会員</p>
         </div>
-        
-        <div class="language-toggle">
-            <button onclick="setLanguage('en')">English</button>
-        </div>
-    </header>
-
-    <main>
 
 
        <section id="schedule">
