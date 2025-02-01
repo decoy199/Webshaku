@@ -14,10 +14,7 @@
 html {
     margin: 0;
     padding: 0;
-    background-image:  url('japanese-paper.jpg');
-            background-size:  cover;
-            background-repeat: no-repeat;
-            background-position: center top;
+    
 }
         /* 全体のスタイル */
         body {
@@ -26,7 +23,6 @@ html {
             margin: 0;
             padding: 0;
             
-
             
             color: #0b0b0b;
             display: flex;
@@ -368,11 +364,17 @@ header {
 
         /* メインコンテンツ */
         main {
-            flex: 1;
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    flex: 1;
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    background-image: url('japanese-paper.jpg');
+    background-size: 100% 100%; /* Stretches the image both horizontally and vertically */
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
 
         section {
             margin-bottom: 3rem;
@@ -448,13 +450,8 @@ header {
     <header>
         
         <h1>尺八奏者 石橋紅童</h1>
-        <br>
-        <br>
         
-        <br>
-        <br>
-        <br>
-        
+
 
 
         
