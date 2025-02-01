@@ -35,10 +35,10 @@ header {
     text-align: center;
     padding: 0;
     overflow: hidden;
-    background-image: url(profile1.jpg);
-    background-size: contain;
+    background-image: url(profile1.jpg),  url('japanese-paper.jpg');
+    background-size: contain, cover;
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center top, center center;
     background-attachment: fixed;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0);
@@ -64,8 +64,9 @@ header {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0); /* 背景画像の暗さを調整 */
-            z-index: 1;
+            
+            
+            z-index: -1;
         }
 
         header h1,
