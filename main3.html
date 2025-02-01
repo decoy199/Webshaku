@@ -112,7 +112,7 @@ header {
     flex-direction: column;
     width: 50px;
     height: 50px;
-    background-color: white;
+    background-color: #deb068;
     border-radius: 50%;
     cursor: pointer;
     z-index: 200;
@@ -146,7 +146,7 @@ header {
             width: 250px;
             height: 100%;
             background-color: #333;
-            color: #fff;
+            color: #ffffff;
             transition: left 0.3s ease;
             z-index: 100;
         }
@@ -565,7 +565,7 @@ header {
         // スクロールイベントをリスン
         window.addEventListener('scroll', function() {
         // スクロール量が100pxを超えたら透明に
-        if (window.scrollY > 540) {
+        if (window.scrollY > 630) {
             header.classList.add('hidden'); // 透明にするクラスを追加
         } else {
             header.classList.remove('hidden'); // 元の状態に戻す
@@ -580,7 +580,7 @@ header {
         // スクロールイベントをリスン
         window.addEventListener('scroll', function() {
             // スクロール量が100pxを超えたらボタン位置を変更
-            if (window.scrollY > 580) {
+            if (window.scrollY > 630) {
                 languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
             } else {
                 languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
