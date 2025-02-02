@@ -496,7 +496,7 @@ header {
             <h2>Schedule</h2>
             <p>Upcoming concerts and workshops:</p>
             <ul>
-                <li>
+                <li data-date="2025-02-27">
                     <details class="c-accordion">
                         <summary class="c-accordion__header">
                             <p class="c-accordion__close-heading">Feb 27-28, 2025 (Thu/Fri) Rehearsal/Performance: Open</p>
@@ -511,10 +511,10 @@ header {
                         </div>
                     </details>
                 </li>
-                <li>
+                <li data-date="2024-02-27">
                     <details class="c-accordion">
                         <summary class="c-accordion__header">
-                            <p class="c-accordion__close-heading">March 3, 2025: Open</p>
+                            <p class="c-accordion__close-heading">March 3, 2024: Open</p>
                             <p class="c-accordion__open-heading">Close</p>
                             <div class="c-accordion__plus"></div>
                         </summary>
@@ -549,4 +549,71 @@ header {
             <p>&copy; 2025 Kodo Ishibashi. All rights reserved.</p>
         </footer>
 </body>
+
+<script>
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'english_version.html'; // 英語ページに遷移
+        } else if (lang === 'ja') {
+            location.href = 'main3.html'; // 日本語ページに遷移
+        }
+    }
+
+    // ナビゲーションメニューのリンククリックでメニューを閉じる
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // メニューを閉じる
+        });
+    });
+
+    
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // 時間を0に設定して日付のみ比較
+    
+        document.querySelectorAll("li[data-date]").forEach(item => {
+            const eventDate = new Date(item.getAttribute("data-date"));
+            if (eventDate < today) {
+                item.style.display = "none"; // 過去の日付は非表示
+            }
+        });
+    });
+    </script>
+    
+
+
+<script>
+        // ヘッダー要素を取得
+    const header = document.querySelector('header');
+
+    // スクロールイベントをリスン
+    window.addEventListener('scroll', function() {
+    // スクロール量が100pxを超えたら透明に
+    if (window.scrollY > 400) {
+        header.classList.add('hidden'); // 透明にするクラスを追加
+    } else {
+        header.classList.remove('hidden'); // 元の状態に戻す
+    }
+    });
+
+</script>
+<script>
+    // ヘッダー要素を取得
+    const languageToggle = document.querySelector('.language-toggle');
+
+    // スクロールイベントをリスン
+    window.addEventListener('scroll', function() {
+        // スクロール量が100pxを超えたらボタン位置を変更
+        if (window.scrollY > 600) {
+            languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+        } else {
+            languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+        }
+    });
+</script>
+</body>
+</html>
 </html>
