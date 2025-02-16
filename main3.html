@@ -87,7 +87,29 @@ header {
 
 
         
-        header h1,
+        header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    writing-mode: vertical-rl; /* Keep vertical writing */
+    position: absolute;
+    right: 20%; 
+    top: 10%;
+    transform: translateY(0);
+    font-size: 4rem;
+}
+
+header h1 span.name {
+    font-size: 5rem; /* Make Kodo Ishibashi larger */
+    font-weight: bold;
+    display: block;
+}
+
+header h1 span.title {
+    font-size: 3rem; /* Make Shakuhachi Performer smaller */
+}
+
         header p{
             position: relative;
             z-index: 2;
@@ -473,8 +495,11 @@ header {
 
     <header>
         
-        <h1>尺八奏者 石橋紅童</h1>
         
+        <h1>
+            <span class="name">石橋紅童</span>
+            <span class="title">尺八奏者</span>
+        </h1>
 
 
 

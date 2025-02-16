@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Kodo Ishibashi is a shakuhachi player performing a fusion of traditional Japanese music and contemporary approaches. Concert and performance details available.">
-    <meta name="keywords" content="Kodo Ishibashi, shakuhachi, shakuhachi player, Japanese traditional music, concert, Kodo Ishibashi schedule">
+    <meta name="keywords" content="Kodo Ishibashi, shakuhachi, shakuhachi performer, Japanese traditional music, concert, Kodo Ishibashi schedule">
     <meta name="author" content="Kodo Ishibashi">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakuhachi Player Kodo Ishibashi</title>
@@ -86,7 +86,29 @@ header {
 
 
         
-        header h1,
+        header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    writing-mode: vertical-rl; /* Keep vertical writing */
+    position: absolute;
+    right: 20%; 
+    top: 10%;
+    transform: translateY(0);
+    font-size: 4rem;
+}
+
+header h1 span.name {
+    font-size: 5rem; /* Make Kodo Ishibashi larger */
+    font-weight: bold;
+    display: block;
+}
+
+header h1 span.title {
+    font-size: 3rem; /* Make Shakuhachi Performer smaller */
+}
+
         header p{
             position: relative;
             z-index: 2;
@@ -471,7 +493,11 @@ header {
     </nav>
 
     <header>
-        <h1>Shakuhachi Player Kodo Ishibashi</h1>
+        <h1>
+            <span class="name">Kodo Ishibashi</span>
+            <span class="title">Shakuhachi Performer</span>
+        </h1>
+        
 
         <div class="language-toggle">
             <button onclick="setLanguage('ja')">日本語</button>
