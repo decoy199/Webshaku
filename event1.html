@@ -2,50 +2,61 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>和傘と提灯の揺れるアニメーション</title>
+  <title>和の雰囲気アニメーション</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: #f0e6d6; /* 落ち着いた和風の背景色 */
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: url('washi_texture.jpg') repeat; /* 和紙のテクスチャ背景 */
+      overflow-x: hidden;
       height: 100vh;
-      flex-direction: column;
-      gap: 50px;
+      position: relative;
     }
-
-    /* 画像サイズの調整 */
-    .wagasa, .chouchin {
-      width: 200px;
-      height: auto;
-    }
-
-    /* 揺れのアニメーション */
-    @keyframes sway {
-      0%   { transform: rotate(0deg); }
-      25%  { transform: rotate(5deg); }
-      50%  { transform: rotate(0deg); }
-      75%  { transform: rotate(-5deg); }
-      100% { transform: rotate(0deg); }
-    }
-
-    /* 和傘に適用：アニメーション時間4秒 */
-    .wagasa {
-      animation: sway 4s ease-in-out infinite;
-    }
-
-    /* 提灯に適用：アニメーション時間5秒（時間を変えて動きを変化） */
-    .chouchin {
-      animation: sway 5s ease-in-out infinite;
+    .petal {
+      position: absolute;
+      top: -50px;
+      width: 20px;
+      height: 20px;
+      background-image: url('sakura_petal.png'); /* 桜の花びら画像 */
+      background-size: cover;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <!-- 和傘の画像 -->
-  <img src="wagasa.png" alt="和傘" class="wagasa">
-  <!-- 提灯の画像 -->
-  <img src="chouchin.png" alt="提灯" class="chouchin">
+  <!-- 花びら用の要素はJavaScriptで動的に追加します -->
+  
+  <!-- GSAPライブラリの読み込み -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+  <script>
+    // 花びらを生成する関数
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * window.innerWidth + 'px';
+      document.body.appendChild(petal);
+      animatePetal(petal);
+    }
+
+    // 花びらにアニメーションを適用する関数
+    function animatePetal(petal) {
+      gsap.to(petal, {
+        duration: 8 + Math.random() * 4,
+        y: window.innerHeight + 100,
+        x: "+=" + (Math.random() * 200 - 100),
+        rotation: Math.random() * 360,
+        ease: "power1.inOut",
+        onComplete: () => {
+          petal.remove();
+          createPetal();  // 新たな花びらを生成して連続的なアニメーションにする
+        }
+      });
+    }
+
+    // 初期の花びらを複数生成
+    for (let i = 0; i < 10; i++) {
+      createPetal();
+    }
+  </script>
 </body>
 </html>
