@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>和傘と提灯の揺れるアニメーション</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f0e6d6; /* 落ち着いた和風の背景色 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    /* 画像サイズの調整 */
+    .wagasa, .chouchin {
+      width: 200px;
+      height: auto;
+    }
+
+    /* 揺れのアニメーション */
+    @keyframes sway {
+      0%   { transform: rotate(0deg); }
+      25%  { transform: rotate(5deg); }
+      50%  { transform: rotate(0deg); }
+      75%  { transform: rotate(-5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* 和傘に適用：アニメーション時間4秒 */
+    .wagasa {
+      animation: sway 4s ease-in-out infinite;
+    }
+
+    /* 提灯に適用：アニメーション時間5秒（時間を変えて動きを変化） */
+    .chouchin {
+      animation: sway 5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <!-- 和傘の画像 -->
+  <img src="wagasa.png" alt="和傘" class="wagasa">
+  <!-- 提灯の画像 -->
+  <img src="chouchin.png" alt="提灯" class="chouchin">
+</body>
+</html>
