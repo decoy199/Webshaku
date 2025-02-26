@@ -1,169 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>和傘・提灯 アニメーション with 動画背景</title>
-  <style>
-    /* リセット */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* 背景動画 */
-    #bg-video {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -3;
-    }
-
-    /* グラデーションオーバーレイ（動画と背景を融合） */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, #1f1c2c, #928dab);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      z-index: -2;
-      opacity: 0.7; /* 動画と馴染むように調整 */
-    }
-
-    @keyframes gradientBG {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* シーン（各アニメーション要素のコンテナ） */
-    .scene {
-      position: relative;
-      width: 80vw;
-      height: 80vh;
-      z-index: 1; /* 背景より前面に表示 */
-    }
-
-    /* 和傘・提灯の基本スタイル */
-    .item {
-      position: absolute;
-      width: 200px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      /* 上部を揺れの軸に */
-      transform-origin: top center;
-    }
-    /* 和傘 */
-    .wagasa {
-      top: 10%;
-      left: 20%;
-      background-image: url('/tourou.jpg');
-      animation: sway 6s ease-in-out infinite;
-    }
-    /* 提灯 */
-    .chochin {
-      top: 10%;
-      right: 20%;
-      background-image: url('/momiji1.png');
-      animation: sway 8s ease-in-out infinite;
-    }
-    /* 揺れるアニメーション */
-    @keyframes sway {
-      0%   { transform: rotate(0deg); }
-      25%  { transform: rotate(5deg); }
-      50%  { transform: rotate(0deg); }
-      75%  { transform: rotate(-5deg); }
-      100% { transform: rotate(0deg); }
-    }
-
-    /* drifting な雲 */
-    .cloud {
-      position: absolute;
-      top: 5%;
-      left: -200px;
-      width: 150px;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 50%;
-      filter: blur(4px);
-      animation: drift 20s linear infinite;
-    }
-    @keyframes drift {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(120vw); }
-    }
-
-    /* 舞い落ちる花びら */
-    .petal {
-      position: absolute;
-      top: -50px;
-      width: 20px;
-      height: 20px;
-      background: pink;
-      opacity: 0.8;
-      border-radius: 50%;
-      pointer-events: none;
-      animation: fall linear infinite;
-    }
-    @keyframes fall {
-      0% {
-        transform: translateX(0) translateY(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateX(100px) translateY(100vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    /* body の基本設定 */
-    body {
-      font-family: sans-serif;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>和傘と提灯のアニメーション</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: url('wagara-dark.jpg') no-repeat center center/cover;
+            background-color: #1a1a1a;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .item {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            animation: sway 4s ease-in-out infinite alternate, float 6s ease-in-out infinite alternate;
+        }
+        .umbrella {
+            top: 20%;
+            left: 5%;
+        }
+        .lantern {
+            top: 10%;
+            right: 5%;
+        }
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(20px); }
+        }
+        .video-bg {
+            position: fixed;
+            top: 10%;
+            left: 10%;
+            width: 80vw;
+            height: 80vh;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.6;
+            filter: brightness(50%) contrast(120%);
+        }
+        .glow {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.6) 10%, rgba(255, 140, 0, 0) 70%);
+            border-radius: 50%;
+            animation: pulse 3s infinite alternate;
+            mix-blend-mode: screen;
+        }
+        .glow-lantern {
+            top: 10%;
+            right: 5%;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 0.8;
+            animation: fall 6s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        .controls {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .controls button {
+            color: white;
+            background: none;
+            border: 1px solid white;
+            padding: 5px 15px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
-  <!-- 背景動画 -->
-  <video id="bg-video" autoplay loop muted playsinline>
-    <source src="background.mp4" type="video/mp4">
-    お使いのブラウザは動画タグに対応していません。
-  </video>
+    <video class="video-bg" id="backgroundVideo" autoplay loop muted>
+        <source src="mov_hts-samp005.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        
+        <img src="7680.png" class="item lantern" alt="提灯">
+        <div class="glow glow-lantern"></div>
+        <img src="momiji-2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
+        <img src="momiji1.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+        <img src="momiji-2.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
+    </div>
+    <div class="controls">
+        <button onclick="toggleVideo()">再生 / 停止</button>
+        <a href="mov_hts-samp005.mp3" download>
+            <button>MP3をダウンロード</button>
+        </a>
+        <a href="https://www.icloud.com/shortcuts/90754db74d2c405e9de66e4ddb114d34">
+          <button>iphone</button>
+      </a>
 
-  <!-- グラデーションオーバーレイ -->
-  <div class="overlay"></div>
 
-  <!-- アニメーションシーン -->
-  <div class="scene">
-    <!-- 和傘と提灯 -->
-    <div class="item wagasa"></div>
-    <div class="item chochin"></div>
-
-    <!-- drifting な雲 -->
-    <div class="cloud"></div>
-
-    <!-- 舞い落ちる花びら -->
-    <div class="petal" style="left: 10%; animation-duration: 10s; animation-delay: 0s;"></div>
-    <div class="petal" style="left: 30%; animation-duration: 12s; animation-delay: 2s;"></div>
-    <div class="petal" style="left: 50%; animation-duration: 11s; animation-delay: 4s;"></div>
-    <div class="petal" style="left: 70%; animation-duration: 13s; animation-delay: 1s;"></div>
-    <div class="petal" style="left: 90%; animation-duration: 10s; animation-delay: 3s;"></div>
-  </div>
+    </div>
+    <script>
+        function toggleVideo() {
+            var video = document.getElementById("backgroundVideo");
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    </script>
 </body>
 </html>

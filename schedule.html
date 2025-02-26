@@ -2,32 +2,75 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="石橋紅童は尺八奏者として、日本伝統音楽と現代の融合を目指した演奏活動を行っています。コンサートや出演情報を掲載中。">
+　　<meta name="keywords" content="石橋紅童, 尺八, 尺八奏者, 日本伝統音楽, コンサート, 石橋紅童 スケジュール">
+　　<meta name="author" content="石橋紅童">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
+
+
+html {
+    margin: 0;
+    padding: 0;
+    
+}
         /* 全体のスタイル */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f9f5ef;
-            color: #333;
+            
+                    color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* ヘッダー */
-        header {
-            position: relative;
-            text-align: center;
-            padding: 5rem 1rem;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9uBYJ5QsYbKMLYGRO9g_KKJeRTO0GrmSzxsXxJnQXwRllr06NPF1KXa8&s=10');
-            background-size: cover;
-            background-position: center;
+ /* ヘッダーの調整 */
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('profile1.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInBg 1s ease-in-out forwards;
+    animation-delay: 1s;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    background-attachment: scroll;
+}
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.5;
+    }
+}
+
+
+
+
+        /* ヘッダーが透明になる状態 */
+        header.hidden {
+            opacity: 0; /* 透明度を0に */
         }
+
+
 
         header::before {
             content: "";
@@ -36,148 +79,331 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
+            
+            
+            z-index: -1;
         }
 
-        header h1, header p {
+
+        
+        header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    writing-mode: vertical-rl; /* Keep vertical writing */
+    position: absolute;
+    right: 20%; 
+    top: 30%;
+    transform: translateY(0);
+    font-size: 4rem;
+}
+
+header h1 span.name {
+    font-size: 3rem; /* Make Kodo Ishibashi larger */
+    font-weight: bold;
+    display: block;
+}
+
+header h1 span.title {
+    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+}
+
+        header p{
             position: relative;
             z-index: 2;
         }
-
-        header h1 {
+        
+                header h1 {
+            margin: 0;
             font-size: 2.8rem;
             color: #fff;
-            margin: 0;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl; /* 縦書きにする */
+            position: absolute;
+            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
+            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
+            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
+            font-size: 4rem; /* フォントサイズ調整 */
         }
 
         header p {
-            font-size: 1.3rem;
-            color: #ffdbac;
+            font-size: 1.1rem;
+            color: #180614;
+            margin-top: 100px; /* pの位置調整 */
         }
 
-        /* スケジュール */
-        #schedule {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+        header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
         }
 
-        #schedule h2 {
-            border-left: 4px solid #804000;
-            padding-left: 0.5rem;
+ /* メニューとヘッダーが重ならないようにするための調整 */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background-color: #deb068;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* サイドメニュー */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+
+/* 言語切替ボタンの位置調整 */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+/* mainの下に移動するためのクラス */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* mainの下に配置 */
+        right: 20px;
+    }
+
+        .language-toggle button {
+            background-color: #deb068;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .language-toggle button:hover {
+            background-color: #ffdbac;
             color: #804000;
         }
 
-        #schedule ul {
-            list-style: none;
-            padding: 0;
-        }
+       .c-accordion {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.7s ease;
+}
 
-        #schedule li {
-            margin-bottom: 2rem;
-        }
+.c-accordion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
 
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
-        }
+.c-accordion[open] {
+    border-color: #804000;
+    background-color: #fdf7f0;
+}
 
-        .event-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
+.c-accordion__header {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.7s ease;
+    background-color: #fff;
+}
 
-        /* フッター */
-        footer {
-            background-color: #804000;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
+.c-accordion__close-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: block;
+}
 
-        footer a {
-            color: #ffdbac;
-            text-decoration: none;
-            font-weight: bold;
-        }
+.c-accordion__open-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: none;
+}
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
+.c-accordion[open] .c-accordion__close-heading {
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__open-heading {
+    display: block;
+}
+
+.c-accordion__content {
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
+}
+
+.c-accordion__plus {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #804000;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.c-accordion__plus::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #804000;
+    transform: rotate(90deg);
+    transition: transform 0.3s;
+}
+
+.c-accordion[open] .c-accordion__plus::before {
+    transform: rotate(0deg);
+}
+</style>
+
 <body>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#schedule">スケジュール</a></li>
+            <li><a href="#appearance">出演情報</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+
+    
+
     <header>
-        <h1>尺八奏者 石橋紅童</h1>
-        <p>伝統と心を音に込めて</p>
+        
+        
+       
+
+
+
+        
+        
+        <div class="language-toggle">
+            <button onclick="setLanguage('en')">English</button>
+        </div>
     </header>
 
-    <main id="schedule">
-        <h2>スケジュール</h2>
-        <ul>
-            <li>
-                <details>
-                    <summary>2024年2月15日: 東京国際フォーラム 尺八ソロコンサート</summary>
-                    <div class="event-detail">
-                        <img src="tokyo_concert.jpg" alt="東京国際フォーラム" class="event-image">
-                        <p>東京国際フォーラムで開催される尺八ソロコンサート。伝統音楽と現代のアプローチを融合した演奏です。</p>
-                        <p><strong>時間:</strong> 18:00開場 / 19:00開演</p>
-                        <p><strong>場所:</strong> 東京国際フォーラム ホールA</p>
-                    </div>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>2025年3月3日: 京都市民会館 特別演奏会</summary>
-                    <div class="event-detail">
-                        <img src="kyoto_event.jpg" alt="京都市民会館" class="event-image">
-                        <p>京都市民会館での特別演奏会。新作の披露が予定されています。</p>
-                        <p><strong>時間:</strong> 17:30開場 / 18:30開演</p>
-                        <p><strong>場所:</strong> 京都市民会館 メインホール</p>
-                    </div>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>2025年4月10日: オンラインワークショップ</summary>
-                    <div class="event-detail">
-                        <img src="online_workshop.jpg" alt="オンラインワークショップ" class="event-image">
-                        <p>オンラインで尺八の基礎から応用まで学べるワークショップ。</p>
-                        <p><strong>時間:</strong> 10:00 - 12:00</p>
-                        <p><strong>参加方法:</strong> Zoomリンクは事前登録後に送付されます。</p>
-                    </div>
-                </details>
-            </li>
-        </ul>
-    </main>
 
-    <footer>
-        <p>お問い合わせ: <a href="mailto:info@example.com">info@example.com</a></p>
-        <p>&copy; 2025 尺八奏者 石橋紅童</p>
-    </footer>
 
-    <script>
-        // 過去のイベントを非表示
-        const today = new Date();
-        const scheduleItems = document.querySelectorAll("#schedule ul li");
-        scheduleItems.forEach(item => {
-            const text = item.querySelector('summary').textContent;
-            const match = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-            if (match) {
-                const [year, month, day] = match.slice(1).map(Number);
-                const eventDate = new Date(year, month - 1, day);
-                if (eventDate < today) {
-                    item.style.display = "none";
-                }
-            }
-        });
-    </script>
-</body>
+<section id="schedule">
+    <h2>スケジュール</h2>
+    <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+    <ul>
+        <li>
+            <details class="c-accordion">
+                <summary class="c-accordion__header">
+                    <p class="c-accordion__close-heading">2025年2月28日 本番:   </p>
+                    
+                    <p class="c-accordion__open-heading">閉じる</p>
+                    <div class="c-accordion__plus"></div>
+                </summary>
+                <div class="c-accordion__content">
+                    <img src="ibento1.0.jpeg" alt="わいわい演奏会" class="event-image">
+                    <p>わいわい演奏会</p>
+                    <p><strong>時間:</strong> 10:30開演</p>
+                    <p><strong>場所:</strong> 東広島芸術文化ホール　くらら　小ホール</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <details class="c-accordion">
+                <summary class="c-accordion__header">
+                    <p class="c-accordion__close-heading">2025年3月9日: </p>
+                    <p class="c-accordion__open-heading">閉じる</p>
+                    <div class="c-accordion__plus"></div>
+                </summary>
+                <div class="c-accordion__content">
+                    <img src="ibento2.1.jpeg" alt="京都市民会館 特別演奏会" class="event-image">
+                    <p>伝承の力　古典の現在　第10回記念公演</p>
+                    <p><strong>時間:</strong> 13:00開場 / 13:30開演</p>
+                    <p><strong>場所:</strong> 紀尾井ホール1階</p>
+                </div>
+            </details>
+        </li>
+    </ul>
+</section>
+
 </html>
