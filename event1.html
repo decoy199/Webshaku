@@ -79,56 +79,46 @@
         }
         
 
-        .radio-input {
+.radio-input {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  border-radius: 10px;
+  gap: 5px; /* Reduce spacing */
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px; /* Reduce padding */
+  border-radius: 8px;
   position: fixed;
-  bottom: 20px;
+  bottom: 10px; /* Move it lower */
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
-}
-
-.radio-input input {
-  opacity: 0;
-  position: absolute;
+  font-size: 12px; /* Reduce overall text size */
 }
 
 .radio-input .label {
-  width: 60px; /* Reduced from 90px */
-  height: 40px; /* Reduced from 60px */
-  font-size: 12px; /* Adjust text size */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: linear-gradient(to bottom, #333, #222);
-  border-radius: 6px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-  transition: 0.2s;
+  width: 60px; /* Make labels smaller */
+  height: 40px; /* Reduce height */
+  font-size: 10px;
+  padding: 5px;
 }
+
+.radio-input .text {
+  font-size: 10px; /* Reduce text size */
+}
+
+.radio-input a,
+.radio-input button {
+  font-size: 10px; /* Reduce button text */
+  padding: 5px 10px; /* Make buttons smaller */
+}
+
+
 
 .radio-input .label:has(input[type="radio"]:checked) {
   background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
   box-shadow: none;
 }
 
-.radio-input a,
-.radio-input button {
-  background-color: #ff4500;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: 0.3s;
-}
+
 
 .radio-input button:hover,
 .radio-input a:hover {
@@ -136,11 +126,8 @@
 }
 
 .radio-input .label {
-  width: 50px !important; /* Reduce width */
-  height: 35px !important; /* Reduce height */
-  font-size: 10px !important; /* Adjust text size */
-  padding: 5px !important; /* Reduce padding */
-
+  width: 90px;
+  height: 60px;
   background: linear-gradient(to bottom, #333333, rgb(36, 35, 35));
   display: flex;
   flex-direction: column;
