@@ -261,15 +261,6 @@ header h1 span.title {
     transition: all 0.7s ease;
 }
 
-card {
-  width: 190px;
-  height: 254px;
-  border-radius: 30px;
-  background: #e0e0e0;
-  box-shadow: 15px 15px 30px #bebebe,
-             -15px -15px 30px #ffffff;
-}
-
 .c-accordion:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -343,8 +334,6 @@ card {
 }
 
 
-
-
        /* メインコンテンツ */
        main {
     flex: 1;
@@ -360,7 +349,7 @@ card {
 
 
 
-section {
+        section {
             margin-bottom: 3rem;
         }
 
@@ -447,42 +436,43 @@ section {
 
 
 <main>
-    <section id="schedule">
-        <h2>スケジュール</h2>
-        <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
-        <ul>
-            <li>
-                <details class="c-accordion">
-                    <summary class="c-accordion__header">
-                        <p class="c-accordion__close-heading">2025年2月28日 本番:   </p>
-                        <p class="c-accordion__open-heading">閉じる</p>
-                        <div class="c-accordion__plus"></div>
-                    </summary>
-                    <div class="card c-accordion__content"> <!-- Added card class here -->
-                        <img src="ibento1.0.jpeg" alt="わいわい演奏会" class="event-image">
-                        <p>わいわい演奏会</p>
-                        <p><strong>時間:</strong> 10:30開演</p>
-                        <p><strong>場所:</strong> 東広島芸術文化ホール　くらら　小ホール</p>
-                    </div>
-                </details>
-            </li>
-            <li>
-                <details class="c-accordion">
-                    <summary class="c-accordion__header">
-                        <p class="c-accordion__close-heading">2025年3月9日: </p>
-                        <p class="c-accordion__open-heading">閉じる</p>
-                        <div class="c-accordion__plus"></div>
-                    </summary>
-                    <div class="card c-accordion__content"> <!-- Added card class here -->
-                        <img src="ibento2.1.jpeg" alt="京都市民会館 特別演奏会" class="event-image">
-                        <p>伝承の力　古典の現在　第10回記念公演</p>
-                        <p><strong>時間:</strong> 13:00開場 / 13:30開演</p>
-                        <p><strong>場所:</strong> 紀尾井ホール1階</p>
-                    </div>
-                </details>
-            </li>
-        </ul>
-    </section>
+<section id="schedule">
+    <h2>スケジュール</h2>
+    <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+    <ul>
+        <li>
+            <details class="c-accordion">
+                <summary class="c-accordion__header">
+                    <p class="c-accordion__close-heading">2025年2月28日 本番:   </p>
+                    
+                    <p class="c-accordion__open-heading">閉じる</p>
+                    <div class="c-accordion__plus"></div>
+                </summary>
+                <div class="c-accordion__content">
+                    <img src="ibento1.0.jpeg" alt="わいわい演奏会" class="event-image">
+                    <p>わいわい演奏会</p>
+                    <p><strong>時間:</strong> 10:30開演</p>
+                    <p><strong>場所:</strong> 東広島芸術文化ホール　くらら　小ホール</p>
+                </div>
+            </details>
+        </li>
+        <li>
+            <details class="c-accordion">
+                <summary class="c-accordion__header">
+                    <p class="c-accordion__close-heading">2025年3月9日: </p>
+                    <p class="c-accordion__open-heading">閉じる</p>
+                    <div class="c-accordion__plus"></div>
+                </summary>
+                <div class="c-accordion__content">
+                    <img src="ibento2.1.jpeg" alt="京都市民会館 特別演奏会" class="event-image">
+                    <p>伝承の力　古典の現在　第10回記念公演</p>
+                    <p><strong>時間:</strong> 13:00開場 / 13:30開演</p>
+                    <p><strong>場所:</strong> 紀尾井ホール1階</p>
+                </div>
+            </details>
+        </li>
+    </ul>
+</section>
 </main>
 <footer id="contact">
     <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
