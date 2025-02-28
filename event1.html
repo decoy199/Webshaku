@@ -86,9 +86,13 @@
   background-color: #1e1e1e;
   padding: 10px;
   border-radius: 10px;
-  overflow: hidden;
-  height: 100px;
+  position: fixed; /* Ensure visibility */
+  bottom: 20px; /* Adjust placement */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensure it appears above other elements */
 }
+
 
 .radio-input input {
   display: none;
