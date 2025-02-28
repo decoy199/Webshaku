@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>和傘と提灯のアニメーション</title>
     <style>
         body {
@@ -18,7 +18,7 @@
         }
         .item {
             position: absolute;
-            width: 150px;
+            width: 30vw; /* Use viewport width for responsiveness */
             height: auto;
             animation: sway 4s ease-in-out infinite alternate, float 6s ease-in-out infinite alternate;
         }
@@ -47,8 +47,8 @@
         }
         .glow {
             position: absolute;
-            width: 180px;
-            height: 180px;
+            width: 40vw; /* Use viewport width for responsiveness */
+            height: 40vw; /* Use viewport width for responsiveness */
             background: radial-gradient(circle, rgba(255, 140, 0, 0.6) 10%, rgba(255, 140, 0, 0) 70%);
             border-radius: 50%;
             animation: pulse 3s infinite alternate;
@@ -63,22 +63,20 @@
             100% { transform: scale(1.1); opacity: 1; }
         }
         
-        /* Updated Radio Input Styles for Safari iPhone */
         .radio-input {
             display: flex;
             align-items: center;
             gap: 5px;
             background-color: rgba(0, 0, 0, 0.5);
-            padding: 5px;
+            padding: 10px; /* Increased padding for touch targets */
             border-radius: 8px;
             position: fixed;
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 100;
-            font-size: 12px;
-            width: auto;
-            flex-wrap: wrap; /* Ensures items don't overflow */
+            font-size: 14px; /* Increased font size for readability */
+            flex-wrap: wrap;
         }
 
         .radio-input .label {
@@ -113,7 +111,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: 0.3s;
-            -webkit-appearance: none; /* Remove Safari default styles */
+            -webkit-appearance: none;
             appearance: none;
         }
 
@@ -136,6 +134,20 @@
 
         .radio-input input[type="radio"]:checked {
             background: #ff4500;
+        }
+
+        /* Media Queries for Smaller Screens */
+        @media (max-width: 600px) {
+            .item {
+                width: 40vw; /* Adjust size for smaller screens */
+            }
+            .glow {
+                width: 50vw; /* Adjust size for smaller screens */
+                height: 50vw; /* Adjust size for smaller screens */
+            }
+            .radio-input {
+                font-size: 12px; /* Adjust font size for smaller screens */
+            }
         }
     </style>
 </head>
