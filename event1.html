@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>和傘と提灯のアニメーション</title>
     <style>
         body {
@@ -18,13 +18,9 @@
         }
         .item {
             position: absolute;
-            width: 150px;
+            width: 30vw; /* Use viewport width for responsiveness */
             height: auto;
             animation: sway 4s ease-in-out infinite alternate, float 6s ease-in-out infinite alternate;
-        }
-        .umbrella {
-            top: 20%;
-            left: 5%;
         }
         .lantern {
             top: 10%;
@@ -51,8 +47,8 @@
         }
         .glow {
             position: absolute;
-            width: 180px;
-            height: 180px;
+            width: 40vw; /* Use viewport width for responsiveness */
+            height: 40vw; /* Use viewport width for responsiveness */
             background: radial-gradient(circle, rgba(255, 140, 0, 0.6) 10%, rgba(255, 140, 0, 0) 70%);
             border-radius: 50%;
             animation: pulse 3s infinite alternate;
@@ -66,33 +62,92 @@
             0% { transform: scale(0.9); opacity: 0.7; }
             100% { transform: scale(1.1); opacity: 1; }
         }
-        .leaf {
-            position: absolute;
-            width: 50px;
-            height: auto;
-            opacity: 0.8;
-            animation: fall 6s linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-        }
-        .controls {
+        
+        .radio-input {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px; /* Increased padding for touch targets */
+            border-radius: 8px;
             position: fixed;
             bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 10px;
+            z-index: 100;
+            font-size: 14px; /* Increased font size for readability */
+            flex-wrap: wrap;
         }
-        .controls button {
-            color: white;
-            background: none;
-            border: 1px solid white;
-            padding: 5px 15px;
+
+        .radio-input .label {
+            width: 50px;
+            height: 35px;
+            font-size: 10px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            margin: 5px;
+            background: linear-gradient(to bottom, #333, #222);
+            border-radius: 6px;
+            box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+            transition: 0.2s;
+        }
+
+        .radio-input .text {
+            font-size: 10px;
+            white-space: nowrap;
+            color: white;
+        }
+
+        .radio-input a,
+        .radio-input button {
+            font-size: 10px;
+            padding: 5px 8px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .radio-input button:hover,
+        .radio-input a:hover {
+            background-color: #d13600;
+        }
+
+        .radio-input input[type="radio"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            outline: none;
+            border: 1px solid #999;
+            margin: 2px;
+        }
+
+        .radio-input input[type="radio"]:checked {
+            background: #ff4500;
+        }
+
+        /* Media Queries for Smaller Screens */
+        @media (max-width: 600px) {
+            .item {
+                width: 40vw; /* Adjust size for smaller screens */
+            }
+            .glow {
+                width: 50vw; /* Adjust size for smaller screens */
+                height: 50vw; /* Adjust size for smaller screens */
+            }
+            .radio-input {
+                font-size: 12px; /* Adjust font size for smaller screens */
+            }
         }
     </style>
 </head>
@@ -101,24 +156,30 @@
         <source src="mov_hts-samp005.mp4" type="video/mp4">
     </video>
     <div class="container">
-        
         <img src="7680.png" class="item lantern" alt="提灯">
         <div class="glow glow-lantern"></div>
-        <img src="momiji-2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
-        <img src="momiji1.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
-        <img src="momiji-2.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
     </div>
-    <div class="controls">
-        <button onclick="toggleVideo()">再生 / 停止</button>
+
+    <div class="radio-input">
+        <label class="label">
+            <input type="radio" id="value-1" name="value-radio" value="value-1" onclick="toggleVideo()" />
+            <span class="text">再生</span>
+        </label>
+      
+        <label class="label">
+            <input type="radio" id="value-2" name="value-radio" value="value-2" onclick="toggleVideo()" />
+            <span class="text">停止</span>
+        </label>
+    
         <a href="mov_hts-samp005.mp3" download>
             <button>MP3をダウンロード</button>
         </a>
+    
         <a href="https://www.icloud.com/shortcuts/90754db74d2c405e9de66e4ddb114d34">
-          <button>iphone</button>
-      </a>
-
-
+            <button>iPhone</button>
+        </a>
     </div>
+    
     <script>
         function toggleVideo() {
             var video = document.getElementById("backgroundVideo");
