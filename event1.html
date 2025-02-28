@@ -108,17 +108,29 @@
         <img src="momiji1.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
         <img src="momiji-2.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
     </div>
-    <div class="controls">
-        <button onclick="toggleVideo()">再生 / 停止</button>
+    <div class="radio-input">
+        <label class="label">
+          <div class="back-side"></div>
+          <input type="radio" id="value-1" name="value-radio" value="value-1" onclick="toggleVideo()" />
+          <span class="text">再生</span>
+          <span class="bottom-line"></span>
+        </label>
+      
+        <label class="label">
+          <div class="back-side"></div>
+          <input type="radio" id="value-2" name="value-radio" value="value-2" onclick="toggleVideo()" />
+          <span class="text">停止</span>
+          <span class="bottom-line"></span>
+        </label>
+      
         <a href="mov_hts-samp005.mp3" download>
-            <button>MP3をダウンロード</button>
+          <button>MP3をダウンロード</button>
         </a>
+      
         <a href="https://www.icloud.com/shortcuts/90754db74d2c405e9de66e4ddb114d34">
-          <button>iphone</button>
-      </a>
-
-
-    </div>
+          <button>iPhone</button>
+        </a>
+      </div>
     <script>
         function toggleVideo() {
             var video = document.getElementById("backgroundVideo");
