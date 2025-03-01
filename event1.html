@@ -73,6 +73,8 @@
             opacity: 0.8;
             will-change: transform, opacity;
             animation: fall 6s linear infinite;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         @keyframes fall {
