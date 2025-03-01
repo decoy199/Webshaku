@@ -82,9 +82,15 @@
             100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
         }
         .safari-iphone13mini .leaf {
-            animation-duration: 8s; /* Slow down animation */
+            animation: fall-safari 8s cubic-bezier(0.25, 1, 0.5, 1) infinite !important;
             opacity: 1 !important; /* Prevent flickering */
             transform: translate3d(0, 0, 0) !important; /* Force hardware acceleration */
+        }
+
+        @keyframes fall-safari {
+            0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(90deg); opacity: 0.5; }
         }
 
         
