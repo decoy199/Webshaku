@@ -8,52 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  
-<style>
+    <style>
 
-html {
+
+        /* 全体のスタイル */
+ body {
+    font-family: 'Yu Mincho', serif;
+    line-height: 1.8;
     margin: 0;
     padding: 0;
+    color: #0b0b0b;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     
-    
+    /* Background Image */
+    background-image: url('japanese-paper.jpg');
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
 }
-        /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            
-            
-            color: #0b0b0b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
 
  /* ヘッダーの調整 */
-header {
-    position: relative;
-    color: #333;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
-    background-image: url('profile1.jpg');
-    background-position: center;
-    background-size: cover;
-    opacity: 0; /* Initially hidden */
-    animation: fadeInBg 1s ease-in-out forwards;
-    animation-delay: 1s;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0);
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    background-attachment: scroll;
-}
+
 
 @keyframes fadeInBg {
     from {
@@ -67,24 +45,6 @@ header {
 
 
 
-        /* ヘッダーが透明になる状態 */
-        header.hidden {
-            opacity: 0; /* 透明度を0に */
-        }
-
-
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            
-            
-            z-index: -1;
-        }
 
 
         
@@ -111,44 +71,7 @@ header h1 span.title {
     font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
 }
 
-        header p{
-            position: relative;
-            z-index: 2;
-        }
         
-                header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* 縦書きにする */
-            position: absolute;
-            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
-            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
-            font-size: 4rem; /* フォントサイズ調整 */
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: #180614;
-            margin-top: 100px; /* pの位置調整 */
-        }
-
-        header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
  /* メニューとヘッダーが重ならないようにするための調整 */
 .menu {
     position: fixed;
@@ -253,7 +176,7 @@ header h1 span.title {
             color: #804000;
         }
 
-       .c-accordion {
+.c-accordion {
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -336,255 +259,67 @@ header h1 span.title {
 }
 
 
-
-
-/* アニメーション */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+       /* メインコンテンツ */
+main {
+    flex: 1;
+    padding: 2rem;
+    margin: 0 auto;
+    background: transparent; /* Ensures main doesn't override the body background */
 }
 
-/* スマホサイズ対応 */
 
-   
-        @media (max-width: 767px) {
-    header {
-        min-height: 50px; /* 必要に応じて調整 */
-        padding: 10px 0;  /* 上下の余白を調整 */
-        background-size: cover; /* Ensures the image covers the entire header */
-        background-position: center top 20px;
-        background-attachment: scroll;
-       
-    }
-    header h1 {
-        font-size: 2rem;
-        right: 20px; /* スマホサイズでは右端に少し余裕 */
-        top: 10%; /* スマホでも上の余白を適切に調整 */
-        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-    }
-
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* スマホではpの位置を調整 */
-    }
-
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
-
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 0.7rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
+        section {
+            margin-bottom: 3rem;
         }
 
-        
+        h2 {
+            border-left: 4px solid #804000;
+            padding-left: 0.5rem;
+            color: #804000;
+            margin-bottom: 1rem;
+        }
 
-    
+        p {
+            text-indent: 1em;
+        }
 
-    
-}
-    
-    /* From Uiverse.io by satyamchaudharydev */ 
-.card {
-  --bg: #f7f7f8;
-  --hover-bg: #ffe5f4;
-  --hover-text: #e50087;
-  max-width: 23ch;
-  text-align: center;
-  background: var(--bg);
-  padding: 1.5em;
-  padding-block: 1.8em;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  transition:
-    0.3s cubic-bezier(0.6, 0.4, 0, 1),
-    transform 0.15s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  color: black;
-}
+        /* フッター */
+        footer {
+            background-color: #804000;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            bottom: 0;
+            width: 100%;
+        }
 
-.card__body {
-  color: #464853;
-  line-height: 1.5em;
-  font-size: 1em;
-}
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-.card > :not(span) {
-  transition: 0.3s cubic-bezier(0.6, 0.4, 0, 1);
-}
+        footer a:hover {
+            text-decoration: underline;
+        }
 
-.card > strong {
-  display: block;
-  font-size: 1.4rem;
-  letter-spacing: -0.035em;
-}
+        .event-detail {
+            margin-top: 1rem;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
 
-.card span {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--hover-text);
-  border-radius: 5px;
-  font-weight: bold;
-  top: 100%;
-  transition: all 0.3s cubic-bezier(0.6, 0.4, 0, 1);
-}
-
-.card:hover span {
-  top: 0;
-  font-size: 1.2em;
-}
-
-.card:hover {
-  background: var(--hover-bg);
-}
-
-.card:hover > div,
-.card:hover > strong {
-  opacity: 0;
-}
+        .event-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
 
 
-
-
-
-
-/* From Uiverse.io by JaydipPrajapati1910 */ 
-button {
-  background: transparent;
-  position: relative;
-  padding: 5px 15px;
-  display: flex;
-  align-items: center;
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid rgb(255,0,0);
-  border-radius: 25px;
-  outline: none;
-  overflow: hidden;
-  color: rgb(255,0,0);
-  transition: color 0.3s 0.1s ease-out;
-  text-align: center;
-}
-
-button span {
-  margin: 10px;
-}
-
-button::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  content: '';
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  left: -5em;
-  text-align: center;
-  transition: box-shadow 0.5s ease-out;
-  z-index: -1;
-}
-
-button:hover {
-  color: #fff;
-  border: 1px solid rgb(255,0,0);
-}
-
-button:hover::before {
-  box-shadow: inset 0 0 0 10em rgb(255, 0, 0);
-}
-
-
-
-/* From Uiverse.io by mrhyddenn */ 
-button {
-  background: transparent;
-  position: relative;
-  padding: 5px 15px;
-  display: flex;
-  align-items: center;
-  font-size: 17px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  border: 1px solid rgb(40, 144, 241);
-  border-radius: 25px;
-  outline: none;
-  overflow: hidden;
-  color: rgb(40, 144, 241);
-  transition: color 0.3s 0.1s ease-out;
-  text-align: center;
-}
-
-button span {
-  margin: 10px;
-}
-
-button::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  content: '';
-  border-radius: 50%;
-  display: block;
-  width: 20em;
-  height: 20em;
-  left: -5em;
-  text-align: center;
-  transition: box-shadow 0.5s ease-out;
-  z-index: -1;
-}
-
-button:hover {
-  color: #fff;
-  border: 1px solid rgb(40, 144, 241);
-}
-
-button:hover::before {
-  box-shadow: inset 0 0 0 10em rgb(40, 144, 241);
-}
- 
 </style>
-
 </head>
 <body>
     <input type="checkbox" id="menu" />
@@ -601,14 +336,16 @@ button:hover::before {
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
+
     
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
-    </div>
-<!-- From Uiverse.io by satyamchaudharydev --> 
 
-
-
+    <header>
+        
+        
+        <div class="language-toggle">
+            <button onclick="setLanguage('en')">English</button>
+        </div>
+    </header>
   <!-- From Uiverse.io by JaydipPrajapati1910 --> 
 <button>
     <svg viewBox="0 0 16 16" class="bi bi-instagram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"> <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"></path> </svg>
