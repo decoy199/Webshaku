@@ -12,17 +12,23 @@
 
 
         /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            
-                    color: #0b0b0b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+ body {
+    font-family: 'Yu Mincho', serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    color: #0b0b0b;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    /* Background Image */
+    background-image: url('japanese-paper.jpg');
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed; /* Keeps the background fixed when scrolling */
+}
 
  /* ヘッダーの調整 */
 
@@ -170,7 +176,7 @@ header h1 span.title {
             color: #804000;
         }
 
-       .c-accordion {
+.c-accordion {
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -254,18 +260,12 @@ header h1 span.title {
 
 
        /* メインコンテンツ */
-  main {
+main {
     flex: 1;
     padding: 2rem;
-    
     margin: 0 auto;
-    background-image: url('japanese-paper.jpg');
-    background-size: 100% 100%; /* Stretches the image both horizontally and vertically */
-    background-repeat: no-repeat;
-    
-    background-attachment: fixed;
-  }
-
+    background: transparent; /* Ensures main doesn't override the body background */
+}
 
 
         section {
