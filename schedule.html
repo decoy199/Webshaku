@@ -464,21 +464,6 @@ header h1 span.title {
 </script>
 
 <script>
-        // ヘッダー要素を取得
-    const header = document.querySelector('header');
-
-    // スクロールイベントをリスン
-    window.addEventListener('scroll', function() {
-    // スクロール量が100pxを超えたら透明に
-    if (window.scrollY > 400) {
-        header.classList.add('hidden'); // 透明にするクラスを追加
-    } else {
-        header.classList.remove('hidden'); // 元の状態に戻す
-    }
-    });
-
-</script>
-<script>
     // ヘッダー要素を取得
     const languageToggle = document.querySelector('.language-toggle');
 
