@@ -44,24 +44,6 @@ html {
 
 
 
-        /* ヘッダーが透明になる状態 */
-        header.hidden {
-            opacity: 0; /* 透明度を0に */
-        }
-
-
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            
-            
-            z-index: -1;
-        }
 
 
         
@@ -277,17 +259,17 @@ header h1 span.title {
 
 
        /* メインコンテンツ */
-       main {
+  main {
     flex: 1;
     padding: 2rem;
-    max-width: 100%;
+    
     margin: 0 auto;
     background-image: url('japanese-paper.jpg');
     background-size: 100% 100%; /* Stretches the image both horizontally and vertically */
     background-repeat: no-repeat;
     
     background-attachment: fixed;
-}
+  }
 
 
 
