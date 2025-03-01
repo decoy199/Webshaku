@@ -81,6 +81,18 @@
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
             100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
         }
+        .safari-iphone13mini .leaf {
+            animation-duration: 8s; /* Slow down animation */
+            opacity: 1 !important; /* Prevent flickering */
+            transform: translate3d(0, 0, 0) !important; /* Force hardware acceleration */
+        }
+
+        .safari-iphone13mini @keyframes fall {
+            0% { transform: translate3d(0, -5vh, 0) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(90deg); opacity: 0.5; }
+        }
+
 
 
         
@@ -218,5 +230,22 @@
             }
         }
     </script>
+
+    <script>
+        function detectSafariOnIPhone13Mini() {
+    var ua = navigator.userAgent;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+    var isIPhone = /iPhone/i.test(ua);
+    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+
+    if (isSafari && isIPhone && isMini) {
+        document.body.classList.add("safari-iphone13mini");
+    }
+}
+
+detectSafariOnIPhone13Mini();
+
+    </script>
 </body>
+
 </html>
