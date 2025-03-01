@@ -72,17 +72,15 @@
             height: auto;
             opacity: 0.8;
             will-change: transform, opacity;
-            transform: translate3d(0, 0, 0);
+            animation: fall 6s linear infinite;
+            transform: translateZ(0);
             backface-visibility: hidden;
-            animation: fall 6s cubic-bezier(0.25, 1, 0.5, 1) infinite;
         }
 
         @keyframes fall {
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.3; }
+            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
         }
-
 
 
         
