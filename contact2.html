@@ -177,11 +177,16 @@ header h1 span.title {
         }
 
 
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* 画面が狭い場合に折り返す */
+}
 
-    /* From Uiverse.io by Javierrocadev */ 
 .card {
-  width: 350px;
-  height: 300px;
+  width: 300px;
+  height: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -334,7 +339,11 @@ header h1 span.title {
 
 
 
-
+@media (max-width: 600px) { 
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }}
 
 
 
@@ -365,14 +374,37 @@ header h1 span.title {
 
 
 
-<div class="card">
+<div class="card-container">
+  <div class="card">
     <div class="image"></div>
     <div class="card-info">
       <span>George Johnson</span>
       <p>Support Specialist</p>
     </div>
-    <a href="#" class="button">Folow</a>
+    <a href="#" class="button">Follow</a>
   </div>
+
+  <div class="card-container">
+  <div class="card">
+    <div class="image"></div>
+    <div class="card-info">
+      <span>George Johnson</span>
+      <p>Support Specialist</p>
+    </div>
+    <a href="#" class="button">Follow</a>
+  </div>
+
+  <div class="card">
+    <div class="image"></div>
+    <div class="card-info">
+      <span>George Johnson</span>
+      <p>Support Specialist</p>
+    </div>
+    <a href="#" class="button">Follow</a>
+  </div>
+</div>
+
+
 
   <div class="card">
     <div class="image"></div>
