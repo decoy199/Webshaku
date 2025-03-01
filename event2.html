@@ -1,35 +1,45 @@
-<!-- From Uiverse.io by tsd29142 --> 
 <html>
     <style>
+        .card {
+            height: 150px;
+            width: 100px;
+            background-image: linear-gradient(to top, #210c93, #0d117a, #011160, #010e47, #07052e);
+            box-shadow: rgba(0, 0, 0, 0.24) -10px 15px 5px;
+            transform-style: preserve-3d;
+            transform: perspective(300px) rotateX(50deg) rotateZ(-20deg);
+            border-radius: 8px;
+            transition: transform 1s;
+            overflow: hidden;
+            position: relative;
+        }
 
-        /* From Uiverse.io by tsd29142 */ 
-.card {
-  height: 250px;
-  width: 190px;
-  background-image: linear-gradient(to top,   #210c93, #0d117a, #011160, #010e47, #07052e);
-  box-shadow: rgba(0, 0, 0, 0.24) -20px 30px 10px;
-  transform-style: preserve-3d;
-  transform: perspective(400px)
-  rotateX(60deg)
-  rotateZ(-30deg);
-  border-radius: 10px;
-  transition: transform 2s;
-}
+        .card:hover {
+            transform: rotateY(15deg);
+        }
 
-.card:hover {
-  transform: rotateY(19deg);
-}
+        .video-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
     </style>
 
-
-<div class="container">
-    <div class="card">
-
-        <video class="video-bg" id="backgroundVideo" autoplay loop muted>
-            <source src="mov_hts-samp005.mp4" type="video/mp4">
-        </video>
-    
-    </div>
-</div>
-
+    <body>
+        <div class="container">
+            <div class="card">
+                <video class="video-bg" id="backgroundVideo" autoplay loop muted>
+                    <source src="mov_hts-samp005.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </body>
 </html>
