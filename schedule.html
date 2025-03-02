@@ -48,7 +48,7 @@
 
 
         
-header h1 {
+        header h1 {
     margin: 0;
     font-size: 2.8rem;
     color: #fff;
@@ -76,15 +76,10 @@ header h1 span.title {
 #clickable-load {
     text-decoration: none;
   }
-   
-  
-.button {
-  font-size: 2em;
-  padding: 10px 20px;
-  background-color: transparent;
-  transition: all 0.2s ease-out;
-  border: none;
-  
+    
+
+.loader {
+    position: absolute;  /* Position the loader relative to the page */
     top: 10;  /* Place it at the very top */
     left: 0;  /* Align it with the left side */
     width: 100%;  /* Match the width of the menu or nav */
@@ -94,78 +89,214 @@ header h1 span.title {
     height: 50px;  /* Adjust height based on your nav height */
 }
 
-.button__span {
-  color: #131313;
-  transition: all 0.2s ease-out;
-  background-color: #e7e5e4;
-  letter-spacing: .15em;
-  text-shadow: 1px -1px 0 #767676, 
-      -1px 2px 1px #737272, 
-      -2px 4px 1px #767474, 
-      -3px 6px 1px #787777, 
-      -4px 8px 1px #7b7a7a, 
-      -5px 10px 1px #7f7d7d, 
-      -6px 12px 1px #828181, 
-      -7px 14px 1px #868585, 
-      -8px 16px 1px #8b8a89, 
-      -9px 18px 1px #8f8e8d, 
-      -10px 20px 1px #949392, 
-      -11px 22px 1px #999897, 
-      -12px 24px 1px #9e9c9c, 
-      -13px 26px 1px #a3a1a1, 
-      -14px 28px 1px #a8a6a6, 
-      -15px 30px 1px #adabab, 
-      -16px 32px 1px #b2b1b0, 
-      -17px 34px 1px #b7b6b5, 
-      -18px 36px 1px #bcbbba, 
-      -19px 38px 1px #c1bfbf, 
-      -20px 40px 1px #c6c4c4, 
-      -21px 42px 1px #cbc9c8, 
-      -22px 44px 1px #cfcdcd, 
-      -23px 46px 1px #d4d2d1, 
-      -24px 48px 1px #d8d6d5, 
-      -25px 50px 1px #dbdad9, 
-      -26px 52px 1px #dfdddc, 
-      -27px 54px 1px #e2e0df, 
-      -28px 56px 1px #e4e3e2;
+
+
+.loader div {
+  position: absolute;
+  width: 50px;
+  height: 31px;
 }
 
-.button__span:hover {
-  text-shadow: -1px -1px 0 #767676, 
-      1px 2px 1px #737272, 
-      2px 4px 1px #767474, 
-      3px 6px 1px #787777, 
-      4px 8px 1px #7b7a7a, 
-      5px 10px 1px #7f7d7d, 
-      6px 12px 1px #828181, 
-      7px 14px 1px #868585, 
-      8px 16px 1px #8b8a89, 
-      9px 18px 1px #8f8e8d, 
-      10px 20px 1px #949392, 
-      11px 22px 1px #999897, 
-      12px 24px 1px #9e9c9c, 
-      13px 26px 1px #a3a1a1, 
-      14px 28px 1px #a8a6a6, 
-      15px 30px 1px #adabab, 
-      16px 32px 1px #b2b1b0, 
-      17px 34px 1px #b7b6b5, 
-      18px 36px 1px #bcbbba, 
-      19px 38px 1px #c1bfbf, 
-      20px 40px 1px #c6c4c4, 
-      21px 42px 1px #cbc9c8, 
-      22px 44px 1px #cfcdcd, 
-      23px 46px 1px #d4d2d1, 
-      24px 48px 1px #d8d6d5, 
-      25px 50px 1px #dbdad9, 
-      26px 52px 1px #dfdddc, 
-      27px 54px 1px #e2e0df, 
-      28px 56px 1px #e4e3e2;
+.rot {
+  transform: rotate(150deg);
 }
 
-.button:active .button__span {
-  text-shadow: none;
+.rot2 {
+  transform: rotate(20deg);
 }
 
+.loader div:nth-of-type(2) {
+  transform: rotate(60deg);
+}
+
+.loader div:nth-of-type(3) {
+  transform: rotate(-60deg);
+}
+
+.loader div div {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.loader div div span {
+  position: absolute;
+  width: 4px;
+  height: 0%;
+  background: #053146;
+  z-index: 999999;
+}
+
+.h1 {
+  left: 0;
+  animation: load1 3.2s ease infinite;
+}
+
+.h2 {
+  right: 0;
+  animation: load2 3.2s ease 0.4s infinite;
+}
+
+.h3 {
+  right: 0;
+  animation: load3 3.2s ease 0.8s infinite;
+}
+
+.h4 {
+  top: 10px;
+  left: 23px;
+  animation: load4 3.2s ease 1s infinite;
+  transform: rotate(90deg);
+}
+
+.h5 {
+  bottom: 0;
+  animation: load5 3.2s ease 1.2s infinite;
+}
+
+.h6 {
+  left: 0;
+  animation: load6 3.2s ease 1.3s infinite;
+}
+
+@keyframes load1 {
+  0% {
+    bottom: 0;
+    height: 0;
+  }
+
+  6.944444444% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  50% {
+    top: 0;
+    height: 100%;
+  }
+
+  59.944444433% {
+    top: 0;
+    height: 0;
+  }
+  /*   91.6666667%{top:0;height:0%;} */
+}
+
+@keyframes load2 {
+  0% {
+    top: 0;
+    height: 0;
+  }
+
+  6.944444444% {
+    top: 0;
+    height: 100%;
+  }
+
+  50% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  59.944444433% {
+    bottom: 0;
+    height: 0;
+  }
+  /*   91.6666667%{bottom:0;height:0%} */
+}
+
+@keyframes load3 {
+  0% {
+    top: 0;
+    height: 0;
+  }
+
+  6.944444444% {
+    top: 0;
+    height: 100%;
+  }
+
+  50% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  59.94444443% {
+    bottom: 0;
+    height: 0;
+  }
+  /*   91.6666667%{bottom:0;height:0%;} */
+}
+
+@keyframes load4 {
+  0% {
+    top: 37px;
+    left: 23px;
+    height: 134%;
+  }
+
+  6.944444444% {
+    top: 10px;
+    height: 134%;
+  }
+
+  50% {
+    bottom: 10px;
+    height: 134%;
+  }
+
+  59.94444443% {
+    bottom: 0;
+    height: 0;
+  }
+  /*   91.6666667%{bottom:0;height:0%;} */
+}
+
+@keyframes load5 {
+  0% {
+    bottom: 0;
+    height: 0;
+  }
+
+  6.944444444% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  50% {
+    top: 0;
+    height: 100%;
+  }
+
+  59.94444443% {
+    top: 0;
+    height: 0;
+  }
+  /*   91.6666667%{top:0;height:0%;} */
+}
+
+@keyframes load6 {
+  0% {
+    bottom: 0;
+    height: 0;
+  }
+
+  6.944444444% {
+    bottom: 0;
+    height: 100%;
+  }
+
+  50% {
+    top: 0;
+    height: 100%;
+  }
+
+  59.94444443% {
+    top: 0;
+    height: 0;
+  }
+  /*   91.6666667%{top:0;height:0%;} */
+}
         
  /* メニューとヘッダーが重ならないようにするための調整 */
 .menu {
@@ -448,11 +579,33 @@ main {
 </head>
 <body>
     <a href="main3.html" id="clickable-load">
-        <button class="button">
-            <span class="button__span">SHAKUHACHI</span>
-            
-        </button>
-    </a>
+         
+        <section class="loader">
+            <div>
+            <div>
+                <span class="one h6"></span>
+                <span class="two h3"></span>
+            </div>
+            </div>
+
+            <div>
+            <div>
+                <span class="one h1"></span>
+            </div>
+            </div>
+
+            <div>
+            <div>
+                <span class="two h2"></span>
+            </div>
+            </div>
+            <div>
+            <div>
+                <span class="one h4"></span>
+            </div>
+            </div>
+        </section>
+        </a>
 
         
       
