@@ -183,7 +183,19 @@ header h1 span.title {
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: all 1.4s ease;
+    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+}
+
+.c-accordion__content {
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
+    max-height: 0; /* 初期状態で非表示 */
+    overflow: hidden; /* 内容がはみ出さないように */
+    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+}
+
+.c-accordion[open] .c-accordion__content {
+    max-height: 500px; /* 開いたときの最大高さを設定 */
 }
 
 .c-accordion:hover {
@@ -231,12 +243,8 @@ header h1 span.title {
 }
 
 .c-accordion__content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 1.4s ease-in-out; /* 1.4秒で開閉 */
-}
-.c-accordion.is-open .c-accordion__content {
-  max-height: 500px; /* 必要に応じて調整 */
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
 }
 
 .c-accordion__plus {
@@ -255,7 +263,7 @@ header h1 span.title {
     height: 100%;
     background-color: #804000;
     transform: rotate(90deg);
-    transition: transform 1.4s;
+    transition: transform 1.s;
 }
 
 .c-accordion[open] .c-accordion__plus::before {
@@ -506,6 +514,5 @@ main {
 detectSafariOnIPhone13Mini();
 
     </script>
-
 
 </html>
