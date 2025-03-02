@@ -80,15 +80,19 @@ header h1 span.title {
 
   .loader {
     position: fixed;
-    top: 10px;  /* Adjust the top position so it's not too high */
+    top: 10px;  /* Adjust the top value */
     left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);  /* Ensure it's centered properly */
+    transform: translateX(-50%);  /* Center the loader properly */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;  /* Ensure it appears above other elements */
+    z-index: 9999;  /* Ensure it is on top of other content */
+    width: 100px; /* Set a fixed width for the loader */
+    height: 100px; /* Set a fixed height for the loader */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: add a background for better visibility */
+    border-radius: 50%; /* Optional: make it circular if it's a circular loader */
+    visibility: visible;  /* Ensure it's visible */
 }
-
 
 
 
