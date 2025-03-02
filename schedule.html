@@ -507,4 +507,19 @@ detectSafariOnIPhone13Mini();
 
     </script>
 
+
+<script>
+    document.querySelectorAll('.c-accordion__header').forEach(header => {
+  header.addEventListener('click', function() {
+    const content = this.nextElementSibling;
+
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+});
+
+</script>
 </html>
