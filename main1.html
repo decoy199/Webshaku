@@ -4,147 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尺八奏者 石橋紅童</title>
-    <style>
-
-
-        /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f5ef;
-            color: #333;
+    <div class="loader">
+        <svg height="0" width="0" viewBox="0 0 100 100" class="absolute">
+          <defs class="s-xJBuHA073rTt" xmlns="http://www.w3.org/2000/svg">
+            <linearGradient
+              class="s-xJBuHA073rTt"
+              gradientUnits="userSpaceOnUse"
+              y2="2"
+              x2="0"
+              y1="62"
+              x1="0"
+              id="b"
+            >
+              <stop class="s-xJBuHA073rTt" stop-color="#0369a1"></stop>
+              <stop class="s-xJBuHA073rTt" stop-color="#67e8f9" offset="1.5"></stop>
+            </linearGradient>
+            <linearGradient
+              class="s-xJBuHA073rTt"
+              gradientUnits="userSpaceOnUse"
+              y2="0"
+              x2="0"
+              y1="64"
+              x1="0"
+              id="c"
+            >
+              <stop class="s-xJBuHA073rTt" stop-color="#0369a1"></stop>
+              <stop class="s-xJBuHA073rTt" stop-color="#22d3ee" offset="1"></stop>
+            </linearGradient>
+            <linearGradient
+              class="s-xJBuHA073rTt"
+              gradientUnits="userSpaceOnUse"
+              y2="2"
+              x2="0"
+              y1="62"
+              x1="0"
+              id="d"
+            >
+              <stop class="s-xJBuHA073rTt" stop-color="#38bdf8"></stop>
+              <stop class="s-xJBuHA073rTt" stop-color="#075985" offset="1.5"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 100 100"
+          width="100"
+          height="100"
+          class="inline-block"
+        >
+          <text x="10" y="50" font-size="20" fill="url(#b)" font-family="Arial, sans-serif" font-weight="bold">SHAKUHACHI</text>
+        </svg>
+      </div>
+      
+      <style>
+      .absolute {
+        position: absolute;
+      }
+      
+      .inline-block {
+        display: inline-block;
+      }
+      
+      .loader {
+        display: flex;
+        margin: 0.25em 0;
+      }
+      
+      @keyframes spin {
+        0% {
+          rotate: 0deg;
         }
-
-        /* ヘッダー */
-        header {
-            position: relative;
-            color: #333; /* テキストカラー */
-            text-align: center;
-            padding: 4rem 1rem;
-            overflow: hidden; /* 疑似要素のはみ出しを防ぐ */
+        100% {
+          rotate: 360deg;
         }
-
-        header::before {
-            content: "";
-            background-image: url('https://pbs.twimg.com/media/FPyhB6gVsAQZiFV?format=jpg&name=large'); /* 背景画像 */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3; /* 背景画像のみの透明度 */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1; /* 背景用 */
-        }
-
-        header h1,
-        header p,
-        nav {
-            position: relative;
-            z-index: 2; /* テキストを前面に配置 */
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            margin: 1rem 0 0;
-        }
-
-        nav {
-            margin-top: 1.5rem;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        /* メインコンテンツ */
-        main {
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            border-left: 4px solid #804000;
-            padding-left: 0.5rem;
-            color: #804000;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            text-indent: 1em;
-        }
-
-        img {
-            display: block;
-            margin: 1rem auto;
-            max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        /* フッター */
-        footer {
-            background-color: #804000;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
-        footer a {
-            color: #ffdbac;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>尺八奏者 石橋紅童</h1>
-        <p>伝統と心を音に込めて</p>
-        <nav>
-            <a href="#profile">プロフィール12345</a>
-            <a href="#music">演奏について1111666</a>
-            <a href="#contact">お問い合わせ</a>
-        </nav>
-    </header>
-    <main>
-        <section id="profile">
-            <h2>Profile</h2>
-            <p>石橋紅童は日本の伝統楽器「尺八」の奏者です。幼少期より尺八に魅了され、10年以上にわたり演奏活動を続けています。尺八の音色で多くの人々を魅了しています。</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS345ZYtENO8yup76xxDh5S-pYV8cSPiUKP0kruUDrR8wOZ-Ho_ygmuNqQX&s=10" alt="尺八奏者 石橋紅童">
-        </section>
-
-        <section id="music">
-            <h2>演奏について</h2>
-            <p>尺八はその深い音色と瞑想的な雰囲気で知られています。石橋紅童は伝統的な曲目だけでなく、現代的なアプローチを取り入れた演奏も得意としています。コンサートや個別指導も行っています。</p>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDJEPd0D3ot1rqo0uyWba2jjzZsyGOlZO1nHByu4SGBStc-6O3V7ZCeAH7&s=10" alt="尺八演奏の様子">
-        </section>
-    </main>
+      }
+      </style>
 
     <footer id="contact">
         <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
