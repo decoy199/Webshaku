@@ -50,16 +50,14 @@
     
 
   .loader {
-    position: flex;  /* Position the loader relative to the page */
-    top: 90;  /* Align it with the top of the page */
-    left: 65%;  /* Center it horizontally */
-    transform: translateX(-50%);  /* Adjust for true centering */
-    width: 100%;  /* Match the width of the page */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;  /* Adjust height based on your layout */
+    position: absolute;  /* Position the loader correctly */
+    top: 50%;            /* Center it vertically */
+    left: 50%;           /* Center it horizontally */
+    transform: translate(-50%, -50%);  /* Adjust position for perfect centering */
+    width: auto;
+    height: auto;
     z-index: 1000; /* Ensure it appears above other elements */
+    display: block; /* Ensure it is displayed */
 }
 
 
