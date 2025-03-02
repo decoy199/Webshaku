@@ -73,29 +73,31 @@ header h1 span.title {
 
         
  /* メニューとヘッダーが重ならないようにするための調整 */
+/* Menu Button */
 .menu {
     position: fixed;
     top: 20px;
     left: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-around;
     width: 50px;
     height: 50px;
     background-color: #deb068;
     border-radius: 50%;
     cursor: pointer;
     z-index: 200;
+    padding: 10px;
 }
-        .menu span {
-            display: block;
-            width: 50%;
-            height: 2%;
-            background-color: #555;
-            margin: 5px 0;
-            transition: transform 250ms ease;
-        }
+
+/* Menu Button Bars */
+.menu span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.3s;
+}
 
         #menu {
             display: none;
@@ -110,40 +112,62 @@ header h1 span.title {
         }
 
         /* サイドメニュー */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            color: #ffffff;
-            transition: left 0.3s ease;
-            z-index: 100;
-        }
+        /* Navigation Menu */
+.nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: #ffffff;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+    padding-top: 60px;
+}
 
-        .nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 50px 0 0;
-        }
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        .nav ul li {
-            margin: 0;
-            padding: 15px;
-            text-align: center;
-        }
+.nav ul li {
+    padding: 15px;
+    text-align: center;
+}
 
-        .nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            display: block;
-        }
+.nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    display: block;
+}
+
+
 
         .nav ul li a:hover {
             background-color: #444;
         }
+
+
+
+        /* Toggle Menu with JavaScript */
+.menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav.active {
+    left: 0;
+}
 
 /* 言語切替ボタンの位置調整 */
 .language-toggle {
@@ -350,20 +374,23 @@ main {
 </style>
 </head>
 <body>
-    <input type="checkbox" id="menu" />
-    <label for="menu" class="menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+    <!-- Menu Toggle Checkbox -->
+<input type="checkbox" id="menu" hidden />
+<label for="menu" class="menu">
+    <span></span>
+    <span></span>
+    <span></span>
+</label>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="#schedule">スケジュール</a></li>
-            <li><a href="#appearance">出演情報</a></li>
-            <li><a href="#contact">お問い合わせ</a></li>
-        </ul>
-    </nav>
+<!-- Navigation Menu -->
+<nav class="nav">
+    <ul>
+        <li><a href="#schedule">スケジュール</a></li>
+        <li><a href="#appearance">出演情報</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+    </ul>
+</nav>
+
 
     
 
@@ -502,5 +529,17 @@ if (isSafari && isIPhone && isMini) {
 detectSafariOnIPhone13Mini();
 
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.querySelector(".menu");
+    const navMenu = document.querySelector(".nav");
+
+    menuButton.addEventListener("click", function () {
+        menuButton.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+});
+</Script>
 
 </html>
