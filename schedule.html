@@ -21,6 +21,24 @@ html, body {
   box-sizing: border-box; /* パディングやボーダーが幅に影響しないように */
 }
 
+/* iPhone 13 Mini specific styles */
+@media only screen and (max-width: 375px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden; /* Ensure no horizontal scroll */
+  }
+
+  
+
+  /* Adjustments for smaller screen content */
+  .container {
+    width: 100%;
+    padding: 16px; /* Example: reduce padding for better fit */
+  }
+
+  /* Other element adjustments can go here */
+}
+
         /* 全体のスタイル */
  body {
     font-family: 'Yu Mincho', serif;
@@ -575,6 +593,20 @@ main {
         }
     });
 </script>
-   
+   <script>
+        function detectSafariOnIPhone13Mini() {
+    var ua = navigator.userAgent;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+    var isIPhone = /iPhone/i.test(ua);
+    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+
+    if (isSafari && isIPhone && isMini) {
+        document.body.classList.add("safari-iphone13mini");
+    }
+}
+
+detectSafariOnIPhone13Mini();
+
+    </script>
 
 </html>
