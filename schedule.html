@@ -79,15 +79,17 @@ header h1 span.title {
     
 /* From Uiverse.io by RafaM-dev */ 
 .loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* Add these properties to position the loader properly */
-  position: relative;
-  width: 90px;
-  height: 103px;
- /* Adjust the height to accommodate the "h4" span */
+    position: absolute;  /* Position the loader relative to the page */
+    top: 10%;  /* Adjust to place it near the middle-top */
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);  /* Ensure perfect centering */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 103px;
 }
+
 
 .loader div {
   position: absolute;
@@ -577,7 +579,7 @@ main {
 </head>
 <body>
     <a href="main3.html" id="clickable-load">
-        <!-- From Uiverse.io by RafaM-dev --> 
+         
         <section class="loader">
             <div>
             <div>
