@@ -79,19 +79,15 @@ header h1 span.title {
     
 
   .loader {
-    position: fixed;
-    top: 10px;  /* Adjust the top value */
-    left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);  /* Center the loader properly */
+    position: fixed;  /* Position the loader relative to the page */
+    top: 30px;  /* Align it with the top level of the menu/nav */
+    left: 50%;  /* Center it horizontally */
+    transform: translateX(-50%);  /* Adjust for true centering */
+    width: 100%;  /* Match the width of the page */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;  /* Ensure it is on top of other content */
-    width: 100px; /* Set a fixed width for the loader */
-    height: 100px; /* Set a fixed height for the loader */
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: add a background for better visibility */
-    border-radius: 50%; /* Optional: make it circular if it's a circular loader */
-    visibility: visible;  /* Ensure it's visible */
+    height: 50px;  /* Adjust height based on your layout */
 }
 
 
@@ -406,7 +402,7 @@ main {
 
 </style>
 </head>
-<body>
+
     <a href="main3.html" id="clickable-load">
          
         <div class="loader">
@@ -415,7 +411,7 @@ main {
         </div>
         </a>
 
-        
+<body>   
       
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
