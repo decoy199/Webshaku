@@ -231,8 +231,12 @@ header h1 span.title {
 }
 
 .c-accordion__content {
-    padding: 1rem;
-    animation: fadeIn 1.3s ease;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1.4s ease-in-out; /* 1.4秒で開閉 */
+}
+.c-accordion.is-open .c-accordion__content {
+  max-height: 500px; /* 必要に応じて調整 */
 }
 
 .c-accordion__plus {
