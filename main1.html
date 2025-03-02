@@ -5,154 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尺八奏者 石橋紅童</title>
 </head>
-    <div class="loader">
-        <svg height="0" width="0" viewBox="0 0 100 100" class="absolute">
-          <defs class="s-xJBuHA073rTt" xmlns="http://www.w3.org/2000/svg">
-            <linearGradient
-              class="s-xJBuHA073rTt"
-              gradientUnits="userSpaceOnUse"
-              y2="2"
-              x2="0"
-              y1="62"
-              x1="0"
-              id="b"
-            >
-              <stop class="s-xJBuHA073rTt" stop-color="#0369a1"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#67e8f9" offset="1.5"></stop>
-            </linearGradient>
-            <linearGradient
-              class="s-xJBuHA073rTt"
-              gradientUnits="userSpaceOnUse"
-              y2="0"
-              x2="0"
-              y1="64"
-              x1="0"
-              id="c"
-            >
-              <stop class="s-xJBuHA073rTt" stop-color="#0369a1"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#22d3ee" offset="1"></stop>
-            </linearGradient>
-            <linearGradient
-              class="s-xJBuHA073rTt"
-              gradientUnits="userSpaceOnUse"
-              y2="2"
-              x2="0"
-              y1="62"
-              x1="0"
-              id="d"
-            >
-              <stop class="s-xJBuHA073rTt" stop-color="#38bdf8"></stop>
-              <stop class="s-xJBuHA073rTt" stop-color="#075985" offset="1.5"></stop>
-            </linearGradient>
-          </defs>
-        </svg>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 100 100"
-          width="100"
-          height="100"
-          class="inline-block"
-        >
-          <text x="10" y="50" font-size="20" fill="url(#b)" font-family="Arial, sans-serif" font-weight="bold">SHAKUHACHI</text>
-        </svg>
-      </div>
-      
-      <style>
-      /* From Uiverse.io by Lissy2019 */ 
-.absolute {
+<div id="load">
+    <div>I</div>
+    <div>H</div>
+    <div>C</div>
+    <div>A</div>
+    <div>H</div>
+    <div>U</div>
+    <div>K</div>
+    <div>H</div>
+    <div>S</div>
+  </div>
+
+
+
+  <style>
+    /* From Uiverse.io by DevPTG */ 
+#load {
   position: absolute;
+  width: 600px;
+  height: 36px;
+  left: 50%;
+  top: 40%;
+  margin-left: -300px;
+  overflow: visible;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 
-.inline-block {
-  display: inline-block;
+#load div {
+  position: absolute;
+  width: 20px;
+  height: 36px;
+  opacity: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  animation: move 2s linear infinite;
+  -o-animation: move 2s linear infinite;
+  -moz-animation: move 2s linear infinite;
+  -webkit-animation: move 2s linear infinite;
+  transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  color: #35C4F0;
 }
 
-.loader {
-  display: flex;
-  margin: 0.25em 0;
+#load div:nth-child(2) {
+  animation-delay: 0.2s;
+  -o-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  -webkit-animation-delay: 0.2s;
 }
 
-.w-2 {
-  width: 0.5em;
+#load div:nth-child(3) {
+  animation-delay: 0.4s;
+  -o-animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
+  -webkit-animation-delay: 0.4s;
 }
 
-.dash {
-  animation: dashArray 2s ease-in-out infinite, dashOffset 2s linear infinite;
+#load div:nth-child(4) {
+  animation-delay: 0.6s;
+  -o-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  -webkit-animation-delay: 0.6s;
 }
 
-.spin {
-  animation: spinDashArray 2s ease-in-out infinite, spin 8s ease-in-out infinite,
-    dashOffset 2s linear infinite;
-  transform-origin: center;
+#load div:nth-child(5) {
+  animation-delay: 0.8s;
+  -o-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  -webkit-animation-delay: 0.8s;
 }
 
-@keyframes dashArray {
+#load div:nth-child(6) {
+  animation-delay: 1s;
+  -o-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+}
+
+#load div:nth-child(7) {
+  animation-delay: 1.2s;
+  -o-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  -webkit-animation-delay: 1.2s;
+}
+
+@keyframes move {
   0% {
-    stroke-dasharray: 0 1 359 0;
+    left: 0;
+    opacity: 0;
   }
 
-  50% {
-    stroke-dasharray: 0 359 1 0;
+  35% {
+    left: 41%;
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  65% {
+    left: 59%;
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
   }
 
   100% {
-    stroke-dasharray: 359 1 0 0;
+    left: 100%;
+    -moz-transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    opacity: 0;
   }
 }
 
-@keyframes spinDashArray {
+@-moz-keyframes move {
   0% {
-    stroke-dasharray: 270 90;
+    left: 0;
+    opacity: 0;
   }
 
-  50% {
-    stroke-dasharray: 0 360;
+  35% {
+    left: 41%;
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  65% {
+    left: 59%;
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
   }
 
   100% {
-    stroke-dasharray: 250 90;
+    left: 100%;
+    -moz-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    opacity: 0;
   }
 }
 
-@keyframes dashOffset {
+@-webkit-keyframes move {
   0% {
-    stroke-dashoffset: 385;
+    left: 0;
+    opacity: 0;
+  }
+
+  35% {
+    left: 41%;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+
+  65% {
+    left: 59%;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
   }
 
   100% {
-    stroke-dashoffset: 5;
+    left: 100%;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    opacity: 0;
   }
 }
 
-@keyframes spin {
+@-o-keyframes move {
   0% {
-    rotate: 0deg;
+    left: 0;
+    opacity: 0;
   }
 
-  12.5%,
-  25% {
-    rotate: 270deg;
+  35% {
+    left: 41%;
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
   }
 
-  37.5%,
-  50% {
-    rotate: 540deg;
+  65% {
+    left: 59%;
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1;
   }
 
-  62.5%,
-  75% {
-    rotate: 810deg;
-  }
-
-  87.5%,
   100% {
-    rotate: 1080deg;
+    left: 100%;
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    opacity: 0;
   }
 }
-
-      </style>
-
+  </style>
 
 
 </html>
