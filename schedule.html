@@ -49,7 +49,7 @@
 
   .loader {
     position: fixed;  /* Position the loader relative to the page */
-    top: 30px;  /* Align it with the top level of the menu/nav */
+    top: 0;  /* Align it with the top of the page */
     left: 50%;  /* Center it horizontally */
     transform: translateX(-50%);  /* Adjust for true centering */
     width: 100%;  /* Match the width of the page */
@@ -57,6 +57,7 @@
     justify-content: center;
     align-items: center;
     height: 50px;  /* Adjust height based on your layout */
+    z-index: 1000; /* Ensure it appears above other elements */
 }
 
 
@@ -402,7 +403,8 @@ main {
 
 </style>
 </head>
-
+<body> 
+<header>
     <a href="main3.html" id="clickable-load">
          
         <div class="loader">
@@ -411,7 +413,7 @@ main {
         </div>
         </a>
 
-<body>   
+  
       
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
@@ -430,7 +432,7 @@ main {
 
     
 
-    <header>
+   
         
         
         <div class="language-toggle">
