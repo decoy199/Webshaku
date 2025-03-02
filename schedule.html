@@ -50,15 +50,15 @@
     
 
   .loader {
-    position: absolute;  /* Position the loader correctly */
-    z-index: -1; 
-    top: 8%;            /* Center it vertically */
-    left: 50%;           /* Center it horizontally */
-    transform: translate(-50%, -50%);  /* Adjust position for perfect centering */
+    position: fixed;  /* スクロールしても動かない */
+    z-index: -1;
+    top: 8%;         /* 画面の中央に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: auto;
     height: auto;
-    z-index: 1000; /* Ensure it appears above other elements */
-    display: block; /* Ensure it is displayed */
+    z-index: 1000; /* 他の要素より前面に配置 */
+    display: block;
 }
 
 
