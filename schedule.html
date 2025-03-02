@@ -80,15 +80,15 @@ header h1 span.title {
 /* From Uiverse.io by RafaM-dev */ 
 .loader {
     position: absolute;  /* Position the loader relative to the page */
-    top: 10%;  /* Adjust to place it near the middle-top */
-    left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);  /* Ensure perfect centering */
+    top: 0;  /* Place it at the very top */
+    left: 0;  /* Align it with the left side */
+    width: 100%;  /* Match the width of the menu or nav */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90px;
-    height: 103px;
+    height: 50px;  /* Adjust height based on your nav height */
 }
+
 
 
 .loader div {
@@ -577,7 +577,7 @@ main {
 
 </style>
 </head>
-
+<body>
     <a href="main3.html" id="clickable-load">
          
         <section class="loader">
@@ -608,7 +608,7 @@ main {
         </a>
 
         
-        <body>  
+      
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
         <span></span>
