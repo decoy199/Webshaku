@@ -79,16 +79,16 @@ header h1 span.title {
     
 
   .loader {
-    position: fixed;  /* Position the loader relative to the page */
-    top: 20px;  /* Align it with the top level of the menu/nav */
-    left: 50%;  /* Center it horizontally */
-    transform: translateX(-50%);  /* Adjust for true centering */
-    width: 100%;  /* Match the width of the page */
+    position: fixed;
+    top: 10px;  /* Adjust the top position so it's not too high */
+    left: 50%;  /* Center horizontally */
+    transform: translateX(-50%);  /* Ensure it's centered properly */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;  /* Adjust height based on your layout */
+    z-index: 9999;  /* Ensure it appears above other elements */
 }
+
 
 
 
