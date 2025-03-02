@@ -48,7 +48,7 @@
 
 
         
-        header h1 {
+header h1 {
     margin: 0;
     font-size: 2.8rem;
     color: #fff;
@@ -78,12 +78,20 @@ header h1 span.title {
   }
    
   
-  .button {
+.button {
   font-size: 2em;
   padding: 10px 20px;
   background-color: transparent;
   transition: all 0.2s ease-out;
   border: none;
+  position: absolute;  /* Position the loader relative to the page */
+    top: 10;  /* Place it at the very top */
+    left: 0;  /* Align it with the left side */
+    width: 100%;  /* Match the width of the menu or nav */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;  /* Adjust height based on your nav height */
 }
 
 .button__span {
