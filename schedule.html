@@ -51,6 +51,7 @@
 
   .loader {
     position: absolute;  /* Position the loader correctly */
+    z-index: 1; 
     top: 8%;            /* Center it vertically */
     left: 50%;           /* Center it horizontally */
     transform: translate(-50%, -50%);  /* Adjust position for perfect centering */
@@ -140,6 +141,7 @@ header h1 span.title {
  /* メニューとヘッダーが重ならないようにするための調整 */
 .menu {
     position: fixed;
+    z-index: 10;
     top: 20px;
     left: 20px;
     display: flex;
