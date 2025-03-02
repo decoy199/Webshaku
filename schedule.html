@@ -186,17 +186,9 @@ header h1 span.title {
     transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
 }
 
-.c-accordion__content {
-    padding: 1rem;
-    animation: fadeIn 1.3s ease;
-    max-height: 0; /* 初期状態で非表示 */
-    overflow: hidden; /* 内容がはみ出さないように */
-    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
-}
 
-.c-accordion[open] .c-accordion__content {
-    max-height: 500px; /* 開いたときの最大高さを設定 */
-}
+
+
 
 .c-accordion:hover {
     transform: translateY(-5px);
@@ -245,6 +237,12 @@ header h1 span.title {
 .c-accordion__content {
     padding: 1rem;
     animation: fadeIn 1.3s ease;
+    max-height: 0; /* 初期状態で非表示 */
+    overflow: hidden; /* 内容がはみ出さないように */
+    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+}
+.c-accordion[open] .c-accordion__content {
+    max-height: 500px; /* 開いたときの最大高さを設定 */
 }
 
 .c-accordion__plus {
