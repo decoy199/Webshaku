@@ -12,48 +12,29 @@
 
 
 
-html {
-    margin: 0;
-    padding: 0;
-    
+html{
+    background-color: #F7EAD9;
 }
-        /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            
-            
-            color: #0b0b0b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
 
- /* ヘッダーの調整 */
-header {
-    position: relative;
-    color: #333;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
-    background-image: url('profile1.jpg');
-    background-position: center;
-    background-size: cover;
-    opacity: 0; /* Initially hidden */
-    animation: fadeInBg 1s ease-in-out forwards;
-    animation-delay: 1s;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0);
-    transition: opacity 0.3s ease;
-    z-index: 10;
-    background-attachment: scroll;
-}
+            /* 全体のスタイル */
+    body {
+        font-family: 'Yu Mincho', serif;
+        line-height: 1.8;
+        margin: 0;
+        padding: 0;
+        color: #0b0b0b;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        
+        /* Background Image */
+        background-image: url('apanese-paper.jpg');
+        background-size: cover; /* Ensures the image covers the entire page */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed; /* Keeps the background fixed when scrolling */
+    }
+
 
 @keyframes fadeInBg {
     from {
@@ -64,31 +45,76 @@ header {
     }
 }
 
+#clickable-load {
+    text-decoration: none;
+  }
+    
+
+
+  .loader {
+    position: fixed;  /* スクロールしても動かない */
+    z-index: -1;
+    top: 8%;         /* 画面の中央に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 1000; /* 他の要素より前面に配置 */
+    display: block;
+}
 
 
 
-        /* ヘッダーが透明になる状態 */
-        header.hidden {
-            opacity: 0; /* 透明度を0に */
-        }
+.loader span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+
+@media only screen and (max-width: 375px) and (max-height: 812px) {
+    .loader {
+        height: 30px; /* Smaller height for iPhone 13 mini */
+        left: 55%;
+    }
+
+    .loader span {
+        font-size: 24px; /* Smaller font size for iPhone 13 mini */
+    }
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
 
 
 
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            
-            
-            z-index: -1;
-        }
+
 
 
         
-        header h1 {
+header h1 {
     margin: 0;
     font-size: 2.8rem;
     color: #fff;
@@ -111,55 +137,23 @@ header h1 span.title {
     font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
 }
 
-        header p{
-            position: relative;
-            z-index: 2;
-        }
+
+
+
         
-                header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* 縦書きにする */
-            position: absolute;
-            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
-            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
-            font-size: 4rem; /* フォントサイズ調整 */
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: #180614;
-            margin-top: 100px; /* pの位置調整 */
-        }
-
-        header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
  /* メニューとヘッダーが重ならないようにするための調整 */
 .menu {
     position: fixed;
+    z-index: 10;
+    
     top: 20px;
     left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 50px;
-    height: 50px;
+    width: 43px;
+    height: 43px;
     background-color: #deb068;
     border-radius: 50%;
     cursor: pointer;
@@ -173,6 +167,10 @@ header h1 span.title {
             margin: 5px 0;
             transition: transform 250ms ease;
         }
+
+.menu.active ~ .loader {
+    display: none;
+}
 
         #menu {
             display: none;
@@ -189,6 +187,7 @@ header h1 span.title {
         /* サイドメニュー */
         .nav {
             position: fixed;
+            z-index: 10;
             top: 0;
             left: -250px;
             width: 250px;
@@ -222,6 +221,10 @@ header h1 span.title {
             background-color: #444;
         }
 
+        .nav.active ~ .loader {
+            display: none;
+        }
+
 /* 言語切替ボタンの位置調整 */
 .language-toggle {
     position: fixed;
@@ -253,15 +256,17 @@ header h1 span.title {
             color: #804000;
         }
 
-       .c-accordion {
+.c-accordion {
     margin-bottom: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: all 0.7s ease;
+    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
 }
+
+
 
 .c-accordion:hover {
     transform: translateY(-5px);
@@ -279,7 +284,7 @@ header h1 span.title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.7s ease;
+    transition: all 1.4s ease;
     background-color: #fff;
 }
 
@@ -318,7 +323,7 @@ header h1 span.title {
     height: 2px;
     background-color: #804000;
     position: relative;
-    transition: transform 0.3s;
+    transition: transform 1.3s;
 }
 
 .c-accordion__plus::before {
@@ -328,12 +333,41 @@ header h1 span.title {
     height: 100%;
     background-color: #804000;
     transform: rotate(90deg);
-    transition: transform 0.3s;
+    transition: transform 1.3s;
 }
 
 .c-accordion[open] .c-accordion__plus::before {
     transform: rotate(0deg);
 }
+
+
+
+.leaf {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 0.8;
+            will-change: transform, opacity;
+            animation: fall 6s linear infinite;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        @keyframes fall {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
+        }
+        .safari-iphone13mini .leaf {
+            animation: fall-safari 8s linear infinite ;
+            opacity: 1 !important; /* Prevent flickering */
+            transform: translate3d(0, 0, 0) !important; /* Force hardware acceleration */
+        }
+
+        @keyframes fall-safari {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(180deg); opacity: 0.1; }
+        }
 
 
 
@@ -476,8 +510,19 @@ header h1 span.title {
 
     </style>
 </head>
-
 <body>
+
+<header>
+    <a href="main3.html" id="clickable-load">
+         
+        <div class="loader">
+            <span>SHAKUHACHI</span>
+            <span>SHAKUHACHI</span>
+        </div>
+        </a>
+
+  
+      
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
         <span></span>
@@ -492,16 +537,23 @@ header h1 span.title {
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
-<header>
-
-
 
     
+
+   
+        
+        
+        <div class="language-toggle">
+            <button onclick="setLanguage('en')">EN</button>
+        </div>
+    </header>
     
-    <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
+    <div class="glow glow-lantern"></div>
+        <img src="momiji-2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
+        <img src="momiji1.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+        <img src="momiji-2.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
     </div>
-</header>
+
 
 <main class="flex flex-col items-center justify-center text-center mt-16 px-4">
 
