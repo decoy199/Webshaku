@@ -30,21 +30,13 @@ html{
         
     }
 
-    
-
-
-
-
-#topbar{
-    /*background-image: url('japanese-paper.jpg');*/
-    background-color: #0b0b0b;
-
+    header {
+    background-color: #804000; /* 背景色 */
+    min-height: 100px; /* 高さを確保 */
+    width: 100%; /* 幅を100%に */
+    position: relative; /* 必要に応じて */
+    z-index: 2000; /* 他の要素より上に */
 }
-.topbar{
-    background-color: #0b0b0b;
-
-}
-    
 
 
 
@@ -476,7 +468,7 @@ main {
 </style>
 </head>
 
-<div class="topbar">
+
 <header>
     <a href="main3.html" id="clickable-load">
          
@@ -512,7 +504,7 @@ main {
             <button onclick="setLanguage('en')">EN</button>
         </div>
 </header>
-</div>
+
     
     <div class="glow glow-lantern"></div>
         <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
