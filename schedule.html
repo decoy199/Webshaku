@@ -30,13 +30,7 @@ html{
         
     }
 
-    header {
-    background-color: #804000; /* 背景色 */
-    min-height: 100px; /* 高さを確保 */
-    width: 100%; /* 幅を100%に */
-    position: relative; /* 必要に応じて */
-    z-index: 2000; /* 他の要素より上に */
-}
+
 
 
 
@@ -445,7 +439,63 @@ main {
             border-radius: 8px;
         }
 
+        @media (max-width: 767px) {
+    header {
+        position: fixed;    
+        background-color: #804000; /* 背景色 */
+        min-height: 100px; /* 高さを確保 */
+        width: 100%; /* 幅を100%に */
+        position: relative; /* 必要に応じて */
+        z-index: 2000; /* 他の要素より上に */
+        padding: 10px 0;  /* 上下の余白を調整 */
+        background-size: cover; /* Ensures the image covers the entire header */
+        background-position: center top 20px;
+        background-attachment: scroll;
+       
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
 
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+        
+
+    
+
+    
+}
 
 
 
