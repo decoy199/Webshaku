@@ -13,7 +13,9 @@
 
 
 
-
+html{
+    background-color: #F7EAD9;
+}
             /* 全体のスタイル */
     body {
         
@@ -30,8 +32,13 @@
 
     header {
     position: fixed;
-    }
-
+    top: 0;
+    left: 0;
+    width: 100%;
+   
+    background-color: #F7EAD9;
+    z-index: 1000;
+}
 
 
 
@@ -463,8 +470,8 @@ main {
 
 </style>
 </head>
-<body> 
-<header style="background: #F7EAD9 !important;">
+
+<header>
     <a href="main3.html" id="clickable-load">
          
         <div class="loader">
@@ -505,7 +512,7 @@ main {
         <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
         <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
     </div>
-
+<body> 
 <main>
 <section id="schedule">
     <h2>スケジュール</h2>
