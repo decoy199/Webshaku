@@ -444,14 +444,17 @@ main {
     header {
         position: fixed;    
         background-color: #804000; /* 背景色 */
-        min-height: 100px; /* 高さを確保 */
-        width: 100%; /* 幅を100%に */
+        min-height: 100px; /* 高さ */
+        width: 100%; /* 幅 */
         z-index: 2000; /* 他の要素より上に */
-        padding: 10px 0;  /* 上下の余白を調整 */
-        background-size: cover; /* 画像をヘッダー全体に適用 */
-        background-position: center top;
-        background-attachment: fixed; /* 背景を固定 */
+        padding: 10px 0; /* 上下の余白 */
+        background-image: url("japanese-paper.jpg"); /* 背景画像 */
+        background-size: 50% auto; /* 背景のサイズを小さく */
+        background-repeat: no-repeat; /* 画像を繰り返さない */
+        background-position: center; /* 画像の位置 */
     }
+
+
 
     body {
         background-attachment: fixed;
