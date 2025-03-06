@@ -112,10 +112,6 @@ html{
 
 
 
-.topbar{
-    background-color: #F4CA66;
-}
-
 
         
 header h1 {
@@ -391,10 +387,11 @@ header h1 span.title {
 /* スマホサイズ対応 */
 
    
-        @media (max-width: 767px) {
+@media (max-width: 767px) {
     header {
         min-height: 50px; /* 必要に応じて調整 */
         padding: 10px 0;  /* 上下の余白を調整 */
+        background-color: #F4CA66;
         background-size: cover; /* Ensures the image covers the entire header */
         background-position: center top 20px;
         background-attachment: scroll;
@@ -533,7 +530,7 @@ header h1 span.title {
 
 
 <header>
-<div class="topbar">
+
     <a href="main3.html" id="clickable-load">  
         <div class="loader">
             <span>SHAKUHACHI</span>
@@ -563,7 +560,7 @@ header h1 span.title {
         <button onclick="setLanguage('en')">EN</button>
     </div>
 
-</div>    
+   
 </header>
     
     <div class="glow glow-lantern"></div>
