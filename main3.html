@@ -72,10 +72,13 @@ header {
     height: auto;
     opacity: 1;
     will-change: transform, opacity;
-    animation: fall 20s linear infinite; /* Increased duration */
+    animation: fall 20s linear infinite; 
     transform: translateZ(0);
     backface-visibility: hidden;
+    z-index: 1000; /* Increase the z-index */
+    pointer-events: none; /* Ensures it does not interfere with clicks */
 }
+
 
 @keyframes fall {
     0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
