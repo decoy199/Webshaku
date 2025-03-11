@@ -11,24 +11,110 @@
     <style>
 
 
-        /* 全体のスタイル */
- body {
-    font-family: 'Yu Mincho', serif;
-    line-height: 1.8;
-    margin: 0;
-    padding: 0;
-    color: #0b0b0b;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    
-    /* Background Image */
-    background-image: url('japanese-paper.jpg');
-    background-size: cover; /* Ensures the image covers the entire page */
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed; /* Keeps the background fixed when scrolling */
+html{
+    background-color: #F7EAD9;
 }
+
+header {
+    position: fixed;
+    background-image: url('japanese-paper.jpg');;
+}
+
+            /* 全体のスタイル */
+    body {
+        font-family: 'Yu Mincho', serif;
+        line-height: 1.8;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        color: #0b0b0b;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        
+        /* Background Image */
+       /* background-image: url('apanese-paper.jpg');*/
+      
+        background-size: cover; /* Ensures the image covers the entire page */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed; /* Keeps the background fixed when scrolling */
+    }
+
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.5;
+    }
+}
+
+#clickable-load {
+    text-decoration: none;
+  }
+    
+
+
+  .loader {
+    position: fixed;  /* スクロールしても動かない */
+    z-index: -1;
+    top: 5%;        /* 画面の中央に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 1000; /* 他の要素より前面に配置 */
+    
+    display: block;
+}
+
+
+
+.loader span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+
+@media only screen and (max-width: 375px) and (max-height: 812px) {
+    .loader {
+        height: 30px; /* Smaller height for iPhone 13 mini */
+        left: 55%;
+    }
+
+    .loader span {
+        font-size: 24px; /* Smaller font size for iPhone 13 mini */
+    }
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
 
  /* ヘッダーの調整 */
 
@@ -40,6 +126,102 @@
     to {
         opacity: 1.5;
     }
+}
+
+.leaf {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    opacity: 0.8;
+    will-change: transform, opacity;
+    animation: fall 20s linear infinite; /* Increased duration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+@keyframes fall {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+}
+
+.safari-iphone13mini .leaf {
+    animation: fall-safari 35s linear infinite; /* Longer animation for Safari */
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+@keyframes fall-safari {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translate3d(0, 250vh, 0) rotate(180deg); opacity: 0.8; }
+}
+
+
+
+
+
+/* アニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スマホサイズ対応 */
+
+   
+@media (max-width: 400px) {
+    header {
+        position: fixed;    
+        min-height: 50px; /* 必要に応じて調整 */
+        padding: 10px 0;  /* 上下の余白を調整 */
+        background-size: cover; /* Ensures the image covers the entire header */
+        background-position: center top 20px;
+        background-attachment: scroll;
+       
+    }
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+    
 }
 
 
@@ -351,7 +533,18 @@ header h1 span.title {
 </style>
 
 </head>
-<body>
+
+  <header>
+
+    <a href="main3.html" id="clickable-load">  
+        <div class="loader">
+            <span>SHAKUHACHI</span>
+            <span>SHAKUHACHI</span>
+        </div>
+    </a>
+
+  
+      
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
         <span></span>
@@ -361,19 +554,22 @@ header h1 span.title {
 
     <nav class="nav">
         <ul>
-            <li><a href="#schedule">スケジュール</a></li>
-            <li><a href="#appearance">出演情報</a></li>
-            <li><a href="#contact">お問い合わせ</a></li>
+            <li><a href="schedule.html">スケジュール</a></li>
+            <li><a href="appearance.html">出演情報</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
     </nav>
-    
+
+
     <div class="language-toggle">
-        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('en')">EN</button>
     </div>
-<!-- From Uiverse.io by satyamchaudharydev --> 
+
+   
+</header>
 
 
-
+<body>
 <div class="card-container">
   <div class="card">
     <div class="image"></div>
