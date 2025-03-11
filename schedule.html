@@ -353,17 +353,17 @@ header h1 span.title {
             height: auto;
             opacity: 0.8;
             will-change: transform, opacity;
-            animation: fall 6s linear infinite;
+            animation: fall 10s linear infinite;
             transform: translateZ(0);
             backface-visibility: hidden;
         }
 
         @keyframes fall {
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
+            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.4; }
         }
         .safari-iphone13mini .leaf {
-            animation: fall-safari 8s linear infinite ;
+            animation: fall-safari 12s linear infinite ;
             opacity: 1 !important; /* Prevent flickering */
             transform: translate3d(0, 0, 0) !important; /* Force hardware acceleration */
         }
@@ -371,7 +371,7 @@ header h1 span.title {
         @keyframes fall-safari {
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
             50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 100vh, 0) rotate(180deg); opacity: 0.1; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(180deg); opacity: 0.4; }
         }
 
        /* メインコンテンツ */
