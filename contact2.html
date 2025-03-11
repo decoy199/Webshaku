@@ -270,6 +270,52 @@ header h1 span.title {
   color: #804000;
 }
 
+
+
+.leaf {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    opacity: 0.8;
+    will-change: transform, opacity;
+    animation: fall 20s linear infinite; /* Increased duration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+@keyframes fall {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+}
+
+.safari-iphone13mini .leaf {
+    animation: fall-safari 35s linear infinite; /* Longer animation for Safari */
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+@keyframes fall-safari {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translate3d(0, 250vh, 0) rotate(180deg); opacity: 0.8; }
+}
+
+
+
+
+
+/* アニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .card-container {
   display: flex;
   justify-content: center;
