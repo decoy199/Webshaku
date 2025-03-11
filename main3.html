@@ -715,6 +715,21 @@ header h1 span.title {
             }
         });
     </script>
+       <script>
+        function detectSafariOnIPhone13Mini() {
+    var ua = navigator.userAgent;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+    var isIPhone = /iPhone/i.test(ua);
+    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+
+    if (isSafari && isIPhone && isMini) {
+        document.body.classList.add("safari-iphone13mini");
+    }
+}
+
+detectSafariOnIPhone13Mini();
+
+    </script>
 </body>
 </html>
 
