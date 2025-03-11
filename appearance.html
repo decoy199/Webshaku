@@ -61,12 +61,13 @@ header {
   .loader {
     position: fixed;  /* スクロールしても動かない */
     z-index: -1;
-    top: 8%;         /* 画面の中央に配置 */
+    top: 5%;        /* 画面の中央に配置 */
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
     height: auto;
     z-index: 1000; /* 他の要素より前面に配置 */
+    
     display: block;
 }
 
@@ -359,7 +360,7 @@ header h1 span.title {
 
         @keyframes fall {
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.1; }
+            100% { transform: translate3d(0, 110vh, 0) rotate(360deg); opacity: 0.3; }
         }
         .safari-iphone13mini .leaf {
             animation: fall-safari 8s linear infinite ;
@@ -370,7 +371,7 @@ header h1 span.title {
         @keyframes fall-safari {
             0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
             50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 100vh, 0) rotate(180deg); opacity: 0.1; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(180deg); opacity: 0.3; }
         }
 
 
@@ -391,7 +392,7 @@ header h1 span.title {
 /* スマホサイズ対応 */
 
    
-@media (max-width: 767px) {
+@media (max-width: 400px) {
     header {
         position: fixed;    
         min-height: 50px; /* 必要に応じて調整 */
