@@ -66,6 +66,36 @@ header {
 
 
 
+.leaf {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    opacity: 1;
+    will-change: transform, opacity;
+    animation: fall 20s linear infinite; /* Increased duration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+@keyframes fall {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+}
+
+.safari-iphone13mini .leaf {
+    animation: fall-safari 10s linear infinite; /* Longer animation for Safari */
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+@keyframes fall-safari {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
+}
+
+
+
         /* ヘッダーが透明になる状態 */
         header.hidden {
             opacity: 0; /* 透明度を0に */
@@ -506,9 +536,16 @@ header h1 span.title {
         
         
         <div class="language-toggle">
-            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('en')">EN</button>
         </div>
     </header>
+
+
+    <div class="glow glow-lantern"></div>
+        <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
+        <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+        <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
+    </div>
 
     <main class="flex flex-col items-center justify-center text-center mt-16 px-4">
 
