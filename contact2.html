@@ -62,6 +62,313 @@ p {
   margin: 0px;
 }
 
+
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.5;
+    }
+}
+
+    
+
+
+  .loader {
+    position: fixed;  /* スクロールしても動かない */
+    z-index: -1;
+    top: 5%;        /* 画面の中央に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: auto;
+    z-index: 1000; /* 他の要素より前面に配置 */
+    
+    display: block;
+}
+
+
+
+.loader span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+
+@media only screen and (max-width: 375px) and (max-height: 812px) {
+    .loader {
+        height: 30px; /* Smaller height for iPhone 13 mini */
+        left: 55%;
+    }
+
+    .loader span {
+        font-size: 24px; /* Smaller font size for iPhone 13 mini */
+    }
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+
+
+
+
+        
+ /* メニューとヘッダーが重ならないようにするための調整 */
+.menu {
+    position: fixed;
+    z-index: 10;
+    
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 43px;
+    height: 43px;
+    background-color: #deb068;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+.menu.active ~ .loader {
+    display: none;
+}
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* サイドメニュー */
+        .nav {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+
+        .nav.active ~ .loader {
+            display: none;
+        }
+
+/* 言語切替ボタンの位置調整 */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+/* mainの下に移動するためのクラス */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* mainの下に配置 */
+        right: 20px;
+    }
+
+        .language-toggle button {
+            background-color: #deb068;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
+
+.c-accordion {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+}
+
+
+
+.c-accordion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.c-accordion[open] {
+    border-color: #804000;
+    background-color: #fdf7f0;
+}
+
+.c-accordion__header {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 1.4s ease;
+    background-color: #fff;
+}
+
+.c-accordion__close-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: block;
+}
+
+.c-accordion__open-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__close-heading {
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__open-heading {
+    display: block;
+}
+
+.c-accordion__content {
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
+}
+
+.c-accordion__plus {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #804000;
+    position: relative;
+    transition: transform 1.3s;
+}
+
+.c-accordion__plus::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #804000;
+    transform: rotate(90deg);
+    transition: transform 1.3s;
+}
+
+.c-accordion[open] .c-accordion__plus::before {
+    transform: rotate(0deg);
+}
+
+
+
+.leaf {
+    position: absolute;
+    width: 50px;
+    height: auto;
+    opacity: 1;
+    will-change: transform, opacity;
+    animation: fall 20s linear infinite; /* Increased duration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+@keyframes fall {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+}
+
+.safari-iphone13mini .leaf {
+    animation: fall-safari 10s linear infinite; /* Longer animation for Safari */
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+
+@keyframes fall-safari {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
+}
+
+
 .profile-card {
   background: #FFB300;
   width: 56px;
@@ -485,6 +792,148 @@ p {
       border-radius: 4px;
     }
   }
+
+
+  main {
+    flex: 1;
+    padding: 2rem;
+    margin: 0 auto;
+   /* background: transparent; /* Ensures main doesn't override the body background */
+}
+
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            border-left: 4px solid #804000;
+            padding-left: 0.5rem;
+            color: #804000;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            text-indent: 1em;
+        }
+
+        /* フッター */
+    footer {
+        height: auto; 
+        min-height: 10px; /* 高さを少し低く設定 */
+        padding: 1rem 0; /* 上下の余白を調整 */
+        font-size: 14px; /* フォントサイズを少し小さく */
+        background-color: #9DBDAE;
+        color: #fff;
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        margin-top: auto;
+    }
+
+    footer a {
+        color: #ffdbac;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+
+        .event-detail {
+            margin-top: 1rem;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .event-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+     
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+@media (max-width: 400px) {
+    
+    
+
+
+
+
+    body {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+
+
+
+    
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+        
+
+    
+
+    
+}
+
+
+
+@media screen and (max-width:400px) {
+    .loader {
+        width:50px; /* 小さいサイズにする */
+        height: 50px;
+        top: 10%;   
+    }
+
+    .loader span {
+        font-size: 22px; /* フォントサイズを小さく */
+    }
+
+    
+}
+
 
   </style>
 </head>
