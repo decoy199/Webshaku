@@ -10,482 +10,486 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
 html {
-  background-color: #F7EAD9;
-}
-
-header {
-  position: fixed;
-  background-image: url('japanese-paper.jpg');
-}
-
-/* 全体のスタイル */
-body {
-  font-family: 'Yu Mincho', serif;
-  line-height: 1.8;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  color: #0b0b0b;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-size: cover; /* Ensures the image covers the entire page */
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed; /* Keeps the background fixed when scrolling */
-}
-
-#clickable-load {
-  text-decoration: none;
-}
-
-.loader {
-  position: fixed;  /* スクロールしても動かない */
-  z-index: 1000; /* 他の要素より前面に配置 */
-  top: 5%;        /* 画面の中央に配置 */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: block;
-}
-
-.loader span {
-  position: absolute;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 38px;
-  letter-spacing: 5px;
-}
-
-@media only screen and (max-width: 375px) and (max-height: 812px) {
-  .loader {
-      height: 30px; /* Smaller height for iPhone 13 mini */
-      left: 55%;
-  }
-
-  .loader span {
-      font-size: 24px; /* Smaller font size for iPhone 13 mini */
-  }
-}
-
-.loader span:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
-}
-
-.loader span:nth-child(2) {
-  color: rgb(128, 198, 255);
-  -webkit-text-stroke: 1px rgb(128, 198, 255);
-  animation: uiverse723 3s ease-in-out infinite;
-}
-
-@keyframes uiverse723 {
-  0%, 100% {
-      clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-      54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-
-  50% {
-      clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-      51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
-}
-
-/* アニメーション */
-@keyframes fadeIn {
-  0% {
-      opacity: 0;
-      transform: translateY(-10px);
-  }
-  100% {
-      opacity: 1;
-      transform: translateY(0);
-  }
-}
-
-/* スマホサイズ対応 */
-@media (max-width: 400px) {
-  header {
-      position: fixed;    
-      min-height: 50px; /* 必要に応じて調整 */
-      padding: 10px 0;  /* 上下の余白を調整 */
-      background-size: cover; /* Ensures the image covers the entire header */
-      background-position: center top 20px;
-      background-attachment: scroll;
-  }
-  header h1 {
-      font-size: 2rem;
-      right: 20px; /* スマホサイズでは右端に少し余裕 */
-      top: 10%; /* スマホでも上の余白を適切に調整 */
-      writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-  }
-
-  header p {
-      font-size: 1rem;
-      margin-top: 20px; /* スマホではpの位置を調整 */
-  }
-
-  .menu {
-      top: 10 px; /* メニューの位置を調整 */
-      left: 10px;
-  }
-
-  .language-toggle {
-      top: 10px; /* 言語ボタンの位置を調整 */
-      right: 10px;
-  }
-
-  header .profile {
-      margin: 2rem 0 1.5rem;
-      color: #fff;
-      font-size: 0.7rem;
-      line-height: 1.8;
-      background: rgba(0, 0, 0, 0);
-      padding: 1rem;
-      border-radius: 10px;
-      display: inline-block;
-      max-width: 600px;
-      text-align: left;
-  }
-}
-
-header h1 {
-  margin: 0;
-  font-size: 2.8rem;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  writing-mode: vertical-rl; /* Keep vertical writing */
-  position: absolute;
-  right: 20%; 
-  top: 30%;
-  transform: translateY(0);
-  font-size: 4rem;
-}
-
-header h1 span.name {
-  font-size: 3rem; /* Make Kodo Ishibashi larger */
-  font-weight: bold;
-  display: block;
-}
-
-header h1 span.title {
-  font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
-}
-
-/* メニューとヘッダーが重ならないようにするための調整 */
-.menu {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 50px;
-  height: 50px;
-  background-color: #deb068;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 200;
-}
-
-.menu span {
-  display: block;
-  width: 50%;
-  height: 2%;
-  background-color: #555;
-  margin: 5px 0;
-  transition: transform 250ms ease;
-}
-
-#menu {
-  display: none;
-}
-
-#menu:checked ~ .menu {
-  background-color: transparent;
-}
-
-#menu:checked ~ .nav {
-  left: 0;
-}
-
-/* サイドメニュー */
-.nav {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
   height: 100%;
-  background-color: #333;
-  color: #ffffff;
-  transition: left 0.3s ease;
-  z-index: 100;
 }
 
-.nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 50px 0 0;
-}
-
-.nav ul li {
-  margin: 0;
-  padding: 15px;
-  text-align: center;
-}
-
-.nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1.2rem;
-  display: block;
-}
-
-.nav ul li a:hover {
-  background-color: #444;
-}
-
-/* 言語切替ボタンの位置調整 */
-.language-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-}
-
-.language-toggle button {
-  background-color: #deb068;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.language-toggle button:hover {
-  background-color: #ffdbac;
-  color: #804000;
-}
-
-
-
-.leaf {
-    position: absolute;
-    width: 50px;
-    height: auto;
-    opacity: 0.8;
-    will-change: transform, opacity;
-    animation: fall 20s linear infinite; /* Increased duration */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-@keyframes fall {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
-}
-
-.safari-iphone13mini .leaf {
-    animation: fall-safari 35s linear infinite; /* Longer animation for Safari */
-    opacity: 1 !important;
-    transform: translate3d(0, 0, 0) !important;
-}
-
-@keyframes fall-safari {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    50% { opacity: 0.9; }
-    100% { transform: translate3d(0, 250vh, 0) rotate(180deg); opacity: 0.8; }
-}
-
-
-
-
-
-/* アニメーション */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.card-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap; /* 画面が狭い場合に折り返す */
-}
-
-.card {
-  width: 300px;
-  height: 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
-  background-color: #fffffe;
-  border-radius: 15px;
-  position: relative;
+body {
   overflow: hidden;
+  background: #bcdee7 url("../img/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  position: fixed;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  font: normal 14px/1.618em "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.card::before {
+body:before {
   content: "";
-  width: 350px;
-  height: 100px;
+  height: 0px;
+  padding: 0px;
+  border: 130em solid #313440;
   position: absolute;
-  top: 0;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom: 3px solid #fefefe;
-  background: linear-gradient(40deg, rgb(151, 124, 43) 0%, rgb(36, 39 , 26) 50%, rgb(92, 61, 18) 100%);
-  transition: all 0.5s ease;
-}
-
-.card * {
-  z-index: 1;
-}
-
-.image {
-  width: 90px;
-  height: 90px;
-  background-image: url('profile1.jpg');
+  left: 50%;
+  top: 100%;
+  z-index: 2;
+  display: block;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
-  border: 4px solid #fefefe;
-  margin-top: 30px;
-  transition: all 0.5s ease;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
+  animation: puff 0.5s 1.8s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, borderRadius 0.2s 2.3s linear forwards;
 }
 
-.card-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transition: all 0.5s ease;
+h1,
+h2 {
+  font-weight: 500;
+  margin: 0px 0px 5px 0px;
 }
 
-.card-info span {
-  font-weight: 600;
+h1 {
   font-size: 24px;
-  color: #161A42;
-  margin-top: 15px;
-  line-height: 5px;
-}
-
-.card-info p {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.button {
-  text-decoration: none;
-  background-color: #2e3b49;
-  color: white;
-  padding: 5px 20px;
-  border-radius: 5px;
-  border: 1px solid white;
-  transition: all 0.5s ease;
-}
-
-.card:hover::before {
-  width: 350px;
-  height: 300px;
-  border-bottom: none;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  transform: scale(0.95);
-}
-
-.card:hover .card-info {
-  transform: translate(0%,-25%);
-}
-
-.card:hover .image {
-  transform: scale(2) translate(-60%,-40%);
-}
-
-.button:hover {
-  background-color: #FF6844;
-  transform: scale(1.1);
-}
-
-main {
-  flex: 1;
-  padding: 2rem;
-  margin: 0 auto;
-  background: transparent; /* Ensures main doesn't override the body background */
-}
-
-section {
-  margin-bottom: 3rem;
 }
 
 h2 {
-  border-left: 4px solid #804000;
-  padding-left: 0.5rem;
-  color: #804000;
-  margin-bottom: 1rem;
+  font-size: 16px;
 }
 
 p {
-  text-indent: 1em;
+  margin: 0px;
 }
 
-/* フッター */
-footer {
-  background-color: #804000;
-  color: #fff;
+.profile-card {
+  background: #FFB300;
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 70px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+  -webkit-animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+  animation: init 0.5s 0.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards, moveDown 1s 0.8s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards, moveUp 1s 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, materia 0.5s 2.7s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+.profile-card header {
+  width: 179px;
+  height: 280px;
+  padding: 40px 20px 30px 20px;
+  display: inline-block;
+  float: left;
+  border-right: 2px dashed #EEEEEE;
+  background: #FFFFFF;
+  color: #000000;
+  margin-top: 50px;
+  opacity: 0;
   text-align: center;
-  padding: 1rem 0;
-  bottom: 0;
-  width: 100%;
+  -webkit-animation: moveIn 1s 3.1s ease forwards;
+  animation: moveIn 1s 3.1s ease forwards;
 }
 
-footer a {
-  color: #ffdbac;
-  text-decoration: none;
-  font-weight: bold;
+.profile-card header h1 {
+  color: #FF5722;
 }
 
-footer a:hover {
-  text-decoration: underline;
+.profile-card header a {
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  margin: 25px 30px;
 }
 
-.event-detail {
-  margin-top: 1rem;
-  background-color: #f1f1f1;
-  padding: 1rem;
-  border-radius: 8px;
+.profile-card header a:after {
+  position: absolute;
+  content: "";
+  bottom: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #FFFFFF;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  background: -webkit-linear-gradient(top, #2196F3 0%, #2196F3 50%, #FFC107 50%, #FFC107 100%);
+  background: linear-gradient(#2196F3 0%, #2196F3 50%, #FFC107 50%, #FFC107 100%);
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-animation: scaleIn 0.3s 3.5s ease forwards;
+  animation: scaleIn 0.3s 3.5s ease forwards;
 }
 
-.event-image {
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  margin-bottom: 1rem;
-  border-radius: 8px;
+.profile-card header a > img {
+  width: 120px;
+  max-width: 100%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-transition: -webkit-box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  -webkit-box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 0px 0px 8px rgba(0, 0, 0, 0.06);
 }
 
-@media (max-width: 600px) { 
-  .card-container {
-      flex-direction: column;
-      align-items: center;
+.profile-card header a:hover > img {
+  -webkit-box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card .profile-bio {
+  width: 175px;
+  height: 180px;
+  display: inline-block;
+  float: right;
+  padding: 50px 20px 30px 20px;
+  background: #FFFFFF;
+  color: #333333;
+  margin-top: 50px;
+  text-align: center;
+  opacity: 0;
+  -webkit-animation: moveIn 1s 3.1s ease forwards;
+  animation: moveIn 1s 3.1s ease forwards;
+}
+
+.profile-social-links {
+  width: 218px;
+  display: inline-block;
+  float: right;
+  margin: 0px;
+  padding: 15px 20px;
+  background: #FFFFFF;
+  margin-top: 50px;
+  text-align: center;
+  opacity: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-animation: moveIn 1s 3.1s ease forwards;
+  animation: moveIn 1s 3.1s ease forwards;
+}
+
+.profile-social-links li {
+  list-style: none;
+  margin: -5px 0px 0px 0px;
+  padding: 0px;
+  float: left;
+  width: 25%;
+  text-align: center;
+}
+
+.profile-social-links li a {
+  display: inline-block;
+  color: red;
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  position: relative;
+  overflow: hidden!important;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.profile-social-links li a i {
+  position: relative;
+  z-index: 1;
+}
+
+.profile-social-links li a img,
+.profile-social-links li a svg {
+  width: 24px;
+}
+
+@-webkit-keyframes init {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 56px;
+    height: 56px;
+    margin-top: 0px;
+    opacity: 1;
   }
 }
 
-      /* CSSコードはここに続きます */
+@keyframes init {
+  0% {
+    width: 0px;
+    height: 0px;
+  }
+  100% {
+    width: 56px;
+    height: 56px;
+    margin-top: 0px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes puff {
+  0% {
+    top: 100%;
+    height: 0px;
+    padding: 0px;
+  }
+  100% {
+    top: 50%;
+    height: 100%;
+    padding: 0px 100%;
+  }
+}
+
+@keyframes puff {
+  0% {
+    top: 100%;
+    height: 0px;
+    padding: 0px;
+  }
+  100% {
+    top: 50%;
+    height: 100%;
+    padding: 0px 100%;
+  }
+}
+
+@-webkit-keyframes borderRadius {
+  0% {
+    -webkit-border-radius: 50%;
+  }
+  100% {
+    -webkit-border-radius: 0px;
+  }
+}
+
+@keyframes borderRadius {
+  0% {
+    -webkit-border-radius: 50%;
+  }
+  100% {
+    border-radius: 0px;
+  }
+}
+
+@-webkit-keyframes moveDown {
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    top: 50%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@-webkit-keyframes moveUp {
+  0% {
+    background: #FFB300;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+    background: #E0E0E0;
+  }
+}
+
+@keyframes moveUp {
+  0% {
+    background: #FFB300;
+    top: 100%;
+  }
+  50% {
+    top: 40%;
+  }
+  100% {
+    top: 50%;
+    background: #E0E0E0;
+  }
+}
+
+@-webkit-keyframes materia {
+  0% {
+    background: #E0E0E0;
+  }
+  50% {
+    -webkit-border-radius: 4px;
+  }
+  100% {
+    width: 440px;
+    height: 280px;
+    background: #FFFFFF;
+    -webkit-border-radius: 4px;
+  }
+}
+
+@keyframes materia {
+  0% {
+    background: #E0E0E0;
+  }
+  50% {
+    border-radius: 4px;
+  }
+  100% {
+    width: 440px;
+    height: 280px;
+    background: #FFFFFF;
+    border-radius: 4px;
+  }
+}
+
+@-webkit-keyframes moveIn {
+  0% {
+    margin-top: 50px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: -20px;
+  }
+}
+
+@keyframes moveIn {
+  0% {
+    margin-top: 50px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    margin-top: -20px;
+  }
+}
+
+@-webkit-keyframes scaleIn {
+  0% {
+    -webkit-transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes ripple {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+  50%,
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+  50%,
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-aspect-ratio: 4/3) {
+  body {
+    background-size: cover;
+  }
+  body:before {
+    width: 0px;
+  }
+  
+  @keyframes puff {
+    0% {
+      top: 100%;
+      width: 0px;
+      padding-bottom: 0px;
+    }
+    100% {
+      top: 50%;
+      width: 100%;
+      padding-bottom: 100%;
+    }
+  }
+}
+
+@media screen and (min-height: 480px) {
+  .profile-card header {
+    width: auto;
+    height: auto;
+    padding: 30px 20px;
+    display: block;
+    float: none;
+    border-right: none;
+  }
+  .profile-card .profile-bio {
+    width: auto;
+    height: auto;
+    padding: 15px 20px 30px 20px;
+    display: block;
+    float: none;
+  }
+  .profile-social-links {
+    width: 100%;
+    display: block;
+    float: none;
+  }
+  
+  }
+  @keyframes materia {
+    0% {
+      background: #E0E0E0;
+    }
+    50% {
+      border-radius: 4px;
+    }
+    100% {
+      width: 280px;
+      height: 440px;
+      background: #FFFFFF;
+      border-radius: 4px;
+    }
+  }
+
   </style>
 </head>
 
-<header>
+
   <a href="main3.html" id="clickable-load">  
       <div class="loader">
           <span>SHAKUHACHI</span>
@@ -511,7 +515,7 @@ footer a:hover {
   <div class="language-toggle">
       <button onclick="setLanguage('en')">EN</button>
   </div>
-</header>
+
 
 <div class="glow glow-lantern"></div>
 <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
@@ -520,25 +524,59 @@ footer a:hover {
 </div>
 
 <body>
-<div class="card-container">
-  <div class="card">
-      <div class="image"></div>
-      <div class="card-info">
-          <span>George Johnson</span>
-          <p>Support Specialist</p>
-      </div>
-      <a href="#" class="button">Follow</a>
-  </div>
-
-  <div class="card">
-      <div class="image"></div>
-      <div class="card-info">
-          <span>George Johnson</span>
-          <p>Support Specialist</p>
-      </div>
-      <a href="#" class="button">Follow</a>
-  </div>
-</div>
+  <aside class="profile-card">
+    <header>
+      <!-- here’s the avatar -->
+      <a target="_blank" href="#">
+        <img src="http://lorempixel.com/150/150/people/" class="hoverZoomLink">
+      </a>
+  
+      <!-- the username -->
+      <h1>
+              John Doe
+            </h1>
+  
+      <!-- and role or location -->
+      <h2>
+              Better Visuals
+            </h2>
+  
+    </header>
+  
+    <!-- bit of a bio; who are you? -->
+    <div class="profile-bio">
+  
+      <p>
+        It takes monumental improvement for us to change how we live our lives. Design is the way we access that improvement.
+      </p>
+  
+    </div>
+  
+    <!-- some social links to show off -->
+    <ul class="profile-social-links">
+      <li>
+        <a target="_blank" href="https://www.facebook.com/creativedonut">
+          <i class="fa fa-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://twitter.com/dropyourbass">
+          <i class="fa fa-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://github.com/vipulsaxena">
+          <i class="fa fa-github"></i>
+        </a>
+      </li>
+      <li>
+        <a target="_blank" href="https://www.behance.net/vipulsaxena">
+         
+          <i class="fa fa-behance"></i>
+        </a>
+      </li>
+    </ul>
+  </aside>
 
 <footer id="contact">
   <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
