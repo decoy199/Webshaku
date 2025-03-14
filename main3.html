@@ -39,7 +39,7 @@ html {
     overflow: hidden;
     background-image: url('profile1.jpg');
     background-position: center;
-    background-size: 120%; /* 最初は少し大きめ */
+    background-size: contain; /* 最初は少し大きめ */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -55,11 +55,11 @@ html {
 @keyframes fadeInBg {
     0% {
         opacity: 0;
-        background-size: 100%;
+        
     }
     100% {
         opacity: 1;
-        background-size: cover;
+        
     }
 }
 
@@ -394,7 +394,7 @@ header {
     overflow: hidden;
     background-image: url('profile1.jpg');
     background-position: center;
-    background-size: 120%; /* 最初は少し大きめ */
+    background-size: contain; /* 最初は少し大きめ */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -410,11 +410,11 @@ header {
 @keyframes fadeInBg {
     0% {
         opacity: 0;
-        background-size: 100%;
+        
     }
     100% {
         opacity: 1;
-        background-size: 100%;
+        
     }
 }
     header h1 {
