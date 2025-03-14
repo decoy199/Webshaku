@@ -386,7 +386,81 @@ header h1 span.title {
 
 
 
-@media (max-width: 767px) {
+
+
+
+
+        /* メインコンテンツ */
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #F7EAD9;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    margin-top: -50px; /* 位置を上に移動 */
+}
+
+
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            border-left: 4px solid #804000;
+            padding-left: 0.5rem;
+            color: #804000;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            text-indent: 1em;
+        }
+
+        /* フッター */
+        footer {
+        height: auto; 
+        min-height: 10px; /* 高さを少し低く設定 */
+        padding: 1rem 0; /* 上下の余白を調整 */
+        font-size: 14px; /* フォントサイズを少し小さく */
+        background-color: #9DBDAE;
+        color: #fff;
+        text-align: center;
+        bottom: 0;
+        width: 100%;
+        margin-top: auto;
+    }
+
+    footer a {
+        color: #ffdbac;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
+        .event-detail {
+            margin-top: 1rem;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .event-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 767px) {
 header {
     position: relative;
     color: #333;
@@ -453,6 +527,19 @@ header {
             text-align: left;
             
         }
+
+    main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #F7EAD9;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    margin-top: -40px; /* 位置を上に移動 */
+}
 
     
 }
@@ -528,80 +615,6 @@ header {
             
         }
 }
-    
-
-
-
-        /* メインコンテンツ */
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 100%;
-    margin: 0 auto;
-    background-color: #F7EAD9;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
-    margin-top: -50px; /* 位置を上に移動 */
-}
-
-
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            border-left: 4px solid #804000;
-            padding-left: 0.5rem;
-            color: #804000;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            text-indent: 1em;
-        }
-
-        /* フッター */
-        footer {
-        height: auto; 
-        min-height: 10px; /* 高さを少し低く設定 */
-        padding: 1rem 0; /* 上下の余白を調整 */
-        font-size: 14px; /* フォントサイズを少し小さく */
-        background-color: #9DBDAE;
-        color: #fff;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        margin-top: auto;
-    }
-
-    footer a {
-        color: #ffdbac;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    footer a:hover {
-        text-decoration: underline;
-    }
-
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .event-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
-
 
     </style>
 </head>
