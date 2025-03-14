@@ -40,7 +40,7 @@ html {
     overflow: hidden;
     background-image: url('profile1.jpg');
     background-position: center;
-    background-size: 80%; 
+    background-size: 75%; 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -461,37 +461,7 @@ main {
         }
 
         @media (max-width: 767px) {
-header {
-    position: relative;
-    color: #333;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
-    background-image: url('profile1.jpg');
-    background-position: center;
-    background-size: 80%; /* 最初は少し大きめ */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center top;
-    background-attachment: fixed;
-    height: 86vh;
-    background-color: rgba(0, 0, 0, 0);
-    opacity: 0; /* Initially hidden */
-    animation: fadeInBg 3s ease-in-out forwards;
-    animation-delay: 0.5s;
-}
 
-
-@keyframes fadeInBg {
-    0% {
-        opacity: 0;
-        
-    }
-    100% {
-        opacity: 1;
-        
-    }
-}
     header h1 {
         font-size: 2rem;
         right: 20px; /* スマホサイズでは右端に少し余裕 */
@@ -529,19 +499,7 @@ header {
         }
 
 
-    main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 100%;
-    margin: 0 auto;
-    background-color: #F7EAD9;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
-    margin-top: -30px; /* 位置を上に移動 */
-}
-
+    
     
 }
 
