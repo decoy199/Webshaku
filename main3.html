@@ -11,185 +11,62 @@
     <style>
 
 
-html {
+html, body {
     margin: 0;
     padding: 0;
-    
+    font-family: 'Yu Mincho', serif;
+    line-height: 1.8;
+    color: #0b0b0b;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-        /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            
-            
-            color: #0b0b0b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
 
- /* ヘッダーの調整 */
 header {
     position: relative;
-    color: #333;
     text-align: center;
-    padding: 0;
-    overflow: hidden;
     background-image: url('profile1.jpg');
-    background-position: center;
-    background-size: cover;
-    opacity: 0; /* Initially hidden */
-    animation: fadeInBg 1s ease-in-out forwards;
-    animation-delay: 1s;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0);
     transition: opacity 0.3s ease;
-    z-index: 10;
-    background-attachment: scroll;
 }
 
 @keyframes fadeInBg {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1.5;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
-
-
-
 
 .leaf {
     position: absolute;
     width: 50px;
-    height: auto;
     opacity: 1;
-    will-change: transform, opacity;
-    animation: fall 20s linear infinite; 
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    z-index: 1000; /* Increase the z-index */
-    pointer-events: none; /* Ensures it does not interfere with clicks */
+    animation: fall 20s linear infinite;
+    pointer-events: none;
 }
-
 
 @keyframes fall {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    100% { transform: translate3d(0, 200vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(200vh) rotate(360deg); opacity: 0.8; }
 }
 
-.safari-iphone13mini .leaf {
-    animation: fall-safari 20s linear infinite; /* Longer animation for Safari */
-    opacity: 1 !important;
-    transform: translate3d(0, 0, 0) !important;
-}
-
-@keyframes fall-safari {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    50% { opacity: 0.9; }
-    100% { transform: translate3d(0, 200vh, 0) rotate(180deg); opacity: 0.8; }
-}
-
-
-
-        /* ヘッダーが透明になる状態 */
-        header.hidden {
-            opacity: 0; /* 透明度を0に */
-        }
-
-
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            
-            
-            z-index: -1;
-        }
-
-
-        
-        header h1 {
+header h1 {
     margin: 0;
-    font-size: 2.8rem;
+    font-size: 4rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    writing-mode: vertical-rl; /* Keep vertical writing */
+    writing-mode: vertical-rl;
     position: absolute;
-    right: 20%; 
+    right: 20%;
     top: 30%;
-    transform: translateY(0);
-    font-size: 4rem;
 }
 
-header h1 span.name {
-    font-size: 3rem; /* Make Kodo Ishibashi larger */
-    font-weight: bold;
-    display: block;
-}
-
-header h1 span.title {
-    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
-}
-
-        header p{
-            position: relative;
-            z-index: 2;
-        }
-        
-                header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* 縦書きにする */
-            position: absolute;
-            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
-            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
-            font-size: 4rem; /* フォントサイズ調整 */
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: #180614;
-            margin-top: 100px; /* pの位置調整 */
-        }
-
-        header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
- /* メニューとヘッダーが重ならないようにするための調整 */
 .menu {
     position: fixed;
     top: 20px;
     left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     width: 50px;
     height: 50px;
     background-color: #deb068;
@@ -197,64 +74,31 @@ header h1 span.title {
     cursor: pointer;
     z-index: 200;
 }
-        .menu span {
-            display: block;
-            width: 50%;
-            height: 2%;
-            background-color: #555;
-            margin: 5px 0;
-            transition: transform 250ms ease;
-        }
 
-        #menu {
-            display: none;
-        }
+.nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    transition: left 0.3s ease;
+}
 
-        #menu:checked ~ .menu {
-            background-color: transparent;
-        }
+.nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 50px 0 0;
+}
 
-        #menu:checked ~ .nav {
-            left: 0;
-        }
+.nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    display: block;
+}
 
-        /* サイドメニュー */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            color: #ffffff;
-            transition: left 0.3s ease;
-            z-index: 100;
-        }
-
-        .nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 50px 0 0;
-        }
-
-        .nav ul li {
-            margin: 0;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            display: block;
-        }
-
-        .nav ul li a:hover {
-            background-color: #444;
-        }
-
-/* 言語切替ボタンの位置調整 */
 .language-toggle {
     position: fixed;
     top: 20px;
@@ -263,247 +107,30 @@ header h1 span.title {
     gap: 10px;
     z-index: 3;
 }
-/* mainの下に移動するためのクラス */
-.language-toggle-scrolled {
-        position: absolute;
-        top: calc(100vh + 20px); /* mainの下に配置 */
-        right: 20px;
-    }
 
-        .language-toggle button {
-            background-color: #deb068;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .language-toggle button:hover {
-            background-color: #ffdbac;
-            color: #804000;
-        }
-
-       .c-accordion {
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.7s ease;
-}
-
-.c-accordion:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.c-accordion[open] {
-    border-color: #804000;
-    background-color: #fdf7f0;
-}
-
-.c-accordion__header {
+.language-toggle button {
+    background-color: #deb068;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.7s ease;
-    background-color: #fff;
+    border-radius: 5px;
 }
 
-.c-accordion__close-heading {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #804000;
-    line-height: 1.2;
-    display: block;
-}
-
-.c-accordion__open-heading {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #804000;
-    line-height: 1.2;
-    display: none;
-}
-
-.c-accordion[open] .c-accordion__close-heading {
-    display: none;
-}
-
-.c-accordion[open] .c-accordion__open-heading {
-    display: block;
-}
-
-.c-accordion__content {
-    padding: 1rem;
-    animation: fadeIn 1.3s ease;
-}
-
-.c-accordion__plus {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background-color: #804000;
-    position: relative;
-    transition: transform 0.3s;
-}
-
-.c-accordion__plus::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #804000;
-    transform: rotate(90deg);
-    transition: transform 0.3s;
-}
-
-.c-accordion[open] .c-accordion__plus::before {
-    transform: rotate(0deg);
-}
-
-
-
-
-/* アニメーション */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* スマホサイズ対応 */
-
-   
-        @media (max-width: 767px) {
+@media (max-width: 767px) {
     header {
-        min-height: 50px; /* 必要に応じて調整 */
-        padding: 10px 0;  /* 上下の余白を調整 */
-        background-size: cover; /* Ensures the image covers the entire header */
-        background-position: center top 20px;
-        background-attachment: scroll;
-       
+        min-height: 50px;
+        padding: 10px 0;
+        background-size: cover;
     }
     header h1 {
         font-size: 2rem;
-        right: 20px; /* スマホサイズでは右端に少し余裕 */
-        top: 10%; /* スマホでも上の余白を適切に調整 */
-        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+        right: 20px;
+        top: 10%;
+        writing-mode: vertical-lr;
     }
-
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* スマホではpの位置を調整 */
-    }
-
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
-
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 0.7rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
-        
-
-    
-
-    
 }
-    
-
-
-
-        /* メインコンテンツ */
-        main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 100%;
-    margin: 0 auto;
-    background-image: url('japanese-paper.jpg');
-    background-size: 100% 100%; /* Stretches the image both horizontally and vertically */
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-attachment: fixed;
-}
-
-
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            border-left: 4px solid #804000;
-            padding-left: 0.5rem;
-            color: #804000;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            text-indent: 1em;
-        }
-
-        /* フッター */
-        footer {
-            background-color: #804000;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-            bottom: 0;
-            width: 100%;
-        }
-
-        footer a {
-            color: #ffdbac;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .event-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
 
 
     </style>
@@ -528,16 +155,11 @@ header h1 span.title {
 
     <header>
         
-        
         <h1>
             <span class="name">石橋紅童</span>
             <span class="title">尺八演奏家</span>
         </h1>
 
-
-
-        
-        
         <div class="language-toggle">
             <button onclick="setLanguage('en')">EN</button>
         </div>
