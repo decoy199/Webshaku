@@ -55,11 +55,11 @@ html {
 @keyframes fadeInBg {
     0% {
         opacity: 0;
-        background-size: 120%;
+        background-size: 100%;
     }
     100% {
         opacity: 1;
-        background-size: 120%;
+        background-size: cover;
     }
 }
 
@@ -386,14 +386,37 @@ header h1 span.title {
 
    
 @media (max-width: 767px) {
-    header {
-        min-height: 50px; /* 必要に応じて調整 */
-        padding: 10px 0;  /* 上下の余白を調整 */
-        background-size: cover; /* Ensures the image covers the entire header */
-        background-position: center top 20px;
-        background-attachment: scroll;
-       
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('profile1.jpg');
+    background-position: center;
+    background-size: 120%; /* 最初は少し大きめ */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0; /* Initially hidden */
+    animation: fadeInBg 3s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+
+@keyframes fadeInBg {
+    0% {
+        opacity: 0;
+        background-size: 120%;
     }
+    100% {
+        opacity: 1;
+        background-size: 120%;
+    }
+}
     header h1 {
         font-size: 2rem;
         right: 20px; /* スマホサイズでは右端に少し余裕 */
