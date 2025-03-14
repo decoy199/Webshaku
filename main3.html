@@ -383,10 +383,84 @@ header h1 span.title {
     }
 }
 
+
+
+
+@media (max-width: 767px) {
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('profile1.jpg');
+    background-position: center;
+    background-size: 80; /* 最初は少し大きめ */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-attachment: fixed;
+    height: 82vh;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 0; /* Initially hidden */
+    animation: fadeInBg 3s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+
+@keyframes fadeInBg {
+    0% {
+        opacity: 0;
+        
+    }
+    100% {
+        opacity: 1;
+        
+    }
+}
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+    
+}
+
 /* スマホサイズ対応 */
 
    
-@media (max-width: 767px) {
+@media (max-width: 500px) {
 header {
     position: relative;
     color: #333;
@@ -453,12 +527,6 @@ header {
             text-align: left;
             
         }
-
-        
-
-    
-
-    
 }
     
 
