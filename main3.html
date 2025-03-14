@@ -30,7 +30,8 @@ html {
             min-height: 100vh;
         }
 
-        header {
+ /* ヘッダーの調整 */
+ header {
     position: relative;
     color: #333;
     text-align: center;
@@ -41,12 +42,15 @@ html {
     background-size: 120%; /* 最初は少し大きめ */
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position: center top;
+    background-attachment: fixed;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0);
     opacity: 0; /* Initially hidden */
     animation: fadeInBg 3s ease-in-out forwards;
     animation-delay: 0.5s;
 }
+
 
 @keyframes fadeInBg {
     0% {
