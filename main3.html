@@ -402,16 +402,17 @@ main {
     background-position: center top;
     background-attachment: fixed;
     margin-top: -30px; /* 位置を上に移動 */
+    opacity: 0;  /* 初期状態で非表示 */
+    transform: translateY(50px); /* 下からフェードインするように */
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
-.card {
- width: 190px;
- height: 254px;
- border-radius: 50px;
- background: #e0e0e0;
- box-shadow: 20px 20px 60px #bebebe,
-               -20px -20px 60px #ffffff;
+main.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
+
+
 
 
         section {
@@ -692,6 +693,21 @@ header {
             }
         });
     </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mainContent = document.querySelector("main");
+        const headerHeight = document.querySelector("header").offsetHeight; // ヘッダーの高さ取得
+    
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > headerHeight / 2) { // スクロール位置がヘッダーの半分を超えたら表示
+                mainContent.classList.add("visible");
+            }
+        });
+    });
+    </script>
+    
+
 
     <script>
             // ヘッダー要素を取得
