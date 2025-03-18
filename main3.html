@@ -385,11 +385,15 @@ header h1 span.title {
 
 
 
-.scroll-down {
+.scroll-container {
     position: absolute;
     top: 90%; /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+.scroll-down {
     background-color: #F7EAD9;
     color: white;
     border: none;
@@ -397,7 +401,6 @@ header h1 span.title {
     font-size: 1.5rem;
     border-radius: 5px;
     cursor: pointer;
-    z-index: 1000; /* Ensure it is above other elements */
     transition: background-color 0.3s;
 }
 
@@ -405,6 +408,12 @@ header h1 span.title {
     background-color: #F7EAD9;
 }
 
+/* Hide the button on larger screens */
+@media (min-width: 768px) {
+    .scroll-container {
+        display: none; /* Hide the button on larger screens */
+    }
+}
 
 
 
@@ -635,8 +644,9 @@ header {
             <button onclick="setLanguage('en')">EN</button>
         </div>
     </header>
-    <button class="scroll-down" onclick="scrollToMain()">More about↓</button>
-
+    <div class="scroll-container">
+        <button class="scroll-down" onclick="scrollToMain()">↓</button>
+    </div>
     <div class="glow glow-lantern"></div>
         <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
         <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
