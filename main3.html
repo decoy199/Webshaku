@@ -390,7 +390,7 @@ html {
             top: 90%; /* Adjust as needed */
             left: 50%;
             transform: translateX(-50%);
-            z-index: -1;
+            z-index: 1;
             
         }
 
@@ -404,6 +404,10 @@ html {
             cursor: pointer;
             transition: background-color 0.3s;
             z-index: -1;
+        }
+        .scroll-container:hover {
+            z-index: -1;
+
         }
 
         .scroll-down:hover {
