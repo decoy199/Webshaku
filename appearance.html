@@ -394,7 +394,7 @@ header h1 span.title {
 /* スマホサイズ対応 */
 
    
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     header {
         position: fixed;    
         min-height: 50px; /* 必要に応じて調整 */
@@ -660,7 +660,7 @@ const header = document.querySelector('header');
 // スクロールイベントをリスン
 window.addEventListener('scroll', function() {
 // スクロール量が100pxを超えたら透明に
-if (window.scrollY > 400) {
+if (window.scrollY > 450) {
     header.classList.add('hidden'); // 透明にするクラスを追加
 } else {
     header.classList.remove('hidden'); // 元の状態に戻す
@@ -687,7 +687,7 @@ window.addEventListener('scroll', function() {
 var ua = navigator.userAgent;
 var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
 var isIPhone = /iPhone/i.test(ua);
-var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+var isMini = window.screen.width === 450 && window.screen.height === 812; // iPhone 13 mini screen size
 
 if (isSafari && isIPhone && isMini) {
     document.body.classList.add("safari-iphone13mini");
