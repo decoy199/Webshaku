@@ -501,7 +501,6 @@ main {
 }
 
 
-
 </style>
 
 </head>
@@ -530,7 +529,7 @@ main {
 
   <div class="language-toggle">
       <button onclick="setLanguage('en')">EN</button>
-      <button onclick="setLanguage('ja')">日本語</button>
+      
   </div>
 </header>
 
@@ -608,23 +607,28 @@ main {
 
   // Hide past schedule items
   const today = new Date();
-  const scheduleItems = document.querySelectorAll("#schedule ul li");
+const scheduleItems = document.querySelectorAll("#schedule ul li");
 
-  scheduleItems.forEach(item => {
-      const text = item.textContent.trim();
-      const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
+scheduleItems.forEach(item => {
+    const text = item.textContent.trim();
+    // Match the date format in English (e.g., "February 28, 2025")
+    const dateMatch = text.match(/([A-Za-z]+) (\d{1,2}), (\d{4})/);
 
-      if (dateMatch) {
-          const year = parseInt(dateMatch[1], 10);
-          const month = parseInt(dateMatch[2], 10) - 1;
-          const day = parseInt(dateMatch[3], 10);
-          const itemDate = new Date(year, month, day);
+    if (dateMatch) {
+        const month = dateMatch[1];
+        const day = parseInt(dateMatch[2], 10);
+        const year = parseInt(dateMatch[3], 10);
 
-          if (itemDate < today) {
-              item.style.display = "none"; // Hide past events
-          }
-      }
-  });
+        // Create a Date object based on the parsed date
+        const itemDate = new Date(`${month} ${day}, ${year}`);
+
+        // Hide past events
+        if (itemDate < today) {
+            item.style.display = "none";
+        }
+    }
+});
+
 </script>
 
 
