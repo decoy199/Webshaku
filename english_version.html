@@ -668,6 +668,19 @@
         }
     });
 </script>
+<script>
+    // Function to scroll to the main content and make it visible
+    function scrollToMain() {
+        // Add the 'visible' class to main element
+        document.querySelector('main').classList.add('visible');
+
+        // Scroll to the main section
+        window.scrollTo({
+            top: document.querySelector('main').offsetTop,
+            behavior: 'smooth'
+        });
+    }
+</script>
 
 
 </body>
