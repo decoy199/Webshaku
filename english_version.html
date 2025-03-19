@@ -624,14 +624,13 @@
 </script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0); // 時間を0に設定して日付のみ比較
+    document.addEventListener("DOMContentLoaded", function () {
+        const mainContent = document.querySelector("main");
+        const headerHeight = document.querySelector("header").offsetHeight; // ヘッダーの高さ取得
     
-        document.querySelectorAll("li[data-date]").forEach(item => {
-            const eventDate = new Date(item.getAttribute("data-date"));
-            if (eventDate < today) {
-                item.style.display = "none"; // 過去の日付は非表示
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > headerHeight / 2) { // スクロール位置がヘッダーの半分を超えたら表示
+                mainContent.classList.add("visible");
             }
         });
     });
@@ -639,35 +638,99 @@
     
 
 
-<script>
-        // ヘッダー要素を取得
-    const header = document.querySelector('header');
+    <script>
+            // ヘッダー要素を取得
+        const header = document.querySelector('header');
 
-    // スクロールイベントをリスン
-    window.addEventListener('scroll', function() {
-    // スクロール量が100pxを超えたら透明に
-    if (window.scrollY > 400) {
-        header.classList.add('hidden'); // 透明にするクラスを追加
-    } else {
-        header.classList.remove('hidden'); // 元の状態に戻す
-    }
-    });
-
-</script>
-<script>
-    // ヘッダー要素を取得
-    const languageToggle = document.querySelector('.language-toggle');
-
-    // スクロールイベントをリスン
-    window.addEventListener('scroll', function() {
-        // スクロール量が100pxを超えたらボタン位置を変更
-        if (window.scrollY > 600) {
-            languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+        // スクロールイベントをリスン
+        window.addEventListener('scroll', function() {
+        // スクロール量が100pxを超えたら透明に
+        if (window.scrollY > 100) {
+            header.classList.add('hidden'); // 透明にするクラスを追加
         } else {
-            languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+            header.classList.remove('hidden'); // 元の状態に戻す
         }
+        });
+
+    </script>
+
+<script>
+    document.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        const scrollY = window.scrollY;
+        const fadeStart = 50; // フェードアウト開始位置
+        const fadeEnd = 300; // 完全に透明になる位置
+        let opacity = 1;
+    
+        if (scrollY > fadeStart) {
+            opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+        }
+    
+        header.style.opacity = opacity;
     });
-</script>
+    </script>
+    
+
+
+
+
+    <script>
+        // ヘッダー要素を取得
+        const languageToggle = document.querySelector('.language-toggle');
+    
+        // スクロールイベントをリスン
+        window.addEventListener('scroll', function() {
+            // スクロール量が100pxを超えたらボタン位置を変更
+            if (window.scrollY > 600) {
+                languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+            } else {
+                languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+            }
+        });
+    </script>
+       <script>
+        function detectSafariOnIPhone13Mini() {
+    var ua = navigator.userAgent;
+    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+    var isIPhone = /iPhone/i.test(ua);
+    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+
+    if (isSafari && isIPhone && isMini) {
+        document.body.classList.add("safari-iphone13mini");
+    }
+}
+
+detectSafariOnIPhone13Mini();
+
+    </script>
+    
+    <script>
+       function scrollToMain() {
+        const main = document.querySelector('main');
+        const targetPosition = main.getBoundingClientRect().top + window.scrollY; // Get the target position
+        const startPosition = window.scrollY; // Get the current scroll position
+        const distance = targetPosition - startPosition; // Calculate the distance to scroll
+        const duration = 1000; // Duration in milliseconds (1 second)
+        let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime; // Initialize start time
+        const timeElapsed = currentTime - startTime; // Calculate elapsed time
+        const progress = Math.min(timeElapsed / duration, 1); // Calculate progress (0 to 1)
+
+        // Ease in-out function for smoother scrolling
+        const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+
+        window.scrollTo(0, startPosition + distance * ease); // Scroll to the calculated position
+
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation); // Continue the animation
+        }
+    }
+
+    requestAnimationFrame(animation); // Start the animation
+}
+    </script>
 <script>
     // Function to scroll to the main content and make it visible
     function scrollToMain() {
