@@ -323,14 +323,14 @@
             
         }
         .scroll-container:hover {
-            display: none; 
+            z-index: 20;
 
         }
 
         .scroll-down:hover {
             background-color: #F7EAD9;
             color: #F7EAD9;
-            display: none; 
+            z-index: 0;
         }
 
         /* Hide the button on larger screens */
@@ -742,6 +742,15 @@ detectSafariOnIPhone13Mini();
             top: document.querySelector('main').offsetTop,
             behavior: 'smooth'
         });
+    }
+</script>
+<script>
+    function scrollToMain() {
+        // Scroll to the main content
+        document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+
+        // Hide the scroll button after it's clicked
+        document.querySelector('.scroll-container').style.display = 'none';
     }
 </script>
 
