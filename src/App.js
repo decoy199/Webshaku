@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import AdminAuth from './components/AdminAuth';
-import AdminPanel from './components/AdminPanel';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Admin from './pages/Admin';
 
 function App() {
-  const [user, setUser] = useState(null);
-
   return (
-    <div className="App">
-      <h1>Shakuhachi Admin</h1>
-      <AdminAuth setUser={setUser} />
-      {user && <AdminPanel />}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
