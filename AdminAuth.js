@@ -1,0 +1,31 @@
+
+import React from "react";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+
+const auth = getAuth();
+const provider = new GoogleAuthProvider();
+
+const AdminAuth = ({ setUser }) => {
+   const handleLogin = async () => {
+       try {
+           const result = await signInWithPopup(auth, provider);
+           setUser(result.user);
+       } catch (error) {
+           console.error(error);
+       }
+   };
+
+   const handleLogout = () => {
+       signOut(auth);
+       setUser(null);
+   };
+
+   return (
+       <div>
+           <button onClick={handleLogin}>Googleでログイン</button>
+           <button onClick={handleLogout}>ログアウト</button>
+       </div>
+   );
+};
+
+export default AdminAuth;

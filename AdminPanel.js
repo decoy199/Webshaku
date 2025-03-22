@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
-import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import { collection, addDoc, deleteDoc, doc } from "firebase/analytics";
+import { db } from "./firebaseConfig";
 
 const AdminPanel = () => {
    const [title, setTitle] = useState("");
