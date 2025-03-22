@@ -1,6 +1,7 @@
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
+
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
