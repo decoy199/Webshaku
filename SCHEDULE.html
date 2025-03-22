@@ -536,8 +536,8 @@ main {
     <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
     <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
     <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
-    
-    <script type="module">
+    <div id="root">
+        <script src="index.js">
         import { initializeApp } from "firebase/app";
         import { getFirestore, collection, getDocs } from "firebase/firestore";
 
@@ -606,6 +606,8 @@ main {
 
         export default ScheduleList;
     </script>
+    </div>
+    
 
     <footer id="contact">
         <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
