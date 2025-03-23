@@ -504,100 +504,120 @@ main {
 
 </style>
 </head>
-
-
-<header>
-    <a href="main3.html" id="clickable-load">
-         
-        <div class="loader">
-            <span>SHAKUHACHI</span>
-            <span>SHAKUHACHI</span>
-        </div>
+<body> 
+    <header>
+        <a href="main3.html" id="clickable-load">
+            <div class="loader">
+                <span>SHAKUHACHI</span>
+                <span>SHAKUHACHI</span>
+            </div>
         </a>
+        <input type="checkbox" id="menu" />
+        <label for="menu" class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-  
-      
-    <input type="checkbox" id="menu" />
-    <label for="menu" class="menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+        <nav class="nav">
+            <ul>
+                <li><a href="schedule.html">スケジュール</a></li>
+                <li><a href="appearance.html">出演情報</a></li>
+                <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+        </nav>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="schedule.html">スケジュール</a></li>
-            <li><a href="appearance.html">出演情報</a></li>
-            <li><a href="contact.html">お問い合わせ</a></li>
-        </ul>
-    </nav>
-
-    
-
-   
-        
-        
         <div class="language-toggle">
             <button onclick="setLanguage('en')">EN</button>
         </div>
-</header>
+    </header>
 
-    
     <div class="glow glow-lantern"></div>
-        <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
-        <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
-        <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
+    <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
+    <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+    <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
+    <div id="root">
+        <script src="index.js">
+        import { initializeApp } from "firebase/app";
+        import { getFirestore, collection, getDocs } from "firebase/firestore";
+
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+            authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+            projectId: "shakuhachiweb-c6f85",
+            storageBucket: "shakuhachiweb-c6f85.firebasestorage.app",
+            messagingSenderId: "536744242736",
+            appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+            measurementId: "G-J9DCE1R7LT"
+            };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        export { db };
+
+        import React, { useEffect, useState } from "react";
+        import { collection, getDocs } from "firebase/firestore";
+        import { db } from "../firebaseConfig";
+
+        const ScheduleList = () => {
+            const [schedules, setSchedules] = useState([]);
+
+            useEffect(() => {
+                const fetchSchedules = async () => {
+                    const querySnapshot = await getDocs(collection(db, "schedules"));
+                    const scheduleList = querySnapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    setSchedules(scheduleList);
+                };
+                fetchSchedules();
+            }, []);
+
+            return (
+                <main>
+                    <section id="schedule">
+                        <h2>スケジュール</h2>
+                        <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
+                        <section id="schedule">
+                            <ul id="event-list"></ul>
+                        </section>
+                        <h2>スケジュール</h2>
+                        <ul>
+                            {schedules.map(event => (
+                                <li key={event.id}>
+                                    <details>
+                                        <summary>{event.date} {event.title}</summary>
+                                        <div>
+                                            <img src={event.image} alt={event.title} />
+                                            <p><strong>時間:</strong> {event.time}</p>
+                                            <p><strong>場所:</strong> {event.location}</p>
+                                        </div>
+                                    </details>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                </main>
+            );
+        };
+
+        export default ScheduleList;
+    </script>
     </div>
-<body> 
-<main>
-<section id="schedule">
-    <h2>スケジュール</h2>
-    <p>今後のコンサートやワークショップの予定は以下の通りです。</p>
-    <ul>
-        <li>
-            <details class="c-accordion">
-                <summary class="c-accordion__header">
-                    <p class="c-accordion__close-heading">2025年2月28日 本番:   </p>
-                    
-                    <p class="c-accordion__open-heading">閉じる</p>
-                    <div class="c-accordion__plus"></div>
-                </summary>
-                <div class="c-accordion__content">
-                    <img src="ibento1.0.jpeg" alt="わいわい演奏会" class="event-image">
-                    <p>わいわい演奏会</p>
-                    <p><strong>時間:</strong> 10:30開演</p>
-                    <p><strong>場所:</strong> 東広島芸術文化ホール　くらら　小ホール</p>
-                </div>
-            </details>
-        </li>
-        <li>
-            <details class="c-accordion">
-                <summary class="c-accordion__header">
-                    <p class="c-accordion__close-heading">2025年3月9日: </p>
-                    <p class="c-accordion__open-heading">閉じる</p>
-                    <div class="c-accordion__plus"></div>
-                </summary>
-                <div class="c-accordion__content">
-                    <img src="ibento2.1.jpeg" alt="京都市民会館 特別演奏会" class="event-image">
-                    <p>伝承の力　古典の現在　第10回記念公演</p>
-                    <p><strong>時間:</strong> 13:00開場 / 13:30開演</p>
-                    <p><strong>場所:</strong> 紀尾井ホール1階</p>
-                </div>
-            </details>
-        </li>
-    </ul>
-</section>
-</main>
-<footer id="contact">
-    <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
-    <p><a href="mailto:info@example.com">info@example.com</a></p>
-    <div class="social-icons">
-        <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    </div>
-    <p>&copy; 2025 尺八奏者 石橋紅童</p>
-</footer>
-</body>
+    
+
+    <footer id="contact">
+        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+        <p><a href="mailto:info@example.com">info@example.com</a></p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 尺八奏者 石橋紅童</p>
+    </footer>
 <script>
     function setLanguage(lang) {
         if (lang === 'en') {
@@ -655,7 +675,9 @@ main {
         }
     });
 </script>
-   <script>
+
+
+ <script>
         function detectSafariOnIPhone13Mini() {
     var ua = navigator.userAgent;
     var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
