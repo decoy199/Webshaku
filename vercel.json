@@ -22,9 +22,9 @@
 
 
 =======
+{
     "rewrites": [
-      { "source": "/admin/**", "destination": "/admin-build/index.html" },
-      { "source": "/schedule/**", "destination": "/schedule/index.html" }
+      { "source": "/admin/**", "destination": "/admin-build/index.html" }
     ]
   }
   
