@@ -1,31 +1,12 @@
 {
-<<<<<<< HEAD
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/"
-      }
-    ],
-    
-      "rewrites": [
-        { "source": "/(.*)", "destination": "/index.html" }
-      ]
-    
-  }
-  
-
-
-=======
-{
     "rewrites": [
-      { "source": "/admin/**", "destination": "/admin-build/index.html" }
+      {
+        "source": "/admin/**",
+        "destination": "/admin-build/index.html"
+      }
     ]
   }
   
->>>>>>> a0e0a9e0 (Update project settings)
+  
+
+
