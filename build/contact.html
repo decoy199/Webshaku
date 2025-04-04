@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="石橋紅童は尺八奏者として、日本伝統音楽と現代の融合を目指した演奏活動を行っています。コンサートや出演情報を掲載中。">
+　　<meta name="keywords" content="石橋紅童, 尺八, 尺八奏者, 日本伝統音楽, コンサート, 石橋紅童 スケジュール">
+　　<meta name="author" content="石橋紅童">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尺八奏者 石橋紅童</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+
+
+html {
+    margin: 0;
+    padding: 0;
+    
+}
+        /* 全体のスタイル */
+        body {
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            
+            
+            color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+ /* ヘッダーの調整 */
+header {
+    position: relative;
+    color: #333;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('profile1.jpg');
+    background-position: center;
+    background-size: cover;
+    opacity: 0; /* Initially hidden */
+    animation: fadeInBg 1s ease-in-out forwards;
+    animation-delay: 1s;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0);
+    transition: opacity 0.3s ease;
+    z-index: 10;
+    background-attachment: scroll;
+}
+
+@keyframes fadeInBg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1.5;
+    }
+}
+
+
+
+
+        /* ヘッダーが透明になる状態 */
+        header.hidden {
+            opacity: 0; /* 透明度を0に */
+        }
+
+
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            
+            z-index: -1;
+        }
+
+
+        
+        header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    writing-mode: vertical-rl; /* Keep vertical writing */
+    position: absolute;
+    right: 20%; 
+    top: 30%;
+    transform: translateY(0);
+    font-size: 4rem;
+}
+
+header h1 span.name {
+    font-size: 3rem; /* Make Kodo Ishibashi larger */
+    font-weight: bold;
+    display: block;
+}
+
+header h1 span.title {
+    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+}
+
+        header p{
+            position: relative;
+            z-index: 2;
+        }
+        
+                header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl; /* 縦書きにする */
+            position: absolute;
+            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
+            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
+            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
+            font-size: 4rem; /* フォントサイズ調整 */
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #180614;
+            margin-top: 100px; /* pの位置調整 */
+        }
+
+        header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+ /* メニューとヘッダーが重ならないようにするための調整 */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background-color: #deb068;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* サイドメニュー */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+
+/* 言語切替ボタンの位置調整 */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+/* mainの下に移動するためのクラス */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* mainの下に配置 */
+        right: 20px;
+    }
+
+        .language-toggle button {
+            background-color: #deb068;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
+
+       .c-accordion {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.7s ease;
+}
+
+.c-accordion:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.c-accordion[open] {
+    border-color: #804000;
+    background-color: #fdf7f0;
+}
+
+.c-accordion__header {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.7s ease;
+    background-color: #fff;
+}
+
+.c-accordion__close-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: block;
+}
+
+.c-accordion__open-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #804000;
+    line-height: 1.2;
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__close-heading {
+    display: none;
+}
+
+.c-accordion[open] .c-accordion__open-heading {
+    display: block;
+}
+
+.c-accordion__content {
+    padding: 1rem;
+    animation: fadeIn 1.3s ease;
+}
+
+.c-accordion__plus {
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #804000;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.c-accordion__plus::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #804000;
+    transform: rotate(90deg);
+    transition: transform 0.3s;
+}
+
+.c-accordion[open] .c-accordion__plus::before {
+    transform: rotate(0deg);
+}
+
+
+
+
+/* アニメーション */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スマホサイズ対応 */
+
+   
+        @media (max-width: 767px) {
+    header {
+        min-height: 50px; /* 必要に応じて調整 */
+        padding: 10px 0;  /* 上下の余白を調整 */
+        background-size: cover; /* Ensures the image covers the entire header */
+        background-position: center top 20px;
+        background-attachment: scroll;
+       
+    }
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* スマホサイズでは右端に少し余裕 */
+        top: 10%; /* スマホでも上の余白を適切に調整 */
+        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* スマホではpの位置を調整 */
+    }
+
+    .menu {
+        top: 10px; /* メニューの位置を調整 */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* 言語ボタンの位置を調整 */
+        right: 10px;
+    }
+
+    header .profile {
+            margin: 2rem 0 1.5rem;
+            color: #fff;
+            font-size: 0.7rem;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0);
+            padding: 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 600px;
+            text-align: left;
+            
+        }
+
+        
+
+    
+
+    
+}
+    
+
+
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="#schedule">スケジュール</a></li>
+            <li><a href="#appearance">出演情報</a></li>
+            <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+    </nav>
+    
+    <div class="language-toggle">
+        <button onclick="setLanguage('en')">English</button>
+    </div>
+
+
+    <title>
+        Contact Page
+       </title>
+       <script src="https://cdn.tailwindcss.com">
+       </script>
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+      </head>
+      <body class="bg-cover bg-center" style="background-image: url('https://placehold.co/1200x512');">
+       <div class="flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-50">
+        <h1 class="text-white text-xl mb-8">
+         お問い合わせ
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+         <!-- Call Section -->
+         <div class="bg-white rounded-lg shadow-lg p-8 text-center relative">
+          <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+           Call
+          </div>
+          <img alt="Phone icon" class="mx-auto mb-4" height="50" src="https://storage.googleapis.com/a1aa/image/I63fMg-idWw2Y7g3TQA991mR9LeE_liKSpas20qLSOs.jpg" width="50"/>
+          <p class="text-lg font-semibold mb-2">
+           電話でお問い合わせ
+          </p>
+          <p class="text-2xl font-bold mb-2">
+           0887-43-2321
+          </p>
+          <p class="text-gray-500">
+           営業時間 08:00～17:00
+          </p>
+         </div>
+         <!-- Mail Section -->
+         <div class="bg-white rounded-lg shadow-lg p-8 text-center relative">
+          <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+           Mail
+          </div>
+          <img alt="Mail icon" class="mx-auto mb-4" height="50" src="https://storage.googleapis.com/a1aa/image/EVQnkgE4HiaO_cX1zU52sA3ku3uLTSeSk6dmQw60CHI.jpg" width="50"/>
+          <p class="text-lg font-semibold mb-2">
+           メールでお問い合わせ
+          </p>
+          <button class="bg-black text-white py-2 px-4 rounded-full flex items-center justify-center mx-auto">
+           メールフォームへ
+           <i class="fas fa-arrow-right ml-2">
+           </i>
+          </button>
+         </div>
+         <!-- Entry Section -->
+         <div class="bg-white rounded-lg shadow-lg p-8 text-center relative">
+          <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+           Entry
+          </div>
+          <img alt="Entry icon" class="mx-auto mb-4" height="50" src="https://storage.googleapis.com/a1aa/image/va3V7CNPzIhoyxXSiAZLy_xIxq109etqHPv3Ruq-EoU.jpg" width="50"/>
+          <p class="text-lg font-semibold mb-2">
+           求人に応募する
+          </p>
+          <button class="bg-black text-white py-2 px-4 rounded-full flex items-center justify-center mx-auto">
+           エントリーフォームへ
+           <i class="fas fa-arrow-right ml-2">
+           </i>
+          </button>
+          <p class="text-gray-500 mt-2">
+           お電話での応募もOKです！
+          </p>
+         </div>
+        </div>

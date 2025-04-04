@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import AdminAuth from '../../public/AdminAuth';
-import AdminPanel from '../../public/AdminPanel';
+import AdminAuth from '../components/AdminAuth';
+import AdminPanel from '../components/AdminPanel';
 
 function Admin() {
   const [user, setUser] = useState(null);
