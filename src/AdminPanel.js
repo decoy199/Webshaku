@@ -1,8 +1,7 @@
-
-import React, { useState } from "react";
 import { collection, addDoc, deleteDoc, doc } from "firebase/firestore"; // これが正しい
+import { getFirestore } from "firebase/firestore"; // firestoreからdbをインポート
 
-import { db } from "./firebaseConfig";
+const db = getFirestore(); // dbの取得
 
 const AdminPanel = () => {
    const [title, setTitle] = useState("");
@@ -41,6 +40,3 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-
-
-
