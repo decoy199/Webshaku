@@ -17,6 +17,7 @@ const firebaseConfig = {
 
 // Firebase初期化
 const app = initializeApp(firebaseConfig);  // ここでFirebaseを初期化
+console.log("Firebase app initialized:", app); // ログを出力して初期化確認
 
 ReactDOM.render(
   <React.StrictMode>
