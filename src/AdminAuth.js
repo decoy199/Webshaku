@@ -1,8 +1,7 @@
 import React from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 
-
-const auth = getAuth();
+const auth = getAuth();  // Firebaseのauthインスタンスを取得
 const provider = new GoogleAuthProvider();
 
 const AdminAuth = ({ setUser }) => {
