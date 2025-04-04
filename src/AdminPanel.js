@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore"; // Firebase Firestoreのインスタンスを取得
+import { db } from "./firebase"; // 修正: firebaseファイルからインポート
 
-const db = getFirestore(); // Firebaseのdbインスタンスを取得
+
+
+
 
 const AdminPanel = () => {
    const [title, setTitle] = useState("");

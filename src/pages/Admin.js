@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase'; // 修正: firebaseファイルからインポート
 import AdminAuth from '../AdminAuth';
 import AdminPanel from '../AdminPanel';
 
@@ -8,14 +9,13 @@ function Admin() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
     });
     
     return () => unsubscribe();
-  }, []);
+  }, []); 
 
   if (loading) {
     return <div>Loading...</div>;

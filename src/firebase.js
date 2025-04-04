@@ -1,10 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// src/firebase.js
 import { initializeApp } from 'firebase/app';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
-// Firebaseの設定を最優先で実行
+// Firebaseの設定
 const firebaseConfig = {
   apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
   authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
@@ -15,15 +14,9 @@ const firebaseConfig = {
   measurementId: "G-J9DCE1R7LT"
 };
 
-// Firebase初期化を最初に確実に実行
+// Firebase初期化
 const app = initializeApp(firebaseConfig);
-console.log("Firebase initialized in index.js:", !!app);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-reportWebVitals();
+export { app, db, auth };
