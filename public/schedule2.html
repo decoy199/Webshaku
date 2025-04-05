@@ -3,157 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="石橋紅童は尺八奏者として、日本伝統音楽と現代の融合を目指した演奏活動を行っています。コンサートや出演情報を掲載中。">
-　　<meta name="keywords" content="石橋紅童, 尺八, 尺八奏者, 日本伝統音楽, コンサート, 石橋紅童 スケジュール">
-　　<meta name="author" content="石橋紅童">
+    <meta name="keywords" content="石橋紅童, 尺八, 尺八奏者, 日本伝統音楽, コンサート, 石橋紅童 スケジュール">
+    <meta name="author" content="石橋紅童">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.js"></script>
     <style>
+        html{
+            background-color: #F7EAD9;
+        }
+        /* 全体のスタイル */
+        body {
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
+        @keyframes fadeInBg {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1.5;
+            }
+        }
 
+        .loader {
+            position: fixed;  /* スクロールしても動かない */
+            z-index: -1;
+            top: 5%;        /* 画面の中央に配置 */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            z-index: 90; /* 他の要素より前面に配置 */
+            
+            display: block;
+        }
 
-html{
-    background-color: #F7EAD9;
-}
-            /* 全体のスタイル */
-    body {
+        .loader span {
+            position: absolute;
+            color: #fff;
+            transform: translate(-50%, -50%);
+            font-size: 38px;
+            letter-spacing: 5px;
+        }
+
+        @media only screen and (max-width: 375px) and (max-height: 812px) {
+            .loader {
+                height: 30px; /* Smaller height for iPhone 13 mini */
+                left: 55%;
+            }
+
+            .loader span {
+                font-size: 24px; /* Smaller font size for iPhone 13 mini */
+            }
+        }
+
+        .loader span:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+        }
+
+        .loader span:nth-child(2) {
+            color: rgb(128, 198, 255);
+            -webkit-text-stroke: 1px rgb(128, 198, 255);
+            animation: uiverse723 3s ease-in-out infinite;
+        }
+
+        @keyframes uiverse723 {
+            0%, 100% {
+                clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+                54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+            }
+
+            50% {
+                clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+                51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            }
+        }
         
-        font-family: 'Yu Mincho', serif;
-        line-height: 1.8;
-        margin: 0;
-        padding: 0;
-        color: #0b0b0b;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl; /* Keep vertical writing */
+            position: absolute;
+            right: 20%; 
+            top: 30%;
+            transform: translateY(0);
+            font-size: 4rem;
+        }
+
+        header h1 span.name {
+            font-size: 3rem; /* Make Kodo Ishibashi larger */
+            font-weight: bold;
+            display: block;
+        }
+
+        header h1 span.title {
+            font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+        }
         
-    }
-
-
-@keyframes fadeInBg {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1.5;
-    }
-}
-
-    
-
-
-  .loader {
-    position: fixed;  /* スクロールしても動かない */
-    z-index: -1;
-    top: 5%;        /* 画面の中央に配置 */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    height: auto;
-    z-index: 90; /* 他の要素より前面に配置 */
-    
-    display: block;
-}
-
-
-
-.loader span {
-  position: absolute;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 38px;
-  letter-spacing: 5px;
-}
-
-
-@media only screen and (max-width: 375px) and (max-height: 812px) {
-    .loader {
-        height: 30px; /* Smaller height for iPhone 13 mini */
-        left: 55%;
-    }
-
-    .loader span {
-        font-size: 24px; /* Smaller font size for iPhone 13 mini */
-    }
-}
-
-.loader span:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
-}
-
-.loader span:nth-child(2) {
-  color: rgb(128, 198, 255);
-  -webkit-text-stroke: 1px rgb(128, 198, 255);
-  animation: uiverse723 3s ease-in-out infinite;
-}
-
-@keyframes uiverse723 {
-  0%, 100% {
-    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
-}
-
-
-
-
-
-
-
-
-        
-header h1 {
-    margin: 0;
-    font-size: 2.8rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    writing-mode: vertical-rl; /* Keep vertical writing */
-    position: absolute;
-    right: 20%; 
-    top: 30%;
-    transform: translateY(0);
-    font-size: 4rem;
-}
-
-header h1 span.name {
-    font-size: 3rem; /* Make Kodo Ishibashi larger */
-    font-weight: bold;
-    display: block;
-}
-
-header h1 span.title {
-    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
-}
-
-
-
-
-        
- /* メニューとヘッダーが重ならないようにするための調整 */
-.menu {
-    position: fixed;
-    z-index: 10;
-    
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 43px;
-    height: 43px;
-    background-color: #deb068;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 200;
-}
+        /* メニューとヘッダーが重ならないようにするための調整 */
+        .menu {
+            position: fixed;
+            z-index: 10;
+            
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 43px;
+            height: 43px;
+            background-color: #deb068;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+        }
         .menu span {
             display: block;
             width: 50%;
@@ -163,9 +142,9 @@ header h1 span.title {
             transition: transform 250ms ease;
         }
 
-.menu.active ~ .loader {
-    display: none;
-}
+        .menu.active ~ .loader {
+            display: none;
+        }
 
         #menu {
             display: none;
@@ -220,21 +199,21 @@ header h1 span.title {
             display: none;
         }
 
-/* 言語切替ボタンの位置調整 */
-.language-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    z-index: 3;
-}
-/* mainの下に移動するためのクラス */
-.language-toggle-scrolled {
-        position: absolute;
-        top: calc(100vh + 20px); /* mainの下に配置 */
-        right: 20px;
-    }
+        /* 言語切替ボタンの位置調整 */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        /* mainの下に移動するためのクラス */
+        .language-toggle-scrolled {
+            position: absolute;
+            top: calc(100vh + 20px); /* mainの下に配置 */
+            right: 20px;
+        }
 
         .language-toggle button {
             background-color: #deb068;
@@ -251,129 +230,122 @@ header h1 span.title {
             color: #804000;
         }
 
-.c-accordion {
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
-}
+        .c-accordion {
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+        }
 
+        .c-accordion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
 
+        .c-accordion[open] {
+            border-color: #804000;
+            background-color: #fdf7f0;
+        }
 
-.c-accordion:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+        .c-accordion__header {
+            cursor: pointer;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 1.4s ease;
+            background-color: #fff;
+        }
 
-.c-accordion[open] {
-    border-color: #804000;
-    background-color: #fdf7f0;
-}
+        .c-accordion__close-heading {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #804000;
+            line-height: 1.2;
+            display: block;
+        }
 
-.c-accordion__header {
-    cursor: pointer;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 1.4s ease;
-    background-color: #fff;
-}
+        .c-accordion__open-heading {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #804000;
+            line-height: 1.2;
+            display: none;
+        }
 
-.c-accordion__close-heading {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #804000;
-    line-height: 1.2;
-    display: block;
-}
+        .c-accordion[open] .c-accordion__close-heading {
+            display: none;
+        }
 
-.c-accordion__open-heading {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #804000;
-    line-height: 1.2;
-    display: none;
-}
+        .c-accordion[open] .c-accordion__open-heading {
+            display: block;
+        }
 
-.c-accordion[open] .c-accordion__close-heading {
-    display: none;
-}
+        .c-accordion__content {
+            padding: 1rem;
+            animation: fadeIn 1.3s ease;
+        }
 
-.c-accordion[open] .c-accordion__open-heading {
-    display: block;
-}
+        .c-accordion__plus {
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: #804000;
+            position: relative;
+            transition: transform 1.3s;
+        }
 
-.c-accordion__content {
-    padding: 1rem;
-    animation: fadeIn 1.3s ease;
-}
+        .c-accordion__plus::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #804000;
+            transform: rotate(90deg);
+            transition: transform 1.3s;
+        }
 
-.c-accordion__plus {
-    display: inline-block;
-    width: 20px;
-    height: 2px;
-    background-color: #804000;
-    position: relative;
-    transition: transform 1.3s;
-}
+        .c-accordion[open] .c-accordion__plus::before {
+            transform: rotate(0deg);
+        }
 
-.c-accordion__plus::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #804000;
-    transform: rotate(90deg);
-    transition: transform 1.3s;
-}
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 1;
+            will-change: transform, opacity;
+            animation: fall 20s linear infinite; /* Increased duration */
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
 
-.c-accordion[open] .c-accordion__plus::before {
-    transform: rotate(0deg);
-}
+        @keyframes fall {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+        }
 
+        .safari-iphone13mini .leaf {
+            animation: fall-safari 10s linear infinite; /* Longer animation for Safari */
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
 
+        @keyframes fall-safari {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
+        }
 
-.leaf {
-    position: absolute;
-    width: 50px;
-    height: auto;
-    opacity: 1;
-    will-change: transform, opacity;
-    animation: fall 20s linear infinite; /* Increased duration */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-@keyframes fall {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
-}
-
-.safari-iphone13mini .leaf {
-    animation: fall-safari 10s linear infinite; /* Longer animation for Safari */
-    opacity: 1 !important;
-    transform: translate3d(0, 0, 0) !important;
-}
-
-@keyframes fall-safari {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    50% { opacity: 0.9; }
-    100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
-}
-
-
-       /* メインコンテンツ */
-main {
-    flex: 1;
-    padding: 2rem;
-    margin: 0 auto;
-   /* background: transparent; /* Ensures main doesn't override the body background */
-}
-
+        /* メインコンテンツ */
+        main {
+            flex: 1;
+            padding: 2rem;
+            margin: 0 auto;
+        }
 
         section {
             margin-bottom: 3rem;
@@ -391,29 +363,28 @@ main {
         }
 
         /* フッター */
-    footer {
-        height: auto; 
-        min-height: 10px; /* 高さを少し低く設定 */
-        padding: 1rem 0; /* 上下の余白を調整 */
-        font-size: 14px; /* フォントサイズを少し小さく */
-        background-color: #9DBDAE;
-        color: #fff;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        margin-top: auto;
-    }
+        footer {
+            height: auto; 
+            min-height: 10px; /* 高さを少し低く設定 */
+            padding: 1rem 0; /* 上下の余白を調整 */
+            font-size: 14px; /* フォントサイズを少し小さく */
+            background-color: #9DBDAE;
+            color: #fff;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+        }
 
-    footer a {
-        color: #ffdbac;
-        text-decoration: none;
-        font-weight: bold;
-    }
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-    footer a:hover {
-        text-decoration: underline;
-    }
-
+        footer a:hover {
+            text-decoration: underline;
+        }
 
         .event-detail {
             margin-top: 1rem;
@@ -421,116 +392,112 @@ main {
             padding: 1rem;
             border-radius: 8px;
         }
-
-
-
-@media (max-width: 400px) {
-    
-    
-
-
-
-
-    body {
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-    }
-
-
-
-
-    
-    header h1 {
-        font-size: 2rem;
-        right: 20px; /* スマホサイズでは右端に少し余裕 */
-        top: 10%; /* スマホでも上の余白を適切に調整 */
-        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-    }
-
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* スマホではpの位置を調整 */
-    }
-
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
-
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 0.7rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
+        
+        .event-image {
+            max-width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
 
-        
+        /* Loading spinner */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+            color: #804000;
+        }
 
-    
+        /* Error message */
+        .error-message {
+            background-color: #ffdbac;
+            border-left: 4px solid #804000;
+            padding: 10px;
+            margin-bottom: 15px;
+            color: #804000;
+        }
 
-    
-}
+        @media (max-width: 400px) {
+            body {
+                background-attachment: fixed;
+                background-size: cover;
+                background-position: center;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+                right: 20px; /* スマホサイズでは右端に少し余裕 */
+                top: 10%; /* スマホでも上の余白を適切に調整 */
+                writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+            }
 
+            header p {
+                font-size: 1rem;
+                margin-top: 20px; /* スマホではpの位置を調整 */
+            }
 
+            .menu {
+                top: 10px; /* メニューの位置を調整 */
+                left: 10px;
+            }
 
-@media screen and (max-width:400px) {
-    .loader {
-        width:50px; /* 小さいサイズにする */
-        height: 50px;
-        top: 10%;   
-    }
+            .language-toggle {
+                top: 10px; /* 言語ボタンの位置を調整 */
+                right: 10px;
+            }
 
-    .loader span {
-        font-size: 22px; /* フォントサイズを小さく */
-    }
+            header .profile {
+                margin: 2rem 0 1.5rem;
+                color: #fff;
+                font-size: 0.7rem;
+                line-height: 1.8;
+                background: rgba(0, 0, 0, 0);
+                padding: 1rem;
+                border-radius: 10px;
+                display: inline-block;
+                max-width: 600px;
+                text-align: left;
+            }
+        }
 
-    
-}
+        @media screen and (max-width:400px) {
+            .loader {
+                width:50px; /* 小さいサイズにする */
+                height: 50px;
+                top: 10%;   
+            }
 
-
-</style>
-
+            .loader span {
+                font-size: 22px; /* フォントサイズを小さく */
+            }
+        }
+    </style>
 </head>
 <header>
-  <a href="main3.html" id="clickable-load">
-      <div class="loader">
-          <span>SHAKUHACHI</span>
-          <span>SHAKUHACHI</span>
-      </div>
-  </a>
+    <a href="main3.html" id="clickable-load">
+        <div class="loader">
+            <span>SHAKUHACHI</span>
+            <span>SHAKUHACHI</span>
+        </div>
+    </a>
 
-  <input type="checkbox" id="menu" />
-  <label for="menu" class="menu">
-      <span></span>
-      <span></span>
-      <span></span>
-  </label>
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
 
-  <nav class="nav">
-      <ul>
-          <li><a href="schedule.html">Schedule</a></li>
-          <li><a href="appearance.html">Performances</a></li>
-          <li><a href="contact.html">Contact</a></li>
-      </ul>
-  </nav>
+    <nav class="nav">
+        <ul>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="appearance.html">Performances</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
 
-  <div class="language-toggle">
-      <button onclick="setLanguage('ja')">JP</button>
-      
-  </div>
+    <div class="language-toggle">
+        <button onclick="setLanguage('ja')">JP</button>
+    </div>
 </header>
 
 <div class="glow glow-lantern"></div>
@@ -540,57 +507,125 @@ main {
 
 <body>
 <main>
-  <section id="schedule">
-      <h2>Schedule</h2>
-      <p>The upcoming concerts and workshops are as follows:</p>
-      <ul>
-          <li>
-              <details class="c-accordion">
-                  <summary class="c-accordion__header">
-                      <p class="c-accordion__close-heading">February 28, 2025 Performance:</p>
-                      <p class="c-accordion__open-heading">Close</p>
-                      <div class="c-accordion__plus"></div>
-                  </summary>
-                  <div class="c-accordion__content">
-                      <img src="ibento1.0.jpeg" alt="Waiwai Concert" class="event-image">
-                      <p>Waiwai Concert</p>
-                      <p><strong>Time:</strong> 10:30 AM Start</p>
-                      <p><strong>Location:</strong> Higashihiroshima Arts and Culture Hall Kurara, Small Hall</p>
-                  </div>
-              </details>
-          </li>
-          <li>
-              <details class="c-accordion">
-                  <summary class="c-accordion__header">
-                      <p class="c-accordion__close-heading">March 9, 2025:</p>
-                      <p class="c-accordion__open-heading">Close</p>
-                      <div class="c-accordion__plus"></div>
-                  </summary>
-                  <div class="c-accordion__content">
-                      <img src="ibento2.1.jpeg" alt="Kyoto City Citizens' Hall Special Concert" class="event-image">
-                      <p>Power of Tradition: The 10th Anniversary Performance of Classical Arts</p>
-                      <p><strong>Time:</strong> 1:00 PM Doors Open / 1:30 PM Start</p>
-                      <p><strong>Location:</strong> Kioi Hall, 1st Floor</p>
-                  </div>
-              </details>
-          </li>
-      </ul>
-  </section>
+    <section id="schedule">
+        <h2>Schedule</h2>
+        <p>The upcoming concerts and workshops are as follows:</p>
+        <div id="loading-message" class="loading">Loading schedule...</div>
+        <div id="error-message" class="error-message" style="display: none;"></div>
+        <ul id="schedule-list">
+            <!-- Schedule items will be dynamically loaded from Firebase -->
+        </ul>
+    </section>
 </main>
 
 <footer id="contact">
-  <p>If you have any questions or would like to request a performance, please contact us at the following email address:</p>
-  <p><a href="mailto:info@example.com">info@example.com</a></p>
-  <div class="social-icons">
-      <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-  </div>
-  <p>&copy; 2025 Shakuhachi Artist Erika Ishibashi</p>
+    <p>If you have any questions or would like to request a performance, please contact us at the following email address:</p>
+    <p><a href="mailto:info@example.com">info@example.com</a></p>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2025 Shakuhachi Artist Erika Ishibashi</p>
 </footer>
 
-</body>
 <script>
-  function setLanguage(lang) {
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+        authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+        projectId: "shakuhachiweb-c6f85",
+        storageBucket: "shakuhachiweb-c6f85.appspot.com",
+        messagingSenderId: "536744242736",
+        appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+        measurementId: "G-J9DCE1R7LT"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    
+    // Function to format date for display
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+    
+    // Function to load schedule from Firebase
+    async function loadSchedule() {
+        const scheduleList = document.getElementById('schedule-list');
+        const loadingMessage = document.getElementById('loading-message');
+        const errorMessage = document.getElementById('error-message');
+        
+        try {
+            // Get today's date at midnight
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Get schedules from Firebase, ordered by date
+            const snapshot = await db.collection('schedules')
+                .orderBy('date')
+                .get();
+                
+            // Hide loading message
+            loadingMessage.style.display = 'none';
+            
+            // Check if there are any events
+            if (snapshot.empty) {
+                scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
+                return;
+            }
+            
+            // Process each event
+            snapshot.forEach(doc => {
+                const event = doc.data();
+                const eventDate = new Date(event.date);
+                
+                // Only display future events
+                if (eventDate >= today) {
+                    // Create accordion item
+                    const listItem = document.createElement('li');
+                    
+                    // Format the title and date for display
+                    const formattedDate = formatDate(event.date);
+                    
+                    listItem.innerHTML = `
+                        <details class="c-accordion">
+                            <summary class="c-accordion__header">
+                                <p class="c-accordion__close-heading">${formattedDate}: ${event.title}</p>
+                                <p class="c-accordion__open-heading">Close</p>
+                                <div class="c-accordion__plus"></div>
+                            </summary>
+                            <div class="c-accordion__content">
+                                ${event.image ? `<img src="${event.image}" alt="${event.title}" class="event-image">` : ''}
+                                <p>${event.title}</p>
+                                <p><strong>Time:</strong> ${event.time}</p>
+                                <p><strong>Location:</strong> ${event.location}</p>
+                            </div>
+                        </details>
+                    `;
+                    
+                    scheduleList.appendChild(listItem);
+                }
+            });
+            
+            // If no future events were added to the page
+            if (scheduleList.children.length === 0) {
+                scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
+            }
+            
+        } catch (error) {
+            console.error("Error loading schedule:", error);
+            loadingMessage.style.display = 'none';
+            errorMessage.textContent = "Unable to load schedule. Please try again later.";
+            errorMessage.style.display = 'block';
+        }
+    }
+    
+    // Load schedule when the page loads
+    window.addEventListener('DOMContentLoaded', loadSchedule);
+    
+    function setLanguage(lang) {
         if (lang === 'en') {
             location.href = 'schedule2.html'; // 英語ページに遷移
         } else if (lang === 'ja') {
@@ -598,39 +633,13 @@ main {
         }
     }
 
-  // Close the menu when clicking a navigation link
-  document.querySelectorAll('.nav a').forEach(function(link) {
-      link.addEventListener('click', function() {
-          document.getElementById('menu').checked = false; // Close menu
-      });
-  });
-
-  // Hide past schedule items
-  const today = new Date();
-const scheduleItems = document.querySelectorAll("#schedule ul li");
-
-scheduleItems.forEach(item => {
-    const text = item.textContent.trim();
-    // Match the date format in English (e.g., "February 28, 2025")
-    const dateMatch = text.match(/([A-Za-z]+) (\d{1,2}), (\d{4})/);
-
-    if (dateMatch) {
-        const month = dateMatch[1];
-        const day = parseInt(dateMatch[2], 10);
-        const year = parseInt(dateMatch[3], 10);
-
-        // Create a Date object based on the parsed date
-        const itemDate = new Date(`${month} ${day}, ${year}`);
-
-        // Hide past events
-        if (itemDate < today) {
-            item.style.display = "none";
-        }
-    }
-});
-
+    // Close the menu when clicking a navigation link
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // Close menu
+        });
+    });
 </script>
-
 
 <script>
     // ヘッダー要素を取得
@@ -646,20 +655,20 @@ scheduleItems.forEach(item => {
         }
     });
 </script>
-   <script>
-        function detectSafariOnIPhone13Mini() {
-    var ua = navigator.userAgent;
-    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
-    var isIPhone = /iPhone/i.test(ua);
-    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
 
-    if (isSafari && isIPhone && isMini) {
-        document.body.classList.add("safari-iphone13mini");
+<script>
+    function detectSafariOnIPhone13Mini() {
+        var ua = navigator.userAgent;
+        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+        var isIPhone = /iPhone/i.test(ua);
+        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+
+        if (isSafari && isIPhone && isMini) {
+            document.body.classList.add("safari-iphone13mini");
+        }
     }
-}
 
-detectSafariOnIPhone13Mini();
-
-    </script>
-
+    detectSafariOnIPhone13Mini();
+</script>
+</body>
 </html>
