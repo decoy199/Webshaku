@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Kodo Ishibashi is a shakuhachi performer pursuing performances that blend traditional Japanese music with contemporary styles.">
+    <meta name="keywords" content="Kodo Ishibashi, shakuhachi, shakuhachi performer, Japanese traditional music, concert, Kodo Ishibashi schedule">
+    <meta name="author" content="Kodo Ishibashi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shakuhachi Performer Kodo Ishibashi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #F7EAD9;
+}
+        /* Overall Styles */
+        body {
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            
+            z-index: 1;
+            color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+ /* Header Adjustments */
+
+
+ header {
+          
+          position: fixed; /* これはすでにOK */
+          z-index: 9999;   /* 一番前面に */
+  }
+
+
+header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    writing-mode: vertical-rl; /* Keep vertical writing */
+    position: absolute;
+    right: 20%; 
+    top: 30%;
+    transform: translateY(0);
+    font-size: 4rem;
+}
+
+header h1 span.name {
+    font-size: 3rem; /* Make Kodo Ishibashi larger */
+    font-weight: bold;
+    display: block;
+}
+
+header h1 span.title {
+    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+}
+
+
+ /* Menu and header overlap adjustment */
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 50px;
+    height: 50px;
+    background-color: #deb068;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 200;
+}
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+
+        #menu {
+            display: none;
+        }
+
+        #menu:checked ~ .menu {
+            background-color: transparent;
+        }
+
+        #menu:checked ~ .nav {
+            left: 0;
+        }
+
+        /* Side menu */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+
+/* Language toggle button position adjustment */
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 3;
+}
+/* Class to move below main */
+.language-toggle-scrolled {
+        position: absolute;
+        top: calc(100vh + 20px); /* Position below main */
+        right: 20px;
+    }
+
+        .language-toggle button {
+            background-color: #deb068;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
+
+
+        #clickable-load {
+    text-decoration: none;
+  }
+    
+
+
+  .loader {
+    position: fixed;  /* Make sure it stays fixed on the screen */
+    top: 50%;         /* Center vertically */
+    left: 50%;        /* Center horizontally */
+    transform: translate(-50%, -50%);  /* Adjust for perfect centering */
+    z-index: 90;
+    display: block;
+    width: auto;
+    height: auto;
+}
+
+@media only screen and (max-width: 375px) and (max-height: 812px) {
+    .loader {
+        top: 40%;  /* Adjust the top position for smaller screens */
+        left: 50%; /* Keep horizontally centered */
+        transform: translate(-50%, -50%);  /* Ensure it's centered properly */
+        height: 30px;  /* Adjust loader height for smaller screens */
+    }
+
+    .loader span {
+        font-size: 24px;  /* Adjust font size */
+    }
+}
+
+
+
+
+.loader span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+
+@media only screen and (max-width: 375px) and (max-height: 812px) {
+    .loader {
+        height: 30px; /* Smaller height for iPhone 13 mini */
+        left: 55%;
+    }
+
+    .loader span {
+        font-size: 24px; /* Smaller font size for iPhone 13 mini */
+    }
+}
+
+.loader span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+
+
+
+
+
+
+
+a.btn_21 {
+	display: flex; /* from 'flex items-center justify-center' */
+	align-items: center; /* from 'items-center' */
+	justify-content: center; /* from 'justify-center' */
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	width: 200px;
+	margin: auto; /* from 'mx-auto' */
+	padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+	font-weight: bold;
+	border: 2px solid #27acd9;
+	background: #000; /* from 'bg-black' */
+	color: #fff; /* from 'text-white' */
+	border-radius: 9999px; /* from 'rounded-full' */
+	transition: 0.5s;
+	animation: move_c 1s infinite;
+}
+@keyframes move_c {
+    0% {transform: translate(0px, 0)}
+    50% {transform: translate(0px, 0) rotateZ(5deg)}
+}
+a.btn_21:hover {
+	color: #27acd9;
+	background: #fff;
+}
+
+
+
+  /* Footer */
+ 
+  footer {
+            height: auto; 
+            min-height: 10px; /* Slightly lower height */
+            padding: 1rem 0; /* Adjust top/bottom padding */
+            font-size: 16px; /* Slightly smaller font size */
+            background-color: #9DBDAE;
+            color: #fff;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+/* Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+
+   
+ @media (max-width: 767px) {
+    header {
+        min-height: 50px; /* Adjust as needed */
+        
+        background-size: cover; /* Ensures the image covers the entire header */
+      
+  
+       
+    }
+    header h1 {
+        font-size: 2rem;
+        right: 20px; /* Mobile margin from right */
+        top: 10%; /* Maintain proper margin from top */
+        writing-mode: vertical-lr; /* Mobile vertical writing direction */
+    }
+
+    header p {
+        font-size: 1rem;
+        margin-top: 20px; /* Mobile p position adjustment */
+    }
+
+    .menu {
+        top: 10px; /* Menu position adjustment */
+        left: 10px;
+    }
+
+    .language-toggle {
+        top: 10px; /* Language button position adjustment */
+        right: 10px;
+    }
+
+}
+
+
+    </style>
+</head>
+<header>
+    <a href="english_version.html" id="clickable-load">  
+        <div class="loader">
+            <span>SHAKUHACHI</span>
+            <span>SHAKUHACHI</span>
+        </div>
+    </a>
+
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <nav class="nav">
+        <ul>
+            <li><a href="scheduleE.html">SCHEDULE</a></li>
+            <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
+            <li><a href="contactE.html">CONTACT</a></li>
+        </ul>
+    </nav>
+    
+    <div class="language-toggle">
+        <button onclick="setLanguage('ja')">JP</button>
+    </div>
+</header>
+<body class="bg-cover bg-center">
+    <title>
+        Contact Page
+       </title>
+       <script src="https://cdn.tailwindcss.com">
+       </script>
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+      </head>
+      
+        <div class="flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-50 pt-16 md:pt-32 relative z-[2]">
+        <h1 class="text-white text-xl mb-8">
+         
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 md:mt-24">
+         <!-- Call Section -->
+         <!-- X (Twitter) Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10">
+            <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+            X (formerly Twitter)
+            </div>
+            <img alt="X icon" class="mx-auto mb-4" height="50" src="twitter-x-logo-42554 copy.png" width="50"/>
+            <p class="text-lg font-semibold mb-2">
+            Check Latest Updates
+            </p>
+            <a href="https://x.com/bashi_eri" target="_blank" class="btn_21">
+            Click Here
+            <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+  
+ 
+  
+         <!-- Mail Section -->
+         <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10">
+          <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+           Mail
+          </div>
+          <img alt="Mail icon" class="mx-auto mb-4" height="50" src="email.png" width="50"/>
+          <p class="text-lg font-semibold mb-2">
+           Contact by Email
+          </p>
+          <button class="bg-black text-white py-2 px-4 rounded-full flex items-center justify-center mx-auto">
+           Email Form
+           <i class="fas fa-arrow-right ml-2">
+           </i>
+          </button>
+         </div>
+          <!-- Instagram Section -->
+        <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10">
+            <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+            Instagram
+            </div>
+            <img alt="Instagram icon" class="mx-auto mb-4" height="50" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="50"/>
+            <p class="text-lg font-semibold mb-2">
+            View Photos and Videos
+            </p>
+            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_21">
+            Click Here
+            <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        </div>
+    </body>
+
+ <footer>
+
+            <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
+</footer>
+ <html

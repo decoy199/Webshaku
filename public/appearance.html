@@ -16,41 +16,26 @@ html{
     background-color: #F7EAD9;
 }
 
+
 header {
     position: fixed;
-    background-image: url('japanese-paper.jpg');;
+   
 }
 
-            /* 全体のスタイル */
+           
+    /* Overall Styles */
     body {
-        font-family: 'Yu Mincho', serif;
-        line-height: 1.8;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-        color: #0b0b0b;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        
-        /* Background Image */
-       /* background-image: url('apanese-paper.jpg');*/
-      
-        background-size: cover; /* Ensures the image covers the entire page */
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed; /* Keeps the background fixed when scrolling */
-    }
-
-
-@keyframes fadeInBg {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1.5;
-    }
-}
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            
+            
+            color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
 #clickable-load {
     text-decoration: none;
@@ -478,19 +463,20 @@ header h1 span.title {
 
         /* フッター */
         footer {
-            margin-top: 50px;
-            /*background-color: #9DBDAE;*/
-            background-image: url('japanese-paper.jpg');
-            color: #333;
+            height: auto; 
+            min-height: 10px; /* 高さを少し低く設定 */
+            padding: 1rem 0; /* 上下の余白を調整 */
+            font-size: 15px; /* フォントサイズを少し小さく */
+            background-color: #9DBDAE;
+            color: #fff;
             text-align: center;
-            padding: 1rem 0;
             bottom: 0;
             width: 100%;
+            margin-top: auto;
         }
 
         footer a {
-            /*color: #ffdbac;*/
-            color: #333;
+            color: #ffdbac;
             text-decoration: none;
             font-weight: bold;
         }
@@ -550,8 +536,8 @@ header h1 span.title {
 
     <nav class="nav">
         <ul>
-            <li><a href="schedule.html">スケジュール</a></li>
-            <li><a href="appearance.html">出演情報</a></li>
+            <li><a href="schedule2.html">スケジュール</a></li>
+            <li><a href="appearance.html">過去の出演情報</a></li>
             <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
     </nav>
@@ -566,7 +552,7 @@ header h1 span.title {
     
 <div class="glow glow-lantern"></div>
         <img src="sakura5.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
-        <img src="sakura3.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+        <img src="sakura2.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
         <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
 </div>
 
@@ -579,7 +565,7 @@ header h1 span.title {
     <ul>
         
         <li>2023年6月: 東京新教会にて赤堤町内会で演奏を行う</li>
-        <li>2023年6月: 　ホットケーキつるばみ舎にて自主企画「夏越の宴」を開催。</li>
+        <li>2023年6月: ホットケーキつるばみ舎にて自主企画「夏越の宴」を開催。</li>
         <li>2023年9月: 「結の会」を結成し、日本橋劇場にて第1回自主公演「結の会」を開催。</li>
         <li>2023年10月: 池袋B galleryで行われた「第3回　大島利佳展」にて演奏。</li>
         <li>2024年1月: Abema TV「声優と夜遊び」の正月生放送にて、オープニング&BGM演奏を担当。</li>
@@ -590,9 +576,9 @@ header h1 span.title {
         <li>2024年6月: 平塚八幡宮にて奉納演奏を行う。</li>
         <li>2024年11月: 下諏訪総合文化センターにて行われた「邦楽未来図コンサートVol.10」に出演。</li>
         <li>2025年1月: 平塚八幡宮にて奉納演芸として演奏を行う。</li>
-        <li>2025年2月:　東広島芸術文化ホールにて演奏会を行う。</li>
+        <li>2025年2月: 東広島芸術文化ホールにて演奏会を行う。</li>
         <p>これまでに、東京家政大学定期演奏会、杉並三曲協会定期演奏会、狛江三曲協会定期演奏会に出演。
-            老人ホーム、小学校公演などで公演を多数行う他、挙式演奏、奉納演奏、パーティー演奏、宴席での演奏も行う</p>
+            老人ホーム、小学校公演などで公演を多数行う他、挙式演奏、奉納演奏、パーティー演奏、宴席での演奏も行う。</p>
         
         
 
@@ -600,14 +586,14 @@ header h1 span.title {
     </ul>
 </section>
 </main>
-
+</div>
 <footer id="contact">
-<p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+    <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
 <p><a href="mailto:info@example.com">info@example.com</a></p>
 <div class="social-icons">
     <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-</div>
+
 <p>&copy; 2025 尺八奏者 石橋紅童</p>
 </footer>
 <script>

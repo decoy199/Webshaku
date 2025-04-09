@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="石橋紅童は尺八奏者として、日本伝統音楽と現代の融合を目指した演奏活動を行っています。コンサートや出演情報を掲載中。">
-    <meta name="keywords" content="石橋紅童, 尺八, 尺八奏者, 日本伝統音楽, コンサート, 石橋紅童 スケジュール">
-    <meta name="author" content="石橋紅童">
+    <meta name="description" content="Kodo Ishibashi is a shakuhachi performer pursuing the fusion of traditional Japanese music and contemporary styles. Find concert and performance information here.">
+    <meta name="keywords" content="Kodo Ishibashi, shakuhachi, shakuhachi performer, traditional Japanese music, concert, Kodo Ishibashi schedule">
+    <meta name="author" content="Kodo Ishibashi">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>尺八奏者 石橋紅童</title>
+    <title>Shakuhachi Performer Kodo Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <!-- Add Firebase SDK -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
@@ -16,7 +16,7 @@
         html{
             background-color: #F7EAD9;
         }
-        /* 全体のスタイル */
+        /* Overall styles */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
@@ -36,25 +36,16 @@
                 opacity: 1.5;
             }
         }
-        .background {        
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            
-            }
-        
 
         .loader {
-            position: fixed;  /* スクロールしても動かない */
+            position: fixed;  /* Stays fixed when scrolling */
             z-index: -1;
-            top: 5%;        /* 画面の中央に配置 */
+            top: 5%;        /* Positioned in center of screen */
             left: 50%;
             transform: translate(-50%, -50%);
             width: auto;
             height: auto;
-            z-index: 90; /* 他の要素より前面に配置 */
+            z-index: 90; /* Positioned in front of other elements */
             
             display: block;
         }
@@ -124,7 +115,7 @@
             font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
         }
         
-        /* メニューとヘッダーが重ならないようにするための調整 */
+        /* Adjust menu to not overlap with header */
         .menu {
             position: fixed;
             z-index: 10;
@@ -167,7 +158,7 @@
             left: 0;
         }
 
-        /* サイドメニュー */
+        /* Side menu */
         .nav {
             position: fixed;
             z-index: 10;
@@ -208,7 +199,7 @@
             display: none;
         }
 
-        /* 言語切替ボタンの位置調整 */
+        /* Language toggle button positioning */
         .language-toggle {
             position: fixed;
             top: 20px;
@@ -217,10 +208,10 @@
             gap: 10px;
             z-index: 3;
         }
-        /* mainの下に移動するためのクラス */
+        /* Class to move below main */
         .language-toggle-scrolled {
             position: absolute;
-            top: calc(100vh + 20px); /* mainの下に配置 */
+            top: calc(100vh + 20px); /* Position below main */
             right: 20px;
         }
 
@@ -246,7 +237,7 @@
             background-color: #fff;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: max-height 1.4s ease; /* max-heightのトランジションを追加 */
+            transition: max-height 1.4s ease; /* Added transition for max-height */
         }
 
         .c-accordion:hover {
@@ -349,7 +340,7 @@
             100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
         }
 
-        /* メインコンテンツ */
+        /* Main content */
         main {
             flex: 1;
             padding: 2rem;
@@ -372,12 +363,12 @@
             text-indent: 1em;
         }
 
-        /* フッター */
+        /* Footer */
         footer {
             height: auto; 
-            min-height: 10px; /* 高さを少し低く設定 */
-            padding: 1rem 0; /* 上下の余白を調整 */
-            font-size: 14px; /* フォントサイズを少し小さく */
+            min-height: 10px; /* Slightly lower height */
+            padding: 1rem 0; /* Adjust top/bottom padding */
+            font-size: 14px; /* Slightly smaller font size */
             background-color: #9DBDAE;
             color: #fff;
             text-align: center;
@@ -435,23 +426,23 @@
             
             header h1 {
                 font-size: 2rem;
-                right: 20px; /* スマホサイズでは右端に少し余裕 */
-                top: 10%; /* スマホでも上の余白を適切に調整 */
-                writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+                right: 20px; /* Add small margin on right for mobile */
+                top: 10%; /* Adjust top margin for mobile */
+                writing-mode: vertical-lr; /* Display right to left on mobile */
             }
 
             header p {
                 font-size: 1rem;
-                margin-top: 20px; /* スマホではpの位置を調整 */
+                margin-top: 20px; /* Adjust p position on mobile */
             }
 
             .menu {
-                top: 10px; /* メニューの位置を調整 */
+                top: 10px; /* Adjust menu position */
                 left: 10px;
             }
 
             .language-toggle {
-                top: 10px; /* 言語ボタンの位置を調整 */
+                top: 10px; /* Adjust language button position */
                 right: 10px;
             }
 
@@ -475,20 +466,19 @@
 
         @media screen and (max-width:400px) {
             .loader {
-                width:50px; /* 小さいサイズにする */
+                width:50px; /* Make size smaller */
                 height: 50px;
                 top: 10%;   
             }
 
             .loader span {
-                font-size: 22px; /* フォントサイズを小さく */
+                font-size: 22px; /* Make font size smaller */
             }
         }
     </style>
 </head>
-<div class="background">
 <header>
-    <a href="main3.html" id="clickable-load">
+    <a href="english_version.html" id="clickable-load">
         <div class="loader">
             <span>SHAKUHACHI</span>
             <span>SHAKUHACHI</span>
@@ -504,13 +494,14 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="schedule2.html">スケジュール</a></li>
-            <li><a href="appearance.html">過去の出演情報</a></li>
-            <li><a href="contact.html">お問い合わせ</a></li>
+            <li><a href="scheduleE.html">SCHEDULE</a></li>
+            <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
+            <li><a href="contactE.html">CONTACT</a></li>
+        </ul>
     </nav>
 
     <div class="language-toggle">
-        <button onclick="setLanguage('en')">EN</button>
+        <button onclick="setLanguage('ja')">JP</button>
     </div>
 </header>
 
@@ -522,25 +513,24 @@
 <body>
 <main>
     <section id="schedule">
-        <h2>スケジュール</h2>
-        <p>今後のコンサートやワークショップは以下の通りです：</p>
-        <div id="loading-message" class="loading">スケジュールを読み込み中...</div>
+        <h2>Schedule</h2>
+        <p>The upcoming concerts and workshops are as follows:</p>
+        <div id="loading-message" class="loading">Loading schedule...</div>
         <div id="error-message" class="error-message" style="display: none;"></div>
         <ul id="schedule-list">
             <!-- Schedule items will be dynamically loaded from Firebase -->
         </ul>
     </section>
 </main>
-</div>
 
 <footer id="contact">
-    <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
+    <p>If you have any questions or performance requests, fell free to contact the following email or Instagram direct message:</p>
     <p><a href="mailto:info@example.com">info@example.com</a></p>
     <div class="social-icons">
         <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
-    <p>&copy; 2025 尺八奏者 石橋紅童</p>
+    <p>&copy; 2025 Shakuhachi Artist Kodo Ishibashi</p>
 </footer>
 
 <script>
@@ -559,16 +549,12 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     
-    
-    // Function to format date for display in Japanese
-
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('ja-JP', options); // Use 'ja-JP' for Japanese date format
-}
-
-
+    // Function to format date for display
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
     
     // Function to load schedule from Firebase with language filtering
     async function loadSchedule() {
@@ -583,7 +569,7 @@ function formatDate(dateString) {
             
             // Get schedules from Firebase that are in English, ordered by date
             const snapshot = await db.collection('schedules')
-                .where('language', '==', 'ja') // Only get English events
+                .where('language', '==', 'en') // Only get English events
                 .orderBy('date')
                 .get();
                 
@@ -620,9 +606,9 @@ function formatDate(dateString) {
                             <div class="c-accordion__content">
                                 ${event.image ? `<img src="${event.image}" alt="${event.title}" class="event-image">` : ''}
                                 <p>${event.title}</p>
-                                <p><strong>日時:</strong> ${event.date}　${event.time}</p>
-                                <p><strong>場所:</strong> ${event.location}</p>
-                                <p><strong>詳細:</strong> ${event.details}</p>
+                                <p><strong>Date＆Time:</strong> ${event.date}　${event.time}</p>
+                                <p><strong>Location:</strong> ${event.location}</p>
+                                <p><strong>Description:</strong> ${event.details}</p>
                             </div>
                         </details>
                     `;
@@ -648,9 +634,10 @@ function formatDate(dateString) {
     window.addEventListener('DOMContentLoaded', loadSchedule);
     
     function setLanguage(lang) {
-        if (lang === 'en') {
-            location.href = 'scheduleE.html'; // Navigate to English page
-        } }
+        if (lang === 'ja') {
+            location.href = 'schedule2.html'; // Navigate to Japanese page
+        }
+    }
 
     // Close the menu when clicking a navigation link
     document.querySelectorAll('.nav a').forEach(function(link) {
@@ -660,18 +647,17 @@ function formatDate(dateString) {
     });
 </script>
 
-
 <script>
-    // ヘッダー要素を取得
+    // Get header element
     const languageToggle = document.querySelector('.language-toggle');
 
-    // スクロールイベントをリスン
+    // Listen for scroll events
     window.addEventListener('scroll', function() {
-        // スクロール量が600pxを超えたらボタン位置を変更
+        // Change button position when scrolled more than 100px
         if (window.scrollY > 600) {
-            languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+            languageToggle.classList.add('language-toggle-scrolled'); // Change to scrolled position
         } else {
-            languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+            languageToggle.classList.remove('language-toggle-scrolled'); // Return to original position
         }
     });
 </script>
@@ -679,9 +665,9 @@ function formatDate(dateString) {
 <script>
     function detectSafariOnIPhone13Mini() {
         var ua = navigator.userAgent;
-        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Safariを検出
+        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
         var isIPhone = /iPhone/i.test(ua);
-        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 miniの画面サイズ
+        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
 
         if (isSafari && isIPhone && isMini) {
             document.body.classList.add("safari-iphone13mini");

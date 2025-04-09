@@ -9,537 +9,539 @@
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <style>
-
-
-html {
-    margin: 0;
-    padding: 0;
-    background-color: #F7EAD9;
-    
-}
-        /* 全体のスタイル */
-        body {
-            font-family: 'Yu Mincho', serif;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            
-            
-            color: #0b0b0b;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* ヘッダーの調整 */
-        header {
-            position: relative;
-            color: #333;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-            background-image: url('profile1.jpg');
-            background-position: center;
-            background-size: contain; 
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center top;
-            background-attachment: fixed;
-            height: 86vh;
-            background-color: rgba(0, 0, 0, 0);
-            opacity: 0; /* Initially hidden */
-            animation: fadeInBg 3s ease-in-out forwards;
-            animation-delay: 0.5s;
-        }
-
-
-        @keyframes fadeInBg {
-            0% {
-                opacity: 0;
-                
-            }
-            100% {
-                opacity: 1;
-                
-            }
-        }
-
-
-
-
-        .leaf {
-            position: absolute;
-            width: 50px;
-            height: auto;
-            opacity: 1;
-            will-change: transform, opacity;
-            animation: fall 20s linear infinite; 
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            z-index: 1000; /* Increase the z-index */
-            pointer-events: none; /* Ensures it does not interfere with clicks */
-        }
-
-
-        @keyframes fall {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 200vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
-        }
-
-        .safari-iphone13mini .leaf {
-            animation: fall-safari 20s linear infinite; /* Longer animation for Safari */
-            opacity: 1 !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
-
-        @keyframes fall-safari {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 200vh, 0) rotate(180deg); opacity: 0.8; }
-        }
-
-
-
-                /* ヘッダーが透明になる状態 */
-                header.hidden {
-                    opacity: 0; /* 透明度を0に */
-                }
-
-
-
-                header::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    
-                    
-                    
-                }
-
-
-                
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* Keep vertical writing */
-            position: absolute;
-            right: 20%; 
-            top: 30%;
-            transform: translateY(0);
-            font-size: 4rem;
-        }
-
-        header h1 span.name {
-            font-size: 3rem; /* Make Kodo Ishibashi larger */
-            font-weight: bold;
-            display: block;
-        }
-
-        header h1 span.title {
-            font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
-        }
-
-        header p{
-            position: relative;
-            z-index: 2;
-        }
-        
-        header h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* 縦書きにする */
-            position: absolute;
-            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
-            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
-            font-size: 4rem; /* フォントサイズ調整 */
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: #180614;
-            margin-top: 100px; /* pの位置調整 */
-        }
-
-        header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 1rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
-        /* メニューとヘッダーが重ならないようにするための調整 */
-        .menu {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            width: 50px;
-            height: 50px;
-            background-color: #deb068;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 200;
-        }
-        .menu span {
-            display: block;
-            width: 50%;
-            height: 2%;
-            background-color: #555;
-            margin: 5px 0;
-            transition: transform 250ms ease;
-            z-index: 200;
-        }
-
-        #menu {
-            display: none;
-        }
-
-        #menu:checked ~ .menu {
-            background-color: transparent;
-        }
-
-        #menu:checked ~ .nav {
-            left: 0;
-        }
-
-        /* サイドメニュー */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            color: #ffffff;
-            transition: left 0.3s ease;
-            z-index: 100;
-        }
-
-        .nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 50px 0 0;
-        }
-
-        .nav ul li {
-            margin: 0;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            display: block;
-        }
-
-        .nav ul li a:hover {
-            background-color: #444;
-        }
-
-        /* 言語切替ボタンの位置調整 */
-        .language-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 3;
-        }
-        /* mainの下に移動するためのクラス */
-        .language-toggle-scrolled {
-                position: absolute;
-                top: calc(100vh + 20px); /* mainの下に配置 */
-                right: 20px;
-            }
-
-        .language-toggle button {
-            background-color: #deb068;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .language-toggle button:hover {
-            background-color: #ffdbac;
-            color: #804000;
-        }
-
-
-
-        /* アニメーション */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-
-
-        .scroll-container {
-            position: absolute;
-            top: 93%; /* Adjust as needed */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            
-        }
-
-        .scroll-down {
-            background-color: #F7EAD9;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.8rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            
-        }
-        .scroll-container:hover {
-            z-index: 1;
-
-        }
-
-        .scroll-down:hover {
-            background-color: #F7EAD9;
-            color: #F7EAD9;
-            z-index: 1;
-        }
-
-        /* Hide the button on larger screens */
-        @media (min-width: 480px) {
-            .scroll-container {
-                display: none; /* Hide the button on larger screens */
-            }
-        }
-
-
-
-
-                /* メインコンテンツ */
-        main {
-            flex: 1;
-            padding: 2rem;
-            max-width: 100%;
-            margin: 0 auto;
-            background-color: #F7EAD9;
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-attachment: fixed;
-            margin-top: -30px; /* 位置を上に移動 */
-            opacity: 0;  /* 初期状態で非表示 */
-            transform: translateY(50px); /* 下からフェードインするように */
-            transition: opacity 1s ease-out, transform 1s ease-out;
-            z-index: -1;
-        }
-
-        main.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-
-
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            border-left: 4px solid #804000;
-            padding-left: 0.5rem;
-            color: #804000;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            text-indent: 1em;
-        }
-
-        /* フッター */
+ 
+        html {
+           margin: 0;
+           padding: 0;
+           background-color: #F7EAD9;
+           
+       }
+               /* 全体のスタイル */
+               body {
+                   font-family: 'Yu Mincho', serif;
+                   line-height: 1.8;
+                   margin: 0;
+                   padding: 0;
+                   
+                   
+                   color: #0b0b0b;
+                   display: flex;
+                   flex-direction: column;
+                   min-height: 100vh;
+               }
+       
+               /* ヘッダーの調整 */
+               header {
+                   position: relative;
+                   color: #333;
+                   text-align: center;
+                   padding: 0;
+                   overflow: hidden;
+                   background-image: url('profile1.jpg');
+                   background-position: center;
+                   background-size: contain; 
+                   background-repeat: no-repeat;
+                   background-attachment: fixed;
+                   background-position: center top;
+                   background-attachment: fixed;
+                   height: 86vh;
+                   background-color: rgba(0, 0, 0, 0);
+                   opacity: 0; /* Initially hidden */
+                   animation: fadeInBg 3s ease-in-out forwards;
+                   animation-delay: 0.5s;
+               }
+       
+       
+               @keyframes fadeInBg {
+                   0% {
+                       opacity: 0;
+                       
+                   }
+                   100% {
+                       opacity: 1;
+                       
+                   }
+               }
+       
+       
+       
+       
+               .leaf {
+                   position: absolute;
+                   width: 50px;
+                   height: auto;
+                   opacity: 1;
+                   will-change: transform, opacity;
+                   animation: fall 20s linear infinite; 
+                   transform: translateZ(0);
+                   backface-visibility: hidden;
+                   z-index: 1000; /* Increase the z-index */
+                   pointer-events: none; /* Ensures it does not interfere with clicks */
+               }
+       
+       
+               @keyframes fall {
+                   0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+                   100% { transform: translate3d(0, 200vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+               }
+       
+               .safari-iphone13mini .leaf {
+                   animation: fall-safari 20s linear infinite; /* Longer animation for Safari */
+                   opacity: 1 !important;
+                   transform: translate3d(0, 0, 0) !important;
+               }
+       
+               @keyframes fall-safari {
+                   0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+                   50% { opacity: 0.9; }
+                   100% { transform: translate3d(0, 200vh, 0) rotate(180deg); opacity: 0.8; }
+               }
+       
+       
+       
+                       /* ヘッダーが透明になる状態 */
+                       header.hidden {
+                           opacity: 0; /* 透明度を0に */
+                       }
+       
+       
+       
+                       header::before {
+                           content: "";
+                           position: absolute;
+                           top: 0;
+                           left: 0;
+                           width: 100%;
+                           height: 100%;
+                           
+                           
+                           
+                       }
+       
+       
+                       
+               header h1 {
+                   margin: 0;
+                   font-size: 2.8rem;
+                   color: #fff;
+                   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                   writing-mode: vertical-rl; /* Keep vertical writing */
+                   position: absolute;
+                   right: 20%; 
+                   top: 30%;
+                   transform: translateY(0);
+                   font-size: 4rem;
+               }
+       
+               header h1 span.name {
+                   font-size: 3rem; /* Make Kodo Ishibashi larger */
+                   font-weight: bold;
+                   display: block;
+               }
+       
+               header h1 span.title {
+                   font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+               }
+       
+               header p{
+                   position: relative;
+                   z-index: 2;
+               }
+               
+               header h1 {
+                   margin: 0;
+                   font-size: 2.8rem;
+                   color: #fff;
+                   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                   writing-mode: vertical-rl; /* 縦書きにする */
+                   position: absolute;
+                   right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
+                   top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
+                   transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
+                   font-size: 4rem; /* フォントサイズ調整 */
+               }
+       
+               header p {
+                   font-size: 1.1rem;
+                   color: #180614;
+                   margin-top: 100px; /* pの位置調整 */
+               }
+       
+               header .profile {
+                   margin: 2rem 0 1.5rem;
+                   color: #fff;
+                   font-size: 1rem;
+                   line-height: 1.8;
+                   background: rgba(0, 0, 0, 0);
+                   padding: 1rem;
+                   border-radius: 10px;
+                   display: inline-block;
+                   max-width: 600px;
+                   text-align: left;
+                   
+               }
+       
+               /* メニューとヘッダーが重ならないようにするための調整 */
+               .menu {
+                   position: fixed;
+                   top: 20px;
+                   left: 20px;
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+                   flex-direction: column;
+                   width: 50px;
+                   height: 50px;
+                   background-color: #deb068;
+                   border-radius: 50%;
+                   cursor: pointer;
+                   z-index: 200;
+               }
+               .menu span {
+                   display: block;
+                   width: 50%;
+                   height: 2%;
+                   background-color: #555;
+                   margin: 5px 0;
+                   transition: transform 250ms ease;
+                   z-index: 200;
+               }
+       
+               #menu {
+                   display: none;
+               }
+       
+               #menu:checked ~ .menu {
+                   background-color: transparent;
+               }
+       
+               #menu:checked ~ .nav {
+                   left: 0;
+               }
+       
+               /* サイドメニュー */
+               .nav {
+                   position: fixed;
+                   top: 0;
+                   left: -250px;
+                   width: 250px;
+                   height: 100%;
+                   background-color: #333;
+                   color: #ffffff;
+                   transition: left 0.3s ease;
+                   z-index: 100;
+               }
+       
+               .nav ul {
+                   list-style: none;
+                   padding: 0;
+                   margin: 50px 0 0;
+               }
+       
+               .nav ul li {
+                   margin: 0;
+                   padding: 15px;
+                   text-align: center;
+               }
+       
+               .nav ul li a {
+                   text-decoration: none;
+                   color: #fff;
+                   font-size: 1.2rem;
+                   display: block;
+               }
+       
+               .nav ul li a:hover {
+                   background-color: #444;
+               }
+       
+               /* 言語切替ボタンの位置調整 */
+               .language-toggle {
+                   position: fixed;
+                   top: 20px;
+                   right: 20px;
+                   display: flex;
+                   gap: 10px;
+                   z-index: 3;
+               }
+               /* mainの下に移動するためのクラス */
+               .language-toggle-scrolled {
+                       position: absolute;
+                       top: calc(100vh + 20px); /* mainの下に配置 */
+                       right: 20px;
+                   }
+       
+               .language-toggle button {
+                   background-color: #deb068;
+                   color: white;
+                   border: none;
+                   padding: 0.5rem 1rem;
+                   font-size: 0.9rem;
+                   cursor: pointer;
+                   border-radius: 5px;
+               }
+       
+               .language-toggle button:hover {
+                   background-color: #ffdbac;
+                   color: #804000;
+               }
+       
+       
+       
+               /* アニメーション */
+               @keyframes fadeIn {
+                   0% {
+                       opacity: 0;
+                       transform: translateY(-10px);
+                   }
+                   100% {
+                       opacity: 1;
+                       transform: translateY(0);
+                   }
+               }
+       
+       
+       
+               .scroll-container {
+                   position: absolute;
+                   top: 92%; /* Adjust as needed */
+                   left: 50%;
+                   transform: translateX(-50%);
+                   z-index: 20;
+                   
+               }
+       
+               .scroll-down {
+                   background-color: #F7EAD9;
+                   color: white;
+                   border: none;
+                   padding: 10px 20px;
+                   font-size: 1.8rem;
+                   border-radius: 5px;
+                   cursor: pointer;
+                   transition: background-color 0.8s;
+                   
+               }
+               .scroll-container:hover {
+                   z-index: 20;
+       
+               }
+       
+               .scroll-down:hover {
+                   background-color: #F7EAD9;
+                   color: #F7EAD9;
+                   z-index: 0;
+               }
+       
+               /* Hide the button on larger screens */
+               @media (min-width: 480px) {
+                   .scroll-container {
+                       display: none; /* Hide the button on larger screens */
+                   }
+               }
+       
+       
+       
+       
+                       /* メインコンテンツ */
+               main {
+                   flex: 1;
+                   padding: 2rem;
+                   max-width: 100%;
+                   margin: 0 auto;
+                   background-color: #F7EAD9;
+                   background-size: 100% 100%;
+                   background-repeat: no-repeat;
+                   background-position: center top;
+                   background-attachment: fixed;
+                   margin-top: -30px; /* 位置を上に移動 */
+                   opacity: 0;  /* 初期状態で非表示 */
+                   transform: translateY(50px); /* 下からフェードインするように */
+                   transition: opacity 1s ease-out, transform 1s ease-out;
+                   z-index: -1;
+               }
+       
+               main.visible {
+                   opacity: 1;
+                   transform: translateY(0);
+               }
+       
+       
+       
+       
+               section {
+                   margin-bottom: 3rem;
+               }
+       
+               h2 {
+                   border-left: 4px solid #804000;
+                   padding-left: 0.5rem;
+                   color: #804000;
+                   margin-bottom: 1rem;
+               }
+       
+               p {
+                   text-indent: 1em;
+               }
+       
+               /* フッター */
         footer {
-        height: auto; 
-        min-height: 10px; /* 高さを少し低く設定 */
-        padding: 1rem 0; /* 上下の余白を調整 */
-        font-size: 14px; /* フォントサイズを少し小さく */
-        background-color: #9DBDAE;
-        color: #fff;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        margin-top: auto;
-    }
-
-    footer a {
-        color: #ffdbac;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    footer a:hover {
-        text-decoration: underline;
-    }
-
-        .event-detail {
-            margin-top: 1rem;
-            background-color: #f1f1f1;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-
-        .event-image {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
-
-    @media (max-width: 767px) {
-
-    header h1 {
-        font-size: 2rem;
-        right: 20px; /* スマホサイズでは右端に少し余裕 */
-        top: 10%; /* スマホでも上の余白を適切に調整 */
-        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-    }
-
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* スマホではpの位置を調整 */
-    }
-
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
-
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 0.7rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
-
-    
-    
-}
-
-        /* スマホサイズ対応 */
-
-        
-        @media (max-width: 500px) {
-        header {
-            position: relative;
-            color: #333;
-            text-align: center;
-            padding: 0;
-            overflow: hidden;
-            background-image: url('profile1.jpg');
-            background-position: center;
-            background-size: contain; /* 最初は少し大きめ */
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center top;
-            background-attachment: fixed;
-            height: 82vh;
-            background-color: rgba(0, 0, 0, 0);
-            opacity: 0; /* Initially hidden */
-            animation: fadeInBg 3s ease-in-out forwards;
-            animation-delay: 0.5s;
-        }
-
-
-        @keyframes fadeInBg {
-            0% {
-                opacity: 0;
-                
-            }
-            100% {
-                opacity: 1;
-                
-            }
-        }
-            header h1 {
-                font-size: 2rem;
-                right: 20px; /* スマホサイズでは右端に少し余裕 */
-                top: 10%; /* スマホでも上の余白を適切に調整 */
-                writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-            }
-
-            header p {
-                font-size: 1rem;
-                margin-top: 20px; /* スマホではpの位置を調整 */
-            }
-
-            .menu {
-                top: 10px; /* メニューの位置を調整 */
-                left: 10px;
-            }
-
-            .language-toggle {
-                top: 10px; /* 言語ボタンの位置を調整 */
-                right: 10px;
-            }
-
-            header .profile {
-                    margin: 2rem 0 1.5rem;
-                    color: #fff;
-                    font-size: 0.7rem;
-                    line-height: 1.8;
-                    background: rgba(0, 0, 0, 0);
-                    padding: 1rem;
-                    border-radius: 10px;
-                    display: inline-block;
-                    max-width: 600px;
-                    text-align: left;
-                    
-                }
-        }
-
-    </style>
+               height: auto; 
+               min-height: 10px; /* 高さを少し低く設定 */
+               padding: 1rem 0; /* 上下の余白を調整 */
+               font-size: 14px; /* フォントサイズを少し小さく */
+               background-color: #9DBDAE;
+               color: #fff;
+               text-align: center;
+               bottom: 0;
+               width: 100%;
+               margin-top: auto;
+           }
+       
+           footer a {
+               color: #ffdbac;
+               text-decoration: none;
+               font-weight: bold;
+           }
+       
+           footer a:hover {
+               text-decoration: underline;
+           }
+       
+               .event-detail {
+                   margin-top: 1rem;
+                   background-color: #f1f1f1;
+                   padding: 1rem;
+                   border-radius: 8px;
+               }
+       
+               .event-image {
+                   width: 100%;
+                   max-width: 400px;
+                   height: auto;
+                   margin-bottom: 1rem;
+                   border-radius: 8px;
+               }
+       
+           @media (max-width: 767px) {
+       
+           header h1 {
+               font-size: 2rem;
+               right: 20px; /* スマホサイズでは右端に少し余裕 */
+               top: 10%; /* スマホでも上の余白を適切に調整 */
+               writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+           }
+       
+           header p {
+               font-size: 1rem;
+               margin-top: 20px; /* スマホではpの位置を調整 */
+           }
+       
+           .menu {
+               top: 10px; /* メニューの位置を調整 */
+               left: 10px;
+           }
+       
+           .language-toggle {
+               top: 10px; /* 言語ボタンの位置を調整 */
+               right: 10px;
+           }
+       
+           header .profile {
+                   margin: 2rem 0 1.5rem;
+                   color: #fff;
+                   font-size: 0.7rem;
+                   line-height: 1.8;
+                   background: rgba(0, 0, 0, 0);
+                   padding: 1rem;
+                   border-radius: 10px;
+                   display: inline-block;
+                   max-width: 600px;
+                   text-align: left;
+                   
+               }
+       
+       
+           
+           
+       }
+       
+               /* スマホサイズ対応 */
+       
+               
+               @media (max-width: 500px) {
+               header {
+                   position: relative;
+                   color: #333;
+                   text-align: center;
+                   padding: 0;
+                   overflow: hidden;
+                   background-image: url('profile1.jpg');
+                   background-position: center;
+                   background-size: contain; /* 最初は少し大きめ */
+                   background-repeat: no-repeat;
+                   background-attachment: fixed;
+                   background-position: center top;
+                   background-attachment: fixed;
+                   height: 82vh;
+                   background-color: rgba(0, 0, 0, 0);
+                   opacity: 0; /* Initially hidden */
+                   animation: fadeInBg 3s ease-in-out forwards;
+                   animation-delay: 0.5s;
+               }
+       
+       
+               @keyframes fadeInBg {
+                   0% {
+                       opacity: 0;
+                       
+                   }
+                   100% {
+                       opacity: 1;
+                       
+                   }
+               }
+                   header h1 {
+                       font-size: 2rem;
+                       right: 20px; /* スマホサイズでは右端に少し余裕 */
+                       top: 10%; /* スマホでも上の余白を適切に調整 */
+                       writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+                   }
+       
+                   header p {
+                       font-size: 1rem;
+                       margin-top: 20px; /* スマホではpの位置を調整 */
+                   }
+       
+                   .menu {
+                       top: 10px; /* メニューの位置を調整 */
+                       left: 10px;
+                   }
+       
+                   .language-toggle {
+                       top: 10px; /* 言語ボタンの位置を調整 */
+                       right: 10px;
+                   }
+       
+                   header .profile {
+                           margin: 2rem 0 1.5rem;
+                           color: #fff;
+                           font-size: 0.7rem;
+                           line-height: 1.8;
+                           background: rgba(0, 0, 0, 0);
+                           padding: 1rem;
+                           border-radius: 10px;
+                           display: inline-block;
+                           max-width: 600px;
+                           text-align: left;
+                           
+                       }
+               }
+       
+           </style>
+       
+       
+       
 </head>
 <body>
     <header>
@@ -553,14 +555,10 @@ html {
     <nav class="nav">
         <ul>
             <li><a href="#schedule.html">スケジュール</a></li>
-            <li><a href="#appearance.html">出演情報</a></li>
+            <li><a href="#appearance.html">過去の出演情報</a></li>
             <li><a href="#contact">お問い合わせ</a></li>
         </ul>
     </nav>
-
-    
-
-  
         
         <h1>
             <span class="name">石橋紅童</span>
@@ -596,7 +594,7 @@ html {
     </main>
 
     <footer id="contact">
-        <p>ご質問や演奏依頼は、以下のメールアドレスまでご連絡ください。</p>
+        <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
         <p><a href="mailto:info@example.com">info@example.com</a></p>
         <div class="social-icons">
             <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>

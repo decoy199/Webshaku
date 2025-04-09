@@ -1,0 +1,48 @@
+:root {
+  --icon-count: 3;
+  --inner-height: 4em;
+  --ratio: 2/3;
+  --period: 1s;
+}
+
+.page-container {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--inner-height);
+  width: calc(var(--inner-height) * var(--ratio) * var(--icon-count));
+}
+
+.loader .icon {
+  width: calc(100% / var(--icon-count));
+  height: calc(100% * var(--ratio));
+  animation: loader-bounce02 var(--period) infinite linear;
+}
+
+.loader .icon:nth-of-type(2) {
+  animation-delay: calc(1 / 5 * var(--period));
+}
+
+.loader .icon:nth-of-type(3) {
+  animation-delay: calc(2 / 5 * var(--period));
+}
+
+@keyframes loader-bounce02 {
+  20% {
+    transform: translateY(calc(-50% * (1 - var(--ratio))));
+  }
+  40% {
+    transform: translateY(calc(50% * (1 - var(--ratio))));
+  }
+  60%, 80% {
+    transform: translateY(0);
+  }
+}

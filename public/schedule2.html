@@ -36,6 +36,15 @@
                 opacity: 1.5;
             }
         }
+        .background {        
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            
+            }
+        
 
         .loader {
             position: fixed;  /* スクロールしても動かない */
@@ -345,6 +354,7 @@
             flex: 1;
             padding: 2rem;
             margin: 0 auto;
+            margin-top: 150px; /* Add more space between loader and main content */
         }
 
         section {
@@ -445,6 +455,10 @@
                 right: 10px;
             }
 
+            main {
+                margin-top: 100px; /* Less margin on mobile */
+            }
+
             header .profile {
                 margin: 2rem 0 1.5rem;
                 color: #fff;
@@ -472,6 +486,7 @@
         }
     </style>
 </head>
+<div class="background">
 <header>
     <a href="main3.html" id="clickable-load">
         <div class="loader">
@@ -489,14 +504,13 @@
 
     <nav class="nav">
         <ul>
-            <li><a href="schedule.html">Schedule</a></li>
-            <li><a href="appearance.html">Performances</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+            <li><a href="schedule2.html">スケジュール</a></li>
+            <li><a href="appearance.html">過去の出演情報</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
     </nav>
 
     <div class="language-toggle">
-        <button onclick="setLanguage('ja')">JP</button>
+        <button onclick="setLanguage('en')">EN</button>
     </div>
 </header>
 
@@ -508,24 +522,25 @@
 <body>
 <main>
     <section id="schedule">
-        <h2>Schedule</h2>
-        <p>The upcoming concerts and workshops are as follows:</p>
-        <div id="loading-message" class="loading">Loading schedule...</div>
+        <h2>スケジュール</h2>
+        <p>今後のコンサートやワークショップは以下の通りです：</p>
+        <div id="loading-message" class="loading">スケジュールを読み込み中...</div>
         <div id="error-message" class="error-message" style="display: none;"></div>
         <ul id="schedule-list">
             <!-- Schedule items will be dynamically loaded from Firebase -->
         </ul>
     </section>
 </main>
+</div>
 
 <footer id="contact">
-    <p>If you have any questions or would like to request a performance, please contact us at the following email address:</p>
+    <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
     <p><a href="mailto:info@example.com">info@example.com</a></p>
     <div class="social-icons">
         <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
     </div>
-    <p>&copy; 2025 Shakuhachi Artist Erika Ishibashi</p>
+    <p>&copy; 2025 尺八奏者 石橋紅童</p>
 </footer>
 
 <script>
@@ -544,14 +559,18 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     
-    // Function to format date for display
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
-    }
     
-    // Function to load schedule from Firebase
+    // Function to format date for display in Japanese
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('ja-JP', options); // Use 'ja-JP' for Japanese date format
+}
+
+
+    
+    // Function to load schedule from Firebase with language filtering
     async function loadSchedule() {
         const scheduleList = document.getElementById('schedule-list');
         const loadingMessage = document.getElementById('loading-message');
@@ -562,8 +581,9 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             
-            // Get schedules from Firebase, ordered by date
+            // Get schedules from Firebase that are in English, ordered by date
             const snapshot = await db.collection('schedules')
+                .where('language', '==', 'ja') // Only get English events
                 .orderBy('date')
                 .get();
                 
@@ -589,6 +609,7 @@
                     // Format the title and date for display
                     const formattedDate = formatDate(event.date);
                     
+                    // Create HTML for the event
                     listItem.innerHTML = `
                         <details class="c-accordion">
                             <summary class="c-accordion__header">
@@ -599,8 +620,9 @@
                             <div class="c-accordion__content">
                                 ${event.image ? `<img src="${event.image}" alt="${event.title}" class="event-image">` : ''}
                                 <p>${event.title}</p>
-                                <p><strong>Time:</strong> ${event.time}</p>
-                                <p><strong>Location:</strong> ${event.location}</p>
+                                <p><strong>日時:</strong> ${event.date}　${event.time}</p>
+                                <p><strong>場所:</strong> ${event.location}</p>
+                                <p><strong>詳細:</strong> ${event.details}</p>
                             </div>
                         </details>
                     `;
@@ -627,11 +649,8 @@
     
     function setLanguage(lang) {
         if (lang === 'en') {
-            location.href = 'schedule2.html'; // 英語ページに遷移
-        } else if (lang === 'ja') {
-            location.href = 'schedule.html'; // 日本語ページに遷移
-        }
-    }
+            location.href = 'scheduleE.html'; // Navigate to English page
+        } }
 
     // Close the menu when clicking a navigation link
     document.querySelectorAll('.nav a').forEach(function(link) {
@@ -641,13 +660,14 @@
     });
 </script>
 
+
 <script>
     // ヘッダー要素を取得
     const languageToggle = document.querySelector('.language-toggle');
 
     // スクロールイベントをリスン
     window.addEventListener('scroll', function() {
-        // スクロール量が100pxを超えたらボタン位置を変更
+        // スクロール量が600pxを超えたらボタン位置を変更
         if (window.scrollY > 600) {
             languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
         } else {
@@ -659,9 +679,9 @@
 <script>
     function detectSafariOnIPhone13Mini() {
         var ua = navigator.userAgent;
-        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
+        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Safariを検出
         var isIPhone = /iPhone/i.test(ua);
-        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
+        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 miniの画面サイズ
 
         if (isSafari && isIPhone && isMini) {
             document.body.classList.add("safari-iphone13mini");
