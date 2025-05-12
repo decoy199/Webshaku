@@ -20,19 +20,22 @@
                     line-height: 1.8;
                     margin: 0;
                     padding: 0;
+                    
+                    z-index: 1;
                     color: #0b0b0b;
                     display: flex;
                     flex-direction: column;
                     min-height: 100vh;
-                    
                 }
         
          /* Header Adjustments */
+        
+        
          header {
-          
-            position: fixed; /* これはすでにOK */
-            z-index: 9999;   /* 一番前面に */
-    }
+                  
+                  position: fixed; /* これはすでにOK */
+                  z-index: 9999;   /* 一番前面に */
+          }
         
         
         header h1 {
@@ -46,7 +49,6 @@
             top: 30%;
             transform: translateY(0);
             font-size: 4rem;
-            
         }
         
         header h1 span.name {
@@ -59,6 +61,12 @@
             font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
         }
         
+        h3{
+            
+            position: fixed;
+            top: 40%;         /* Center vertically */
+            right: 3px; 
+        }
         
          /* Menu and header overlap adjustment */
         .menu {
@@ -171,9 +179,9 @@
             
         
         
-            .loader {
+          .loader {
             position: fixed;  /* Make sure it stays fixed on the screen */
-            top: 50%;         /* Center vertically */
+            top: 7%;         /* Center vertically */
             left: 50%;        /* Center horizontally */
             transform: translate(-50%, -50%);  /* Adjust for perfect centering */
             z-index: 90;
@@ -181,99 +189,127 @@
             width: auto;
             height: auto;
         }
-
+        
         @media only screen and (max-width: 375px) and (max-height: 812px) {
             .loader {
-                top: 40%;  /* Adjust the top position for smaller screens */
+                top: 8%;  /* Adjust the top position for smaller screens */
                 left: 50%; /* Keep horizontally centered */
                 transform: translate(-50%, -50%);  /* Ensure it's centered properly */
                 height: 30px;  /* Adjust loader height for smaller screens */
             }
-
+        
             .loader span {
                 font-size: 24px;  /* Adjust font size */
             }
         }
-
-
-
+        
+        
+        
+        
         .loader span {
-        position: absolute;
-        color: #fff;
-        transform: translate(-50%, -50%);
-        font-size: 38px;
-        letter-spacing: 5px;
+          position: absolute;
+          color: #fff;
+          transform: translate(-50%, -50%);
+          font-size: 38px;
+          letter-spacing: 5px;
         }
-
-
+        
+        
         @media only screen and (max-width: 375px) and (max-height: 812px) {
             .loader {
-                height: 30px; /* Smaller height for iPhone 13 mini */
+                height: 35px; /* Smaller height for iPhone 13 mini */
                 left: 55%;
             }
-
+        
             .loader span {
                 font-size: 24px; /* Smaller font size for iPhone 13 mini */
             }
         }
-
+        
         .loader span:nth-child(1) {
-        color: transparent;
-        -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+          color: transparent;
+          -webkit-text-stroke: 0.3px rgb(128, 198, 255);
         }
-
+        
         .loader span:nth-child(2) {
-        color: rgb(128, 198, 255);
-        -webkit-text-stroke: 1px rgb(128, 198, 255);
-        animation: uiverse723 3s ease-in-out infinite;
+          color: rgb(128, 198, 255);
+          -webkit-text-stroke: 1px rgb(128, 198, 255);
+          animation: uiverse723 3s ease-in-out infinite;
         }
-
+        
         @keyframes uiverse723 {
-        0%, 100% {
+          0%, 100% {
             clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-            54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-        }
-
-        50% {
+             54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+          }
+        
+          50% {
             clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-            51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+             51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+          }
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        a.btn_21 {
+            display: flex; /* from 'flex items-center justify-center' */
+            align-items: center; /* from 'items-center' */
+            justify-content: center; /* from 'justify-center' */
+            text-align: center;
+            vertical-align: middle;
+            text-decoration: none;
+            width: 200px;
+            margin: auto; /* from 'mx-auto' */
+            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            font-weight: bold;
+            border: 2px solid #1557e7;
+            background: #deb068; /* from 'bg-black' */
+            color: #fff; /* from 'text-white' */
+            border-radius: 9999px; /* from 'rounded-full' */
+            transition: 0.5s;
+            animation: move_c 1s infinite;
+        }
+        @keyframes move_c {
+            0% {transform: translate(0px, 0)}
+            50% {transform: translate(0px, 0) rotateZ(5deg)}
+        }
+        a.btn_21:hover {
+            color: #1557e7;
+            background: #fff;
         }
 
 
-                
-                
-                
-                
-                a.btn_21 {
-                    display: flex; /* from 'flex items-center justify-center' */
-                    align-items: center; /* from 'items-center' */
-                    justify-content: center; /* from 'justify-center' */
-                    text-align: center;
-                    vertical-align: middle;
-                    text-decoration: none;
-                    width: 200px;
-                    margin: auto; /* from 'mx-auto' */
-                    padding: 0.5rem 1rem; /* from 'py-2 px-4' */
-                    font-weight: bold;
-                    border: 2px solid #27acd9;
-                    background: #000; /* from 'bg-black' */
-                    color: #fff; /* from 'text-white' */
-                    border-radius: 9999px; /* from 'rounded-full' */
-                    transition: 0.5s;
-                    animation: move_c 1s infinite;
-                }
-                @keyframes move_c {
-                    0% {transform: translate(0px, 0)}
-                    50% {transform: translate(0px, 0) rotateZ(5deg)}
-                }
-                a.btn_21:hover {
-                    color: #27acd9;
-                    background: #fff;
-                }
-                
-        
-        
+        a.btn_22 {
+            display: flex; /* from 'flex items-center justify-center' */
+            align-items: center; /* from 'items-center' */
+            justify-content: center; /* from 'justify-center' */
+            text-align: center;
+            vertical-align: middle;
+            text-decoration: none;
+            width: 200px;
+            margin: auto; /* from 'mx-auto' */
+            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            font-weight: bold;
+            border: 2px solid #df508b;
+            background: #deb068; /* from 'bg-black' */
+            color: #fff; /* from 'text-white' */
+            border-radius: 9999px; /* from 'rounded-full' */
+            transition: 0.5s;
+            animation: move_c 1s infinite;
+        }
+        @keyframes move_c {
+            0% {transform: translate(0px, 0)}
+            50% {transform: translate(0px, 0) rotateZ(5deg)}
+        }
+        a.btn_22:hover {
+            color: #df508b;
+            background: #fff;
+        }
           /* Footer */
  
  footer {
@@ -287,6 +323,7 @@
             bottom: 0;
             width: 100%;
             margin-top: auto;
+            
         }
 
         footer a {
@@ -326,10 +363,12 @@
             }
             header h1 {
                 font-size: 2rem;
-                right: 20px; /* Mobile margin from right */
+                right: 18px; /* Mobile margin from right */
                 top: 10%; /* Maintain proper margin from top */
                 writing-mode: vertical-lr; /* Mobile vertical writing direction */
             }
+
+            
         
             header p {
                 font-size: 1rem;
@@ -351,7 +390,7 @@
         
     </style>
 </head>
-<body class="bg-cover bg-center" >
+
 <header>
     <a href="main3.html" id="clickable-load">  
         <div class="loader">
@@ -359,6 +398,8 @@
             <span>SHAKUHACHI</span>
         </div>
     </a>
+
+    
 
     <input type="checkbox" id="menu" />
     <label for="menu" class="menu">
@@ -369,6 +410,7 @@
 
     <nav class="nav">
         <ul>
+            <li><a href="main3.html">ホーム</a></li>
             <li><a href="schedule2.html">スケジュール</a></li>
             <li><a href="appearance.html">過去の出演情報</a></li>
             <li><a href="contact.html">お問い合わせ</a></li>
@@ -379,7 +421,8 @@
         <button onclick="setLanguage('en')">EN</button>
     </div>
 </header>
-    <body>
+<body class="bg-cover bg-center">
+    
     <title>
         Contact Page
        </title>
@@ -387,25 +430,25 @@
        </script>
        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
       </head>
-      <!---->
-      <div class="flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-50 pt-16 md:pt-32 relative z-[2]">
+      
+        <div class="flex flex-col items-center justify-center min-h-screen  pt-6 md:pt-14 relative z-[2]">
         <h1 class="text-white text-xl mb-8">
          
         </h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 md:mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 md:mt-20">
           <!-- X (Twitter) Section -->
           <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10">
 
             <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
-              X (旧Twitter)
+              facebook
             </div>
-            <img alt="X icon" class="mx-auto mb-4" height="50" src="twitter-x-logo-42554 copy.png" width="50"/>
+            <img alt="X icon" class="mx-auto mb-4" height="50" src="facebook.png" width="50"/>
             <p class="text-lg font-semibold mb-2">
-              最新情報をチェック
+              石橋紅童
             </p>
-            <a href="https://x.com/bashi_eri" target="_blank" class="btn_21">
+            <a href="https://m.facebook.com/ishibashikodo/" target="_blank" class="btn_21">
               こちらから
-              <i class="fab fa-twitter"></i>
+              <i class="fab fa-facebook"></i>
             </a>
           </div>
 
@@ -416,10 +459,10 @@
             </div>
             <img alt="Mail icon" class="mx-auto mb-4" height="50" width="50" src="email.png"/>
             <p class="text-lg font-semibold mb-2">
-              メールでお問い合わせ
+                kodo.bambooflute@gmail.com
             </p>
             <button class="bg-black text-white py-2 px-4 rounded-full flex items-center justify-center mx-auto">
-              メールフォームへ
+              メールへ
               <i class="fas fa-arrow-right ml-2"></i>
             </button>
           </div>
@@ -431,9 +474,9 @@
             </div>
             <img alt="Instagram icon" class="mx-auto mb-4" height="50" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="50"/>
             <p class="text-lg font-semibold mb-2">
-              写真や動画をチェック
+              0425erikaaa
             </p>
-            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_21">
+            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_22">
               こちらから
               <i class="fas fa-arrow-right ml-2"></i>
             </a>
@@ -446,4 +489,21 @@
 <footer>
         <p>&copy; 2025 尺八奏者 石橋紅童</p>
 </footer>
+
+<script>
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'contactE.html'; // 英語ページに遷移
+        } else if (lang === 'ja') {
+            location.href = 'contact.html'; // 日本語ページに遷移
+        }
+    }
+    
+    // ナビゲーションメニューのリンククリックでメニューを閉じる
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // メニューを閉じる
+        });
+    });
+    </script>
 </html>

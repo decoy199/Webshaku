@@ -313,32 +313,36 @@
         }
 
         .leaf {
-            position: absolute;
-            width: 50px;
-            height: auto;
-            opacity: 1;
-            will-change: transform, opacity;
-            animation: fall 20s linear infinite; /* Increased duration */
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-
-        @keyframes fall {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
-        }
-
-        .safari-iphone13mini .leaf {
-            animation: fall-safari 10s linear infinite; /* Longer animation for Safari */
-            opacity: 1 !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
-
-        @keyframes fall-safari {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 120vh, 0) rotate(180deg); opacity: 0.8; }
-        }
+                   position: absolute;
+                   width: 50px;
+                   height: auto;
+                   opacity: 1;
+                   will-change: transform, opacity;
+                   animation: fall 20s linear infinite; 
+                   transform: translateZ(0);
+                   backface-visibility: hidden;
+                   z-index: 1000; /* Increase the z-index */
+                   pointer-events: none; /* Ensures it does not interfere with clicks */
+               }
+       
+       
+               @keyframes fall {
+                   0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+                   100% { transform: translate3d(0, 200vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
+               }
+       
+               .safari-iphone13mini .leaf {
+                   animation: fall-safari 20s linear infinite; /* Longer animation for Safari */
+                   opacity: 1 !important;
+                   transform: translate3d(0, 0, 0) !important;
+               }
+       
+               @keyframes fall-safari {
+                   0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+                   50% { opacity: 0.9; }
+                   100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
+               }
+       
 
         /* Main content */
         main {
@@ -396,9 +400,12 @@
         
         .event-image {
             max-width: 100%;
+            max-height: 500px; /* Set a max height */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 5px;
             margin-bottom: 10px;
         }
+
 
         /* Loading spinner */
         .loading {
@@ -494,6 +501,7 @@
 
     <nav class="nav">
         <ul>
+            <li><a href="english_version.html">HOME</a></li>
             <li><a href="scheduleE.html">SCHEDULE</a></li>
             <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
             <li><a href="contactE.html">CONTACT</a></li>
@@ -525,11 +533,10 @@
 
 <footer id="contact">
     <p>If you have any questions or performance requests, fell free to contact the following email or Instagram direct message:</p>
-    <p><a href="mailto:info@example.com">info@example.com</a></p>
+    <p><a href="mailto:kodo.bambooflute@gmail.com">kodo.bambooflute@gmail.com</a></p>
     <div class="social-icons">
         <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/bashi_eri" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    </div>
+        <a href="https://m.facebook.com/ishibashikodo/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
     <p>&copy; 2025 Shakuhachi Artist Kodo Ishibashi</p>
 </footer>
 

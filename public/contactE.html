@@ -175,7 +175,7 @@ header h1 span.title {
 
   .loader {
     position: fixed;  /* Make sure it stays fixed on the screen */
-    top: 50%;         /* Center vertically */
+    top: 7%;         /* Center vertically */
     left: 50%;        /* Center horizontally */
     transform: translate(-50%, -50%);  /* Adjust for perfect centering */
     z-index: 90;
@@ -186,7 +186,7 @@ header h1 span.title {
 
 @media only screen and (max-width: 375px) and (max-height: 812px) {
     .loader {
-        top: 40%;  /* Adjust the top position for smaller screens */
+        top: 8%;  /* Adjust the top position for smaller screens */
         left: 50%; /* Keep horizontally centered */
         transform: translate(-50%, -50%);  /* Ensure it's centered properly */
         height: 30px;  /* Adjust loader height for smaller screens */
@@ -211,7 +211,7 @@ header h1 span.title {
 
 @media only screen and (max-width: 375px) and (max-height: 812px) {
     .loader {
-        height: 30px; /* Smaller height for iPhone 13 mini */
+        height: 35px; /* Smaller height for iPhone 13 mini */
         left: 55%;
     }
 
@@ -250,32 +250,61 @@ header h1 span.title {
 
 
 
+ 
 a.btn_21 {
-	display: flex; /* from 'flex items-center justify-center' */
-	align-items: center; /* from 'items-center' */
-	justify-content: center; /* from 'justify-center' */
-	text-align: center;
-	vertical-align: middle;
-	text-decoration: none;
-	width: 200px;
-	margin: auto; /* from 'mx-auto' */
-	padding: 0.5rem 1rem; /* from 'py-2 px-4' */
-	font-weight: bold;
-	border: 2px solid #27acd9;
-	background: #000; /* from 'bg-black' */
-	color: #fff; /* from 'text-white' */
-	border-radius: 9999px; /* from 'rounded-full' */
-	transition: 0.5s;
-	animation: move_c 1s infinite;
-}
-@keyframes move_c {
-    0% {transform: translate(0px, 0)}
-    50% {transform: translate(0px, 0) rotateZ(5deg)}
-}
-a.btn_21:hover {
-	color: #27acd9;
-	background: #fff;
-}
+            display: flex; /* from 'flex items-center justify-center' */
+            align-items: center; /* from 'items-center' */
+            justify-content: center; /* from 'justify-center' */
+            text-align: center;
+            vertical-align: middle;
+            text-decoration: none;
+            width: 200px;
+            margin: auto; /* from 'mx-auto' */
+            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            font-weight: bold;
+            border: 2px solid #1557e7;
+            background: #deb068; /* from 'bg-black' */
+            color: #fff; /* from 'text-white' */
+            border-radius: 9999px; /* from 'rounded-full' */
+            transition: 0.5s;
+            animation: move_c 1s infinite;
+        }
+        @keyframes move_c {
+            0% {transform: translate(0px, 0)}
+            50% {transform: translate(0px, 0) rotateZ(5deg)}
+        }
+        a.btn_21:hover {
+            color: #1557e7;
+            background: #fff;
+        }
+
+
+        a.btn_22 {
+            display: flex; /* from 'flex items-center justify-center' */
+            align-items: center; /* from 'items-center' */
+            justify-content: center; /* from 'justify-center' */
+            text-align: center;
+            vertical-align: middle;
+            text-decoration: none;
+            width: 200px;
+            margin: auto; /* from 'mx-auto' */
+            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            font-weight: bold;
+            border: 2px solid #df508b;
+            background: #deb068; /* from 'bg-black' */
+            color: #fff; /* from 'text-white' */
+            border-radius: 9999px; /* from 'rounded-full' */
+            transition: 0.5s;
+            animation: move_c 1s infinite;
+        }
+        @keyframes move_c {
+            0% {transform: translate(0px, 0)}
+            50% {transform: translate(0px, 0) rotateZ(5deg)}
+        }
+        a.btn_22:hover {
+            color: #df508b;
+            background: #fff;
+        }
 
 
 
@@ -372,6 +401,7 @@ a.btn_21:hover {
 
     <nav class="nav">
         <ul>
+            <li><a href="english_version.html">HOME</a></li>
             <li><a href="scheduleE.html">SCHEDULE</a></li>
             <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
             <li><a href="contactE.html">CONTACT</a></li>
@@ -391,7 +421,7 @@ a.btn_21:hover {
        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
       </head>
       
-        <div class="flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-50 pt-16 md:pt-32 relative z-[2]">
+        <div class="flex flex-col items-center justify-center min-h-screen pt-6 md:pt-19 relative z-[2]">
         <h1 class="text-white text-xl mb-8">
          
         </h1>
@@ -400,15 +430,15 @@ a.btn_21:hover {
          <!-- X (Twitter) Section -->
         <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10">
             <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
-            X (formerly Twitter)
+            Facebook
             </div>
-            <img alt="X icon" class="mx-auto mb-4" height="50" src="twitter-x-logo-42554 copy.png" width="50"/>
+            <img alt="X icon" class="mx-auto mb-4" height="50" src="facebook.png" width="50"/>
             <p class="text-lg font-semibold mb-2">
-            Check Latest Updates
+            Kodo Ishibashi
             </p>
-            <a href="https://x.com/bashi_eri" target="_blank" class="btn_21">
+            <a href="https://m.facebook.com/ishibashikodo/" target="_blank" class="btn_21">
             Click Here
-            <i class="fab fa-twitter"></i>
+            <i class="fab fa-facebook"></i>
             </a>
         </div>
   
@@ -421,7 +451,7 @@ a.btn_21:hover {
           </div>
           <img alt="Mail icon" class="mx-auto mb-4" height="50" src="email.png" width="50"/>
           <p class="text-lg font-semibold mb-2">
-           Contact by Email
+            kodo.bambooflute@gmail.com
           </p>
           <button class="bg-black text-white py-2 px-4 rounded-full flex items-center justify-center mx-auto">
            Email Form
@@ -436,9 +466,9 @@ a.btn_21:hover {
             </div>
             <img alt="Instagram icon" class="mx-auto mb-4" height="50" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="50"/>
             <p class="text-lg font-semibold mb-2">
-            View Photos and Videos
+                0425erikaaa
             </p>
-            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_21">
+            <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_22">
             Click Here
             <i class="fas fa-arrow-right ml-2"></i>
             </a>
@@ -450,4 +480,22 @@ a.btn_21:hover {
 
             <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
 </footer>
- <html
+
+
+<script>
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'contactE.html'; // 英語ページに遷移
+        } else if (lang === 'ja') {
+            location.href = 'contact.html'; // 日本語ページに遷移
+        }
+    }
+    
+    // ナビゲーションメニューのリンククリックでメニューを閉じる
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false; // メニューを閉じる
+        });
+    });
+    </script>
+ <html>
