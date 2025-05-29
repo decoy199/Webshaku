@@ -67,35 +67,29 @@
 
 
         .leaf {
-            position: absolute;
-            width: 50px;
-            height: auto;
-            opacity: 1;
-            will-change: transform, opacity;
-            animation: fall 20s linear infinite; 
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            z-index: 1000; /* Increase the z-index */
-            pointer-events: none; /* Ensures it does not interfere with clicks */
-        }
-
-
-        @keyframes fall {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 200vh, 0) rotate(360deg); opacity: 0.8; } /* Increased falling distance */
-        }
-
-        .safari-iphone13mini .leaf {
-            animation: fall-safari 20s linear infinite; /* Longer animation for Safari */
-            opacity: 1 !important;
-            transform: translate3d(0, 0, 0) !important;
-        }
-
-        @keyframes fall-safari {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
-        }
+    position: absolute;
+    width: 50px;
+    height: auto;
+    opacity: 0.8;
+    will-change: transform, opacity; /* Good for performance */
+    animation: fall 20s linear infinite; /* Increased duration */
+    transform: translateZ(0); /* Promotes hardware acceleration */
+    backface-visibility: hidden; /* Promotes hardware acceleration */
+}
+@keyframes fall {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; }
+}
+.safari-iphone13mini .leaf {
+    animation: fall-safari 35s linear infinite; /* Longer animation for Safari */
+    opacity: 1 !important;
+    transform: translate3d(0, 0, 0) !important;
+}
+@keyframes fall-safari {
+    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+    50% { opacity: 0.9; }
+    100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
+}
 
 
 
@@ -584,11 +578,11 @@
     
         <p>After graduating from the Tokyo University of the Arts Music Affiliated High School and the Bachelor of Japanese Traditional Music (Shakuhachi).She enrolled to the Master's program at the same university and complete in April 2025.</p>
     
-        <p>During her studies, she has studied under master shakuhachi performer such as Reibo Aoki, Komei Takemura, Yosuke Kawase, Hozan Nomura, and Tsuneo Yoshida.</p>
-        <p>She has received awards such as the "Ataka Prize," "Ryohei Miyata Prize," "Dou Voice Society Prize," and "Acanthus Music Award" during her undergraduate years.</p>
-        <p>She performed at the "2022 Music University Graduates Concert" held at the Imperial Palace's Momokaku Hall.</p>
+        <p>During her studies, she has studied under master shakuhachi performer such as Reibo Aoki, Komei Takemura, Yosuke Kawase, Hozan Nomura, and Dozan Fujiwara.</p>
+        <p>She has received awards such as the "Ataka Prize," "Ryohei Miyata Prize," "Dousei Society Prize," and "Acanthus Music Award" during her undergraduate years.</p>
+        <p>She performed at the "2022 Music University Graduates Concert" held at the Imperial Palace's Tokagakudo.</p>
         <p>In addition to classical works, she actively engages with pop music and contemporary Japanese music, expanding her repertoire.</p>
-        <p>Member of the Japanese Sankyoku Association, Koto-Ko-Ryu Association, Setagaya Sankyoku Association, and Dou Voice Society.</p>
+        <p>Member of the Japanese Sankyoku Association, Kinko-style Association, Setagaya Sankyoku Association, and Dousei Society.</p>
     </main>
     
     <footer id="contact">
