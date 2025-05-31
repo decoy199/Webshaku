@@ -8,29 +8,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakuhachi Player Kodo Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.js"></script>
     <style>
- 
- html {
-    margin: 0;
-    padding: 0;
-    background-color: #F7EAD9;
-    
-}
-        /* 全体のスタイル */
+        html {
+            margin: 0;
+            padding: 0;
+            background-color: #F7EAD9;
+        }
+        
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            
-            
             color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
-        /* ヘッダーの調整 */
         header {
             position: relative;
             color: #333;
@@ -46,80 +44,63 @@
             background-attachment: fixed;
             height: 86vh;
             background-color: rgba(0, 0, 0, 0);
-            opacity: 0; /* Initially hidden */
+            opacity: 0;
             animation: fadeInBg 3s ease-in-out forwards;
             animation-delay: 0.5s;
         }
 
-
         @keyframes fadeInBg {
-            0% {
-                opacity: 0;
-                
-            }
-            100% {
-                opacity: 1;
-                
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-
-
-
         .leaf {
-    position: absolute;
-    width: 50px;
-    height: auto;
-    opacity: 0.8;
-    will-change: transform, opacity; /* Good for performance */
-    animation: fall 20s linear infinite; /* Increased duration */
-    transform: translateZ(0); /* Promotes hardware acceleration */
-    backface-visibility: hidden; /* Promotes hardware acceleration */
-}
-@keyframes fall {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; }
-}
-.safari-iphone13mini .leaf {
-    animation: fall-safari 35s linear infinite; /* Longer animation for Safari */
-    opacity: 1 !important;
-    transform: translate3d(0, 0, 0) !important;
-}
-@keyframes fall-safari {
-    0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-    50% { opacity: 0.9; }
-    100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
-}
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 0.8;
+            will-change: transform, opacity;
+            animation: fall 20s linear infinite;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
 
+        @keyframes fall {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; }
+        }
 
+        .safari-iphone13mini .leaf {
+            animation: fall-safari 35s linear infinite;
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
 
-                /* ヘッダーが透明になる状態 */
-                header.hidden {
-                    opacity: 0; /* 透明度を0に */
-                }
+        @keyframes fall-safari {
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+            50% { opacity: 0.9; }
+            100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
+        }
 
+        header.hidden {
+            opacity: 0;
+        }
 
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 
-                header::before {
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    
-                    
-                    
-                }
-
-
-                
         header h1 {
             margin: 0;
             font-size: 2.8rem;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* Keep vertical writing */
+            writing-mode: vertical-rl;
             position: absolute;
             right: 20%; 
             top: 30%;
@@ -128,13 +109,13 @@
         }
 
         header h1 span.name {
-            font-size: 3rem; /* Make Kodo Ishibashi larger */
+            font-size: 3rem;
             font-weight: bold;
             display: block;
         }
 
         header h1 span.title {
-            font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
+            font-size: 1.5rem;
         }
 
         header p{
@@ -147,18 +128,18 @@
             font-size: 2.8rem;
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            writing-mode: vertical-rl; /* 縦書きにする */
+            writing-mode: vertical-rl;
             position: absolute;
-            right: 20%; /* 右端から20%の位置に変更（少し中央寄り） */
-            top: 10%; /* 上から40%の位置に変更（真ん中寄り） */
-            transform: translateY(0); /* 水平方向は変えず、垂直方向のみ調整 */
-            font-size: 4rem; /* フォントサイズ調整 */
+            right: 20%;
+            top: 10%;
+            transform: translateY(0);
+            font-size: 4rem;
         }
 
         header p {
             font-size: 1.1rem;
             color: #180614;
-            margin-top: 100px; /* pの位置調整 */
+            margin-top: 100px;
         }
 
         header .profile {
@@ -172,10 +153,8 @@
             display: inline-block;
             max-width: 600px;
             text-align: left;
-            
         }
 
-        /* メニューとヘッダーが重ならないようにするための調整 */
         .menu {
             position: fixed;
             top: 20px;
@@ -191,6 +170,7 @@
             cursor: pointer;
             z-index: 200;
         }
+
         .menu span {
             display: block;
             width: 50%;
@@ -213,7 +193,6 @@
             left: 0;
         }
 
-        /* サイドメニュー */
         .nav {
             position: fixed;
             top: 0;
@@ -249,7 +228,6 @@
             background-color: #444;
         }
 
-        /* 言語切替ボタンの位置調整 */
         .language-toggle {
             position: fixed;
             top: 20px;
@@ -258,12 +236,12 @@
             gap: 10px;
             z-index: 3;
         }
-        /* mainの下に移動するためのクラス */
+
         .language-toggle-scrolled {
-                position: absolute;
-                top: calc(100vh + 20px); /* mainの下に配置 */
-                right: 20px;
-            }
+            position: absolute;
+            top: calc(100vh + 20px);
+            right: 20px;
+        }
 
         .language-toggle button {
             background-color: #deb068;
@@ -280,9 +258,6 @@
             color: #804000;
         }
 
-
-
-        /* アニメーション */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -294,15 +269,12 @@
             }
         }
 
-
-
         .scroll-container {
             position: absolute;
-            top: 92%; /* Adjust as needed */
+            top: 92%;
             left: 50%;
             transform: translateX(-50%);
             z-index: 20;
-            
         }
 
         .scroll-down {
@@ -314,11 +286,10 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.8s;
-            
         }
+
         .scroll-container:hover {
             z-index: 20;
-
         }
 
         .scroll-down:hover {
@@ -327,17 +298,12 @@
             z-index: 0;
         }
 
-        /* Hide the button on larger screens */
         @media (min-width: 480px) {
             .scroll-container {
-                display: none; /* Hide the button on larger screens */
+                display: none;
             }
         }
 
-
-
-
-                /* メインコンテンツ */
         main {
             flex: 1;
             padding: 2rem;
@@ -348,9 +314,9 @@
             background-repeat: no-repeat;
             background-position: center top;
             background-attachment: fixed;
-            margin-top: -30px; /* 位置を上に移動 */
-            opacity: 0;  /* 初期状態で非表示 */
-            transform: translateY(50px); /* 下からフェードインするように */
+            margin-top: -30px;
+            opacity: 0;
+            transform: translateY(50px);
             transition: opacity 1s ease-out, transform 1s ease-out;
             z-index: -1;
         }
@@ -359,9 +325,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-
-
 
         section {
             margin-bottom: 3rem;
@@ -378,29 +341,28 @@
             text-indent: 1em;
         }
 
-        /* フッター */
         footer {
-        height: auto; 
-        min-height: 10px; /* 高さを少し低く設定 */
-        padding: 1rem 0; /* 上下の余白を調整 */
-        font-size: 14px; /* フォントサイズを少し小さく */
-        background-color: #9DBDAE;
-        color: #fff;
-        text-align: center;
-        bottom: 0;
-        width: 100%;
-        margin-top: auto;
-    }
+            height: auto; 
+            min-height: 10px;
+            padding: 1rem 0;
+            font-size: 14px;
+            background-color: #9DBDAE;
+            color: #fff;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+        }
 
-    footer a {
-        color: #ffdbac;
-        text-decoration: none;
-        font-weight: bold;
-    }
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-    footer a:hover {
-        text-decoration: underline;
-    }
+        footer a:hover {
+            text-decoration: underline;
+        }
 
         .event-detail {
             margin-top: 1rem;
@@ -417,172 +379,153 @@
             border-radius: 8px;
         }
 
-    @media (max-width: 767px) {
-
-    header h1 {
-        font-size: 2rem;
-        right: 20px; /* スマホサイズでは右端に少し余裕 */
-        top: 10%; /* スマホでも上の余白を適切に調整 */
-        writing-mode: vertical-lr; /* スマホでは右から左に表示 */
-    }
-
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* スマホではpの位置を調整 */
-    }
-
-    .menu {
-        top: 10px; /* メニューの位置を調整 */
-        left: 10px;
-    }
-
-    .language-toggle {
-        top: 10px; /* 言語ボタンの位置を調整 */
-        right: 10px;
-    }
-
-    header .profile {
-            margin: 2rem 0 1.5rem;
-            color: #fff;
-            font-size: 0.7rem;
-            line-height: 1.8;
-            background: rgba(0, 0, 0, 0);
-            padding: 1rem;
-            border-radius: 10px;
-            display: inline-block;
-            max-width: 600px;
-            text-align: left;
-            
-        }
-
-
-    
-    
-}
-
-        /* スマホサイズ対応 */
-
-        
-        @media (max-width: 500px) {
-        header {
-            position: relative;
-            color: #333;
+        .loading {
             text-align: center;
-            padding: 0;
-            overflow: hidden;
-            background-image: url('profile1.jpg');
-            background-position: center;
-            background-size: contain; /* 最初は少し大きめ */
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center top;
-            background-attachment: fixed;
-            height: 82vh;
-            background-color: rgba(0, 0, 0, 0);
-            opacity: 0; /* Initially hidden */
-            animation: fadeInBg 3s ease-in-out forwards;
-            animation-delay: 0.5s;
+            padding: 20px;
+            color: #804000;
         }
 
-
-        @keyframes fadeInBg {
-            0% {
-                opacity: 0;
-                
-            }
-            100% {
-                opacity: 1;
-                
-            }
-        }
+        @media (max-width: 767px) {
             header h1 {
                 font-size: 2rem;
-                right: 20px; /* スマホサイズでは右端に少し余裕 */
-                top: 10%; /* スマホでも上の余白を適切に調整 */
-                writing-mode: vertical-lr; /* スマホでは右から左に表示 */
+                right: 20px;
+                top: 10%;
+                writing-mode: vertical-lr;
             }
 
             header p {
                 font-size: 1rem;
-                margin-top: 20px; /* スマホではpの位置を調整 */
+                margin-top: 20px;
             }
 
             .menu {
-                top: 10px; /* メニューの位置を調整 */
+                top: 10px;
                 left: 10px;
             }
 
             .language-toggle {
-                top: 10px; /* 言語ボタンの位置を調整 */
+                top: 10px;
                 right: 10px;
             }
 
             header .profile {
-                    margin: 2rem 0 1.5rem;
-                    color: #fff;
-                    font-size: 0.7rem;
-                    line-height: 1.8;
-                    background: rgba(0, 0, 0, 0);
-                    padding: 1rem;
-                    border-radius: 10px;
-                    display: inline-block;
-                    max-width: 600px;
-                    text-align: left;
-                    
-                }
+                margin: 2rem 0 1.5rem;
+                color: #fff;
+                font-size: 0.7rem;
+                line-height: 1.8;
+                background: rgba(0, 0, 0, 0);
+                padding: 1rem;
+                border-radius: 10px;
+                display: inline-block;
+                max-width: 600px;
+                text-align: left;
+            }
         }
 
+        @media (max-width: 500px) {
+            header {
+                position: relative;
+                color: #333;
+                text-align: center;
+                padding: 0;
+                overflow: hidden;
+                background-image: url('profile1.jpg');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center top;
+                background-attachment: fixed;
+                height: 82vh;
+                background-color: rgba(0, 0, 0, 0);
+                opacity: 0;
+                animation: fadeInBg 3s ease-in-out forwards;
+                animation-delay: 0.5s;
+            }
+
+            @keyframes fadeInBg {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            header h1 {
+                font-size: 2rem;
+                right: 20px;
+                top: 10%;
+                writing-mode: vertical-lr;
+            }
+
+            header p {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+
+            .menu {
+                top: 10px;
+                left: 10px;
+            }
+
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            header .profile {
+                margin: 2rem 0 1.5rem;
+                color: #fff;
+                font-size: 0.7rem;
+                line-height: 1.8;
+                background: rgba(0, 0, 0, 0);
+                padding: 1rem;
+                border-radius: 10px;
+                display: inline-block;
+                max-width: 600px;
+                text-align: left;
+            }
+        }
     </style>
-
-
 </head>
 <body>
     <header>
-    <input type="checkbox" id="menu" />
-    <label for="menu" class="menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
+        <input type="checkbox" id="menu" />
+        <label for="menu" class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
 
-    <nav class="nav">
-        <ul>
-            <li><a href="english_version.html">HOME</a></li>
-            <li><a href="scheduleE.html">SCHEDULE</a></li>
-            <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
-            <li><a href="contactE.html">CONTACT</a></li>
-        </ul>
-    </nav>
-    
-    <h1>
-        <span class="name">Kodo Ishibashi</span>
-        <span class="title">Shakuhachi Performer</span>
-    </h1>
-    
-    <div class="language-toggle">
-        <button onclick="setLanguage('ja')">JP</button>
-    </div>
-    <div class="scroll-container">
-        <button class="scroll-down" onclick="scrollToMain()">↓</button>
-    </div>
+        <nav class="nav">
+            <ul>
+                <li><a href="english_version.html">HOME</a></li>
+                <li><a href="scheduleE.html">SCHEDULE</a></li>
+                <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
+                <li><a href="contactE.html">CONTACT</a></li>
+            </ul>
+        </nav>
+        
+        <h1>
+            <span class="name">Kodo Ishibashi</span>
+            <span class="title">Shakuhachi Performer</span>
+        </h1>
+        
+        <div class="language-toggle">
+            <button onclick="setLanguage('ja')">JP</button>
+        </div>
+        <div class="scroll-container">
+            <button class="scroll-down" onclick="scrollToMain()">↓</button>
+        </div>
     </header>
     
     <div class="glow glow-lantern"></div>
     <img src="sakura2.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
     <img src="sakura5.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
     <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
-    </div>
     
     <main>
-        <p>Born in 2000 in Tokyo, Kodo began studying under Haruto Fujii after participating in a trial class held by the Setagaya Sankyoku Association at the age of 9.</p>
-    
-        <p>After graduating from the Tokyo University of the Arts Music Affiliated High School and the Bachelor of Japanese Traditional Music (Shakuhachi).She enrolled to the Master's program at the same university and complete in April 2025.</p>
-    
-        <p>During her studies, she has studied under master shakuhachi performer such as Reibo Aoki, Komei Takemura, Yosuke Kawase, Hozan Nomura, and Dozan Fujiwara.</p>
-        <p>She has received awards such as the "Ataka Prize," "Ryohei Miyata Prize," "Dousei Society Prize," and "Acanthus Music Award" during her undergraduate years.</p>
-        <p>She performed at the "2022 Music University Graduates Concert" held at the Imperial Palace's Tokagakudo.</p>
-        <p>In addition to classical works, she actively engages with pop music and contemporary Japanese music, expanding her repertoire.</p>
-        <p>Member of the Japanese Sankyoku Association, Kinko-style Association, Setagaya Sankyoku Association, and Dousei Society.</p>
+        <div id="loading-message" class="loading">Loading profile...</div>
+        <div id="profile-content">
+            <!-- Profile content will be loaded from Firebase -->
+        </div>
     </main>
     
     <footer id="contact">
@@ -594,180 +537,158 @@
         </div>
         <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
     </footer>
-    
-
-
-
-
-<script>
-    function setLanguage(lang) {
-        if (lang === 'en') {
-            location.href = 'english_version.html'; // 英語ページに遷移
-        } else if (lang === 'ja') {
-            location.href = 'main3.html'; // 日本語ページに遷移
-        }
-    }
-
-    // ナビゲーションメニューのリンククリックでメニューを閉じる
-    document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById('menu').checked = false; // メニューを閉じる
-        });
-    });
-
-    
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const mainContent = document.querySelector("main");
-        const headerHeight = document.querySelector("header").offsetHeight; // ヘッダーの高さ取得
-    
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > headerHeight / 2) { // スクロール位置がヘッダーの半分を超えたら表示
-                mainContent.classList.add("visible");
-            }
-        });
-    });
-    </script>
-    
-
 
     <script>
-            // ヘッダー要素を取得
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+            authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+            projectId: "shakuhachiweb-c6f85",
+            storageBucket: "shakuhachiweb-c6f85.appspot.com",
+            messagingSenderId: "536744242736",
+            appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+            measurementId: "G-J9DCE1R7LT"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Load profile content from Firebase
+        async function loadProfileContent() {
+            const profileContent = document.getElementById('profile-content');
+            const loadingMessage = document.getElementById('loading-message');
+            
+            try {
+                const snapshot = await db.collection('content')
+                    .where('type', '==', 'profile')
+                    .where('language', '==', 'en')
+                    .orderBy('order')
+                    .get();
+                
+                loadingMessage.style.display = 'none';
+                
+                if (snapshot.empty) {
+                    // Fallback to default content if no content in Firebase
+                    profileContent.innerHTML = `
+                        <p>Born in 2000 in Tokyo, Kodo began studying under Haruto Fujii after participating in a trial class held by the Setagaya Sankyoku Association at the age of 9.</p>
+                        <p>After graduating from the Tokyo University of the Arts Music Affiliated High School and the Bachelor of Japanese Traditional Music (Shakuhachi). She enrolled to the Master's program at the same university and complete in April 2025.</p>
+                        <p>During her studies, she has studied under master shakuhachi performer such as Reibo Aoki, Komei Takemura, Yosuke Kawase, Hozan Nomura, and Dozan Fujiwara.</p>
+                        <p>She has received awards such as the "Ataka Prize," "Ryohei Miyata Prize," "Dousei Society Prize," and "Acanthus Music Award" during her undergraduate years.</p>
+                        <p>She performed at the "2022 Music University Graduates Concert" held at the Imperial Palace's Tokagakudo.</p>
+                        <p>In addition to classical works, she actively engages with pop music and contemporary Japanese music, expanding her repertoire.</p>
+                        <p>Member of the Japanese Sankyoku Association, Kinko-style Association, Setagaya Sankyoku Association, and Dousei Society.</p>
+                    `;
+                    return;
+                }
+                
+                let contentHtml = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    contentHtml += `<p>${data.content}</p>`;
+                });
+                
+                profileContent.innerHTML = contentHtml;
+                
+            } catch (error) {
+                console.error("Error loading profile content:", error);
+                loadingMessage.textContent = "Failed to load profile information.";
+            }
+        }
+
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                location.href = 'english_version.html';
+            } else if (lang === 'ja') {
+                location.href = 'main3.html';
+            }
+        }
+
+        document.querySelectorAll('.nav a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('menu').checked = false;
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            loadProfileContent();
+            
+            const mainContent = document.querySelector("main");
+            const headerHeight = document.querySelector("header").offsetHeight;
+        
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > headerHeight / 2) {
+                    mainContent.classList.add("visible");
+                }
+            });
+        });
+
         const header = document.querySelector('header');
-
-        // スクロールイベントをリスン
         window.addEventListener('scroll', function() {
-        // スクロール量が100pxを超えたら透明に
-        if (window.scrollY > 100) {
-            header.classList.add('hidden'); // 透明にするクラスを追加
-        } else {
-            header.classList.remove('hidden'); // 元の状態に戻す
-        }
-        });
-
-    </script>
-
-<script>
-    document.addEventListener("scroll", function () {
-        const header = document.querySelector("header");
-        const scrollY = window.scrollY;
-        const fadeStart = 50; // フェードアウト開始位置
-        const fadeEnd = 300; // 完全に透明になる位置
-        let opacity = 1;
-    
-        if (scrollY > fadeStart) {
-            opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
-        }
-    
-        header.style.opacity = opacity;
-    });
-    </script>
-    
-
-
-
-
-    <script>
-        // ヘッダー要素を取得
-        const languageToggle = document.querySelector('.language-toggle');
-    
-        // スクロールイベントをリスン
-        window.addEventListener('scroll', function() {
-            // スクロール量が100pxを超えたらボタン位置を変更
-            if (window.scrollY > 600) {
-                languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
+            if (window.scrollY > 100) {
+                header.classList.add('hidden');
             } else {
-                languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+                header.classList.remove('hidden');
             }
         });
-    </script>
-       <script>
-        function detectSafariOnIPhone13Mini() {
-    var ua = navigator.userAgent;
-    var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
-    var isIPhone = /iPhone/i.test(ua);
-    var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
 
-    if (isSafari && isIPhone && isMini) {
-        document.body.classList.add("safari-iphone13mini");
-    }
-}
-
-detectSafariOnIPhone13Mini();
-
-    </script>
-    
-    <script>
-       function scrollToMain() {
-        const main = document.querySelector('main');
-        const targetPosition = main.getBoundingClientRect().top + window.scrollY; // Get the target position
-        const startPosition = window.scrollY; // Get the current scroll position
-        const distance = targetPosition - startPosition; // Calculate the distance to scroll
-        const duration = 1000; // Duration in milliseconds (1 second)
-        let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime; // Initialize start time
-        const timeElapsed = currentTime - startTime; // Calculate elapsed time
-        const progress = Math.min(timeElapsed / duration, 1); // Calculate progress (0 to 1)
-
-        // Ease in-out function for smoother scrolling
-        const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
-
-        window.scrollTo(0, startPosition + distance * ease); // Scroll to the calculated position
-
-        if (timeElapsed < duration) {
-            requestAnimationFrame(animation); // Continue the animation
-        }
-    }
-
-    requestAnimationFrame(animation); // Start the animation
-}
-    </script>
-<script>
-    // Function to scroll to the main content and make it visible
-    function scrollToMain() {
-        // Add the 'visible' class to main element
-        document.querySelector('main').classList.add('visible');
-
-        // Scroll to the main section
-        window.scrollTo({
-            top: document.querySelector('main').offsetTop,
-            behavior: 'smooth'
+        document.addEventListener("scroll", function () {
+            const header = document.querySelector("header");
+            const scrollY = window.scrollY;
+            const fadeStart = 50;
+            const fadeEnd = 300;
+            let opacity = 1;
+        
+            if (scrollY > fadeStart) {
+                opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+            }
+        
+            header.style.opacity = opacity;
         });
-    }
-</script>
-<script>
-    function scrollToMain() {
-     const main = document.querySelector('main');
-     const targetPosition = main.getBoundingClientRect().top + window.scrollY; // Get the target position
-     const startPosition = window.scrollY; // Get the current scroll position
-     const distance = targetPosition - startPosition; // Calculate the distance to scroll
-     const duration = 1000; // Duration in milliseconds (1 second)
-     let startTime = null;
 
- function animation(currentTime) {
-     if (startTime === null) startTime = currentTime; // Initialize start time
-     const timeElapsed = currentTime - startTime; // Calculate elapsed time
-     const progress = Math.min(timeElapsed / duration, 1); // Calculate progress (0 to 1)
+        const languageToggle = document.querySelector('.language-toggle');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 600) {
+                languageToggle.classList.add('language-toggle-scrolled');
+            } else {
+                languageToggle.classList.remove('language-toggle-scrolled');
+            }
+        });
 
-     // Ease in-out function for smoother scrolling
-     const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+        function detectSafariOnIPhone13Mini() {
+            var ua = navigator.userAgent;
+            var isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+            var isIPhone = /iPhone/i.test(ua);
+            var isMini = window.screen.width === 375 && window.screen.height === 812;
 
-     window.scrollTo(0, startPosition + distance * ease); // Scroll to the calculated position
+            if (isSafari && isIPhone && isMini) {
+                document.body.classList.add("safari-iphone13mini");
+            }
+        }
 
-     if (timeElapsed < duration) {
-         requestAnimationFrame(animation); // Continue the animation
-     }
- }
+        detectSafariOnIPhone13Mini();
 
- requestAnimationFrame(animation); // Start the animation
-}
- </script>
+        function scrollToMain() {
+            const main = document.querySelector('main');
+            const targetPosition = main.getBoundingClientRect().top + window.scrollY;
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            const duration = 1000;
+            let startTime = null;
 
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
+                window.scrollTo(0, startPosition + distance * ease);
 
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
+    </script>
 </body>
 </html>
-

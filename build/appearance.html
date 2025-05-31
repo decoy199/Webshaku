@@ -8,463 +8,401 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>尺八奏者 石橋紅童</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Add Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.js"></script>
     <style>
-
-
-html {
-	background-color: #F7EAD9;
-}
-header {
-	position: fixed;
-}
-/* Overall Styles */
-
-body {
-	font-family: 'Yu Mincho', serif;
-	line-height: 1.8;
-	margin: 0;
-	padding: 0;
-	color: #0b0b0b;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-#clickable-load {
-	text-decoration: none;
-}
-.loader {
-	position: fixed;
-	/* スクロールしても動かない */
-	z-index: -1;
-	top: 5%;
-	/* 画面の中央に配置 */
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: auto;
-	height: auto;
-	z-index: 90;
-	/* 他の要素より前面に配置 */
-	display: block;
-}
-.loader span {
-	position: absolute;
-	color: #fff;
-	transform: translate(-50%, -50%);
-	font-size: 38px;
-	letter-spacing: 5px;
-}
-@media only screen and (max-width: 375px) and (max-height: 812px) {
-	.loader {
-		height: 30px;
-		/* Smaller height for iPhone 13 mini */
-		left: 55%;
-	}
-	.loader span {
-		font-size: 24px;
-		/* Smaller font size for iPhone 13 mini */
-	}
-}
-.loader span:nth-child(1) {
-	color: transparent;
-	-webkit-text-stroke: 0.3px rgb(128, 198, 255);
-}
-.loader span:nth-child(2) {
-	color: rgb(128, 198, 255);
-	-webkit-text-stroke: 1px rgb(128, 198, 255);
-	animation: uiverse723 3s ease-in-out infinite;
-}
-@keyframes uiverse723 {
-	0%, 100% {
-		clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-	}
-	50% {
-		clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-	}
-}
-header h1 {
-	margin: 0;
-	font-size: 2.8rem;
-	color: #fff;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-	writing-mode: vertical-rl;
-	/* Keep vertical writing */
-	position: absolute;
-	right: 20%;
-	top: 30%;
-	transform: translateY(0);
-	font-size: 4rem;
-}
-header h1 span.name {
-	font-size: 3rem;
-	/* Make Kodo Ishibashi larger */
-	font-weight: bold;
-	display: block;
-}
-header h1 span.title {
-	font-size: 1.5rem;
-	/* Make Shakuhachi Performer smaller */
-}
-/* メニューとヘッダーが重ならないようにするための調整 */
-
-.menu {
-	position: fixed;
-	z-index: 10;
-	top: 20px;
-	left: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	width: 43px;
-	height: 43px;
-	background-color: #deb068;
-	border-radius: 50%;
-	cursor: pointer;
-	z-index: 200;
-}
-.menu span {
-	display: block;
-	width: 50%;
-	height: 2%;
-	background-color: #555;
-	margin: 5px 0;
-	transition: transform 250ms ease;
-}
-.menu.active~.loader {
-	display: none;
-}
-#menu {
-	display: none;
-}
-#menu:checked~.menu {
-	background-color: transparent;
-}
-#menu:checked~.nav {
-	left: 0;
-}
-/* サイドメニュー */
-
-.nav {
-	position: fixed;
-	z-index: 10;
-	top: 0;
-	left: -250px;
-	width: 250px;
-	height: 100%;
-	background-color: #333;
-	color: #ffffff;
-	transition: left 0.3s ease;
-	z-index: 100;
-}
-.nav ul {
-	list-style: none;
-	padding: 0;
-	margin: 50px 0 0;
-}
-.nav ul li {
-	margin: 0;
-	padding: 15px;
-	text-align: center;
-}
-.nav ul li a {
-	text-decoration: none;
-	color: #fff;
-	font-size: 1.2rem;
-	display: block;
-}
-.nav ul li a:hover {
-	background-color: #444;
-}
-.nav.active~.loader {
-	display: none;
-}
-/* 言語切替ボタンの位置調整 */
-
-.language-toggle {
-	position: fixed;
-	top: 20px;
-	right: 20px;
-	display: flex;
-	gap: 10px;
-	z-index: 3;
-}
-/* mainの下に移動するためのクラス */
-
-.language-toggle-scrolled {
-	position: absolute;
-	top: calc(100vh + 20px);
-	/* mainの下に配置 */
-	right: 20px;
-}
-.language-toggle button {
-	background-color: #deb068;
-	color: white;
-	border: none;
-	padding: 0.5rem 1rem;
-	font-size: 0.9rem;
-	cursor: pointer;
-	border-radius: 5px;
-}
-.language-toggle button:hover {
-	background-color: #ffdbac;
-	color: #804000;
-}
-.c-accordion {
-	margin-bottom: 1rem;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-	background-color: #fff;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	transition: max-height 1.4s ease;
-	/* max-heightのトランジションを追加 */
-}
-.c-accordion:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-.c-accordion[open] {
-	border-color: #804000;
-	background-color: #fdf7f0;
-}
-.c-accordion__header {
-	cursor: pointer;
-	padding: 1rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	transition: all 1.4s ease;
-	background-color: #fff;
-}
-.c-accordion__close-heading {
-	font-size: 1.2rem;
-	font-weight: bold;
-	color: #804000;
-	line-height: 1.2;
-	display: block;
-}
-.c-accordion__open-heading {
-	font-size: 1.2rem;
-	font-weight: bold;
-	color: #804000;
-	line-height: 1.2;
-	display: none;
-}
-.c-accordion[open] .c-accordion__close-heading {
-	display: none;
-}
-.c-accordion[open] .c-accordion__open-heading {
-	display: block;
-}
-.c-accordion__content {
-	padding: 1rem;
-	animation: fadeIn 1.3s ease;
-}
-.c-accordion__plus {
-	display: inline-block;
-	width: 20px;
-	height: 2px;
-	background-color: #804000;
-	position: relative;
-	transition: transform 1.3s;
-}
-.c-accordion__plus::before {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: #804000;
-	transform: rotate(90deg);
-	transition: transform 1.3s;
-}
-.c-accordion[open] .c-accordion__plus::before {
-	transform: rotate(0deg);
-}
-.leaf {
-	position: absolute;
-	width: 50px;
-	height: auto;
-	opacity: 0.8;
-	will-change: transform, opacity;
-	animation: fall 20s linear infinite;
-	/* Increased duration */
-	transform: translateZ(0);
-	backface-visibility: hidden;
-}
-@keyframes fall {
-	0% {
-		transform: translate3d(0, -10vh, 0) rotate(0deg);
-		opacity: 1;
-	}
-	100% {
-		transform: translate3d(0, 190vh, 0) rotate(360deg);
-		opacity: 0.8;
-	}
-	/* Increased falling distance */
-}
-.safari-iphone13mini .leaf {
-	animation: fall-safari 35s linear infinite;
-	/* Longer animation for Safari */
-	opacity: 1 !important;
-	transform: translate3d(0, 0, 0) !important;
-}
-@keyframes fall-safari {
-	0% {
-		transform: translate3d(0, -10vh, 0) rotate(0deg);
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.9;
-	}
-	100% {
-		transform: translate3d(0, 300vh, 0) rotate(180deg);
-		opacity: 0.8;
-	}
-}
-/* アニメーション */
-
-@keyframes fadeIn {
-	0% {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-}
-/* スマホサイズ対応 */
-
-@media (max-width: 450px) {
-	header {
-		position: fixed;
-		min-height: 50px;
-		/* 必要に応じて調整 */
-		padding: 10px 0;
-		/* 上下の余白を調整 */
-		background-size: cover;
-		/* Ensures the image covers the entire header */
-		background-position: center top 20px;
-		background-attachment: scroll;
-	}
-	header h1 {
-		font-size: 2rem;
-		right: 20px;
-		/* スマホサイズでは右端に少し余裕 */
-		top: 10%;
-		/* スマホでも上の余白を適切に調整 */
-		writing-mode: vertical-lr;
-		/* スマホでは右から左に表示 */
-	}
-	header p {
-		font-size: 1rem;
-		margin-top: 20px;
-		/* スマホではpの位置を調整 */
-	}
-	.menu {
-		top: 10px;
-		/* メニューの位置を調整 */
-		left: 10px;
-	}
-	.language-toggle {
-		top: 10px;
-		/* 言語ボタンの位置を調整 */
-		right: 10px;
-	}
-	header .profile {
-		margin: 2rem 0 1.5rem;
-		color: #fff;
-		font-size: 0.7rem;
-		line-height: 1.8;
-		background: rgba(0, 0, 0, 0);
-		padding: 1rem;
-		border-radius: 10px;
-		display: inline-block;
-		max-width: 600px;
-		text-align: left;
-	}
-}
-/* メインコンテンツ */
-
-main {
-	flex: 1;
-	padding: 2rem;
-	max-width: 100%;
-	margin: 0 auto;
-	background-size: 100% 100%;
-	/* Stretches the image both horizontally and vertically */
-	background-repeat: no-repeat;
-	background-position: center top;
-	background-attachment: fixed;
-}
-section {
-	margin-bottom: 3rem;
-}
-h2 {
-	border-left: 4px solid #804000;
-	padding-left: 0.5rem;
-	color: #804000;
-	margin-bottom: 1rem;
-}
-p {
-	text-indent: 1em;
-}
-/* フッター */
-
-footer {
-	height: auto;
-	min-height: 10px;
-	/* 高さを少し低く設定 */
-	padding: 1rem 0;
-	/* 上下の余白を調整 */
-	font-size: 15px;
-	/* フォントサイズを少し小さく */
-	background-color: #9DBDAE;
-	color: #fff;
-	text-align: center;
-	bottom: 0;
-	width: 100%;
-	margin-top: auto;
-}
-footer a {
-	color: #ffdbac;
-	text-decoration: none;
-	font-weight: bold;
-}
-footer a:hover {
-	text-decoration: underline;
-}
-.event-detail {
-	margin-top: 1rem;
-	background-color: #f1f1f1;
-	padding: 1rem;
-	border-radius: 8px;
-}
-.event-image {
-	width: 100%;
-	max-width: 400px;
-	height: auto;
-	margin-bottom: 1rem;
-	border-radius: 8px;
-}
-@media screen and (max-width: 400px) {
-	.loader {
-		width: 50px;
-		/* 小さいサイズにする */
-		height: 50px;
-		top: 10%;
-	}
-	.loader span {
-		font-size: 22px;
-		/* フォントサイズを小さく */
-	}
-}
+        html{
+            background-color: #F7EAD9;
+        }
+        header {
+            position: fixed;
+        }
+        
+        body {
+            font-family: 'Yu Mincho', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            color: #0b0b0b;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        #clickable-load {
+            text-decoration: none;
+        }
+        
+        .loader {
+            position: fixed;
+            z-index: -1;
+            top: 5%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            z-index: 90;
+            display: block;
+        }
+        
+        .loader span {
+            position: absolute;
+            color: #fff;
+            transform: translate(-50%, -50%);
+            font-size: 38px;
+            letter-spacing: 5px;
+        }
+        
+        @media only screen and (max-width: 375px) and (max-height: 812px) {
+            .loader {
+                height: 30px;
+                left: 55%;
+            }
+        
+            .loader span {
+                font-size: 24px;
+            }
+        }
+        
+        .loader span:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+        }
+        
+        .loader span:nth-child(2) {
+            color: rgb(128, 198, 255);
+            -webkit-text-stroke: 1px rgb(128, 198, 255);
+            animation: uiverse723 3s ease-in-out infinite;
+        }
+        
+        @keyframes uiverse723 {
+            0%, 100% {
+                clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+            }
+            50% {
+                clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            }
+        }
+        
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl;
+            position: absolute;
+            right: 20%;
+            top: 30%;
+            transform: translateY(0);
+            font-size: 4rem;
+        }
+        
+        header h1 span.name {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        header h1 span.title {
+            font-size: 1.5rem;
+        }
+        
+        .menu {
+            position: fixed;
+            z-index: 10;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 43px;
+            height: 43px;
+            background-color: #deb068;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .menu span {
+            display: block;
+            width: 50%;
+            height: 2%;
+            background-color: #555;
+            margin: 5px 0;
+            transition: transform 250ms ease;
+        }
+        
+        .menu.active~.loader {
+            display: none;
+        }
+        
+        #menu {
+            display: none;
+        }
+        
+        #menu:checked~.menu {
+            background-color: transparent;
+        }
+        
+        #menu:checked~.nav {
+            left: 0;
+        }
+        
+        .nav {
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #ffffff;
+            transition: left 0.3s ease;
+            z-index: 100;
+        }
+        
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px 0 0;
+        }
+        
+        .nav ul li {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            display: block;
+        }
+        
+        .nav ul li a:hover {
+            background-color: #444;
+        }
+        
+        .nav.active~.loader {
+            display: none;
+        }
+        
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 3;
+        }
+        
+        .language-toggle-scrolled {
+            position: absolute;
+            top: calc(100vh + 20px);
+            right: 20px;
+        }
+        
+        .language-toggle button {
+            background-color: #deb068;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .language-toggle button:hover {
+            background-color: #ffdbac;
+            color: #804000;
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 0.8;
+            will-change: transform, opacity;
+            animation: fall 20s linear infinite;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(0, 190vh, 0) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+        
+        .safari-iphone13mini .leaf {
+            animation: fall-safari 35s linear infinite;
+            opacity: 1 !important;
+            transform: translate3d(0, 0, 0) !important;
+        }
+        
+        @keyframes fall-safari {
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(0, 300vh, 0) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 450px) {
+            header {
+                position: fixed;
+                min-height: 50px;
+                padding: 10px 0;
+                background-size: cover;
+                background-position: center top 20px;
+                background-attachment: scroll;
+            }
+            header h1 {
+                font-size: 2rem;
+                right: 20px;
+                top: 10%;
+                writing-mode: vertical-lr;
+            }
+        
+            header p {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
+        
+            .menu {
+                top: 10px;
+                left: 10px;
+            }
+        
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        
+            header .profile {
+                margin: 2rem 0 1.5rem;
+                color: #fff;
+                font-size: 0.7rem;
+                line-height: 1.8;
+                background: rgba(0, 0, 0, 0);
+                padding: 1rem;
+                border-radius: 10px;
+                display: inline-block;
+                max-width: 600px;
+                text-align: left;
+            }
+        }
+        
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 100%;
+            margin: 0 auto;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-attachment: fixed;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            border-left: 4px solid #804000;
+            padding-left: 0.5rem;
+            color: #804000;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            text-indent: 1em;
+        }
+        
+        footer {
+            height: auto;
+            min-height: 10px;
+            padding: 1rem 0;
+            font-size: 15px;
+            background-color: #9DBDAE;
+            color: #fff;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        footer a {
+            color: #ffdbac;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .event-detail {
+            margin-top: 1rem;
+            background-color: #f1f1f1;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        
+        .event-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #804000;
+        }
+        
+        @media screen and (max-width: 400px) {
+            .loader {
+                width: 50px;
+                height: 50px;
+                top: 10%;
+            }
+        
+            .loader span {
+                font-size: 22px;
+            }
+        }
     </style>
 </head>
 
-
 <header>
-
     <a href="main3.html" id="clickable-load">  
         <div class="loader">
             <span>SHAKUHACHI</span>
@@ -488,145 +426,153 @@ footer a:hover {
         </ul>
     </nav>
 
-
     <div class="language-toggle">
         <button onclick="setLanguage('en')">EN</button>
     </div>
-
-   
 </header>
     
 <div class="glow glow-lantern"></div>
-        <img src="sakura5.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
-        <img src="sakura2.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
-        <img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
-</div>
+<img src="sakura5.png" class="leaf" style="top: -5%; left: 20%; animation-delay: 0s;">
+<img src="sakura2.png" class="leaf" style="top: -10%; left: 40%; animation-delay: 2s;">
+<img src="sakura4.png" class="leaf" style="top: -15%; left: 60%; animation-delay: 4s;">
 
 <body>
 <main class="flex flex-col items-center justify-center text-center mt-16 px-4">
 
 <section id="appearance">
     <h2>過去の出演情報</h2>
-    
-    <ul>
-        
-        <li>2023年6月: 東京新教会にて赤堤町内会で演奏を行う</li>
-        <li>2023年6月: ホットケーキつるばみ舎にて自主企画「夏越の宴」を開催。</li>
-        <li>2023年9月: 「結の会」を結成し、日本橋劇場にて第1回自主公演「結の会」を開催。</li>
-        <li>2023年10月: 池袋B galleryで行われた「第3回　大島利佳展」にて演奏。</li>
-        <li>2024年1月: Abema TV「声優と夜遊び」の正月生放送にて、オープニング&BGM演奏を担当。</li>
-        <li>2024年1月: BAROOMにて行われた「尺八アンサンブル綾結成ライブVol.0」に出演。</li>
-        <li>2024年2月: 「村上隆　もののけ　京都」開催を記念したガラディナーにて、TRiECHOESと共演。</li>
-        <li>2024年3月: ザ・ペニンシュラ東京1階コンチネンタルダイニングにて行われた、家紋アート「松葉桜紋×現代桜図」のお披露目パーティーにて演奏。</li>
-        <li>2024年4月: 福岡市早良区の田隈公民館にて、自主演奏会を開催。</li>
-        <li>2024年6月: 平塚八幡宮にて奉納演奏を行う。</li>
-        <li>2024年11月: 下諏訪総合文化センターにて行われた「邦楽未来図コンサートVol.10」に出演。</li>
-        <li>2025年1月: 平塚八幡宮にて奉納演芸として演奏を行う。</li>
-        <li>2025年2月: 東広島芸術文化ホールにて演奏会を行う。</li>
-        <p>これまでに、東京家政大学定期演奏会、杉並三曲協会定期演奏会、狛江三曲協会定期演奏会に出演。
-            老人ホーム、小学校公演などで公演を多数行う他、挙式演奏、奉納演奏、パーティー演奏、宴席での演奏も行う。</p>
-        
-        
-
-
-    </ul>
+    <div id="loading-message" class="loading">過去の出演情報を読み込み中...</div>
+    <div id="appearance-content">
+        <!-- Appearance content will be loaded from Firebase -->
+    </div>
 </section>
 </main>
-</div>
+
 <footer id="contact">
     <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
-	<p><a href="mailto:kodo.bambooflute@gmail.com">kodo.bambooflute@gmail.com</a></p>
-<div class="social-icons">
-    <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://m.facebook.com/ishibashikodo/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-<p>&copy; 2025 尺八奏者 石橋紅童</p>
+    <p><a href="mailto:kodo.bambooflute@gmail.com">kodo.bambooflute@gmail.com</a></p>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://m.facebook.com/ishibashikodo/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p>&copy; 2025 尺八奏者 石橋紅童</p>
 </footer>
+
 <script>
-function setLanguage(lang) {
-    if (lang === 'en') {
-        location.href = 'appearanceE.html'; // 英語ページに遷移
-    } else if (lang === 'ja') {
-        location.href = 'appearance.html'; // 日本語ページに遷移
-    }
-}
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+        authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+        projectId: "shakuhachiweb-c6f85",
+        storageBucket: "shakuhachiweb-c6f85.appspot.com",
+        messagingSenderId: "536744242736",
+        appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+        measurementId: "G-J9DCE1R7LT"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-// ナビゲーションメニューのリンククリックでメニューを閉じる
-document.querySelectorAll('.nav a').forEach(function(link) {
-    link.addEventListener('click', function() {
-        document.getElementById('menu').checked = false; // メニューを閉じる
-    });
-});
-
-// 現在の日付を取得
-const today = new Date();
-
-// スケジュールセクション内のリストアイテムを取得
-const scheduleItems = document.querySelectorAll("#schedule ul li");
-
-// 各リストアイテムを処理
-scheduleItems.forEach(item => {
-    // テキストから日付を抽出（例: "2025年2月15日"）
-    const text = item.textContent.trim();
-    const dateMatch = text.match(/(\d{4})年(\d{1,2})月(\d{1,2})日/);
-
-    if (dateMatch) {
-        // 抽出した年、月、日を使って日付オブジェクトを作成
-        const year = parseInt(dateMatch[1], 10);
-        const month = parseInt(dateMatch[2], 10) - 1; // JavaScriptの月は0から始まる
-        const day = parseInt(dateMatch[3], 10);
-        const itemDate = new Date(year, month, day);
-
-        // 現在の日付と比較して、過去の日付の場合は非表示
-        if (itemDate < today) {
-            item.style.display = "none";
+    // Load appearance content from Firebase
+    async function loadAppearanceContent() {
+        const appearanceContent = document.getElementById('appearance-content');
+        const loadingMessage = document.getElementById('loading-message');
+        
+        try {
+            const snapshot = await db.collection('content')
+                .where('type', '==', 'appearance')
+                .where('language', '==', 'ja')
+                .orderBy('order')
+                .get();
+            
+            loadingMessage.style.display = 'none';
+            
+            if (snapshot.empty) {
+                // Fallback to default content if no content in Firebase
+                appearanceContent.innerHTML = `
+                    <ul>
+                        <li>2023年6月: 東京新教会にて赤堤町内会で演奏を行う</li>
+                        <li>2023年6月: ホットケーキつるばみ舎にて自主企画「夏越の宴」を開催。</li>
+                        <li>2023年9月: 「結の会」を結成し、日本橋劇場にて第1回自主公演「結の会」を開催。</li>
+                        <li>2023年10月: 池袋B galleryで行われた「第3回　大島利佳展」にて演奏。</li>
+                        <li>2024年1月: Abema TV「声優と夜遊び」の正月生放送にて、オープニング&BGM演奏を担当。</li>
+                        <li>2024年1月: BAROOMにて行われた「尺八アンサンブル綾結成ライブVol.0」に出演。</li>
+                        <li>2024年2月: 「村上隆　もののけ　京都」開催を記念したガラディナーにて、TRiECHOESと共演。</li>
+                        <li>2024年3月: ザ・ペニンシュラ東京1階コンチネンタルダイニングにて行われた、家紋アート「松葉桜紋×現代桜図」のお披露目パーティーにて演奏。</li>
+                        <li>2024年4月: 福岡市早良区の田隈公民館にて、自主演奏会を開催。</li>
+                        <li>2024年6月: 平塚八幡宮にて奉納演奏を行う。</li>
+                        <li>2024年11月: 下諏訪総合文化センターにて行われた「邦楽未来図コンサートVol.10」に出演。</li>
+                        <li>2025年1月: 平塚八幡宮にて奉納演芸として演奏を行う。</li>
+                        <li>2025年2月: 東広島芸術文化ホールにて演奏会を行う。</li>
+                    </ul>
+                    <p>これまでに、東京家政大学定期演奏会、杉並三曲協会定期演奏会、狛江三曲協会定期演奏会に出演。
+                        老人ホーム、小学校公演などで公演を多数行う他、挙式演奏、奉納演奏、パーティー演奏、宴席での演奏も行う。</p>
+                `;
+                return;
+            }
+            
+            let contentHtml = '<ul>';
+            snapshot.forEach(doc => {
+                const data = doc.data();
+                contentHtml += `<li>${data.content}</li>`;
+            });
+            contentHtml += '</ul>';
+            
+            appearanceContent.innerHTML = contentHtml;
+            
+        } catch (error) {
+            console.error("Error loading appearance content:", error);
+            loadingMessage.textContent = "過去の出演情報の読み込みに失敗しました。";
         }
     }
-});
-</script>
 
-<script>
-    // ヘッダー要素を取得
-const header = document.querySelector('header');
-
-// スクロールイベントをリスン
-window.addEventListener('scroll', function() {
-// スクロール量が100pxを超えたら透明に
-if (window.scrollY > 450) {
-    header.classList.add('hidden'); // 透明にするクラスを追加
-} else {
-    header.classList.remove('hidden'); // 元の状態に戻す
-}
-});
-
-</script>
-<script>
-// ヘッダー要素を取得
-const languageToggle = document.querySelector('.language-toggle');
-
-// スクロールイベントをリスン
-window.addEventListener('scroll', function() {
-    // スクロール量が100pxを超えたらボタン位置を変更
-    if (window.scrollY > 600) {
-        languageToggle.classList.add('language-toggle-scrolled'); // スクロール後の位置に変更
-    } else {
-        languageToggle.classList.remove('language-toggle-scrolled'); // 元の位置に戻す
+    function setLanguage(lang) {
+        if (lang === 'en') {
+            location.href = 'appearanceE.html';
+        } else if (lang === 'ja') {
+            location.href = 'appearance.html';
+        }
     }
-});
-</script>
-<script>
+
+    document.querySelectorAll('.nav a').forEach(function(link) {
+        link.addEventListener('click', function() {
+            document.getElementById('menu').checked = false;
+        });
+    });
+
+    // Load content when page loads
+    document.addEventListener('DOMContentLoaded', loadAppearanceContent);
+
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 450) {
+            header.classList.add('hidden');
+        } else {
+            header.classList.remove('hidden');
+        }
+    });
+
+    const languageToggle = document.querySelector('.language-toggle');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 600) {
+            languageToggle.classList.add('language-toggle-scrolled');
+        } else {
+            languageToggle.classList.remove('language-toggle-scrolled');
+        }
+    });
+
     function detectSafariOnIPhone13Mini() {
-var ua = navigator.userAgent;
-var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
-var isIPhone = /iPhone/i.test(ua);
-var isMini = window.screen.width === 450 && window.screen.height === 812; // iPhone 13 mini screen size
+        var ua = navigator.userAgent;
+        var isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+        var isIPhone = /iPhone/i.test(ua);
+        var isMini = window.screen.width === 450 && window.screen.height === 812;
 
-if (isSafari && isIPhone && isMini) {
-    document.body.classList.add("safari-iphone13mini");
-}
-}
+        if (isSafari && isIPhone && isMini) {
+            document.body.classList.add("safari-iphone13mini");
+        }
+    }
 
-detectSafariOnIPhone13Mini();
-
+    detectSafariOnIPhone13Mini();
 </script>
 </body>
 </html>
