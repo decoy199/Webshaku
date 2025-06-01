@@ -5,7 +5,7 @@ import './Loader.css'; // CSSファイルを分けて読み込み
 const Home = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      window.location.href = "main3.html";
+      window.location.href = "main3.html"; // メンテナンスページにリダイレクト
     }, 2000);
 
     return () => clearTimeout(timer);

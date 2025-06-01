@@ -539,6 +539,10 @@
     </footer>
 
     <script>
+
+if (performance.navigation.type === 1) { // Type 1 means navigation was a reload
+            window.location.href = "https://webshaku.vercel.app";
+        }
         // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
