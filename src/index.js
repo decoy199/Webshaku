@@ -4,6 +4,7 @@ import { initializeApp } from 'firebase/app';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
 // Firebaseの設定を最優先で実行
 const firebaseConfig = {
   apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
