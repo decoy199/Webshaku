@@ -1,9 +1,8 @@
-// ContentManager.js
-
 "use client"
 import { useState, useEffect } from "react"
 import { collection, addDoc, deleteDoc, doc, updateDoc, getDocs, query, where } from "firebase/firestore"
 import { db } from "./firebase"
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd"
 
 const ContentManager = () => {
   const [contents, setContents] = useState([])
@@ -14,6 +13,7 @@ const ContentManager = () => {
   const [order, setOrder] = useState(0)
   const [editingId, setEditingId] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [editedOrders, setEditedOrders] = useState({})
 
   useEffect(() => {
     fetchContents()
@@ -30,26 +30,40 @@ const ContentManager = () => {
       })
       contentList.sort((a, b) => (a.order || 0) - (b.order || 0))
       setContents(contentList)
+      // ドラッグ＆ドロップの順序管理
+      const initialOrders = {}
+      contentList.forEach((item, idx) => {
+        initialOrders[item.id] = idx
+      })
+      setEditedOrders(initialOrders)
     } catch (error) {
       console.error("Error fetching contents:", error)
     }
     setLoading(false)
   }
 
+  // ★ 新規追加時、orderを「今の最小order-1」にする
   const handleSave = async () => {
-    // コンテンツの内容が必須フィールドになる
     if (!content) {
       alert("内容を入力してください")
       return
     }
     setLoading(true)
     try {
+      let newOrder = Number.parseInt(order) || 0
+      if (!editingId) {
+        // 追加時：contentsの最小order-1
+        const minOrder = contents.length > 0
+          ? Math.min(...contents.map(item => typeof item.order === "number" ? item.order : 0))
+          : 0
+        newOrder = minOrder - 1
+      }
       const contentData = {
         type: contentType,
         language,
-        title, // タイトルは空欄でもOK
+        title,
         content,
-        order: Number.parseInt(order) || 0,
+        order: newOrder,
         updatedAt: new Date().toISOString(),
       }
       if (editingId) {
@@ -85,7 +99,7 @@ const ContentManager = () => {
   }
 
   const handleEdit = (item) => {
-    setTitle(item.title || "") // タイトルがnull/undefinedの場合に空文字列を設定
+    setTitle(item.title || "")
     setContent(item.content)
     setOrder(item.order || 0)
     setEditingId(item.id)
@@ -97,6 +111,44 @@ const ContentManager = () => {
     setContent("")
     setOrder(0)
     setEditingId(null)
+  }
+
+  // ドラッグ＆ドロップでリスト順入れ替え
+  const handleDragEnd = (result) => {
+    if (!result.destination) return
+    const reordered = Array.from(contents)
+    const [removed] = reordered.splice(result.source.index, 1)
+    reordered.splice(result.destination.index, 0, removed)
+    setContents(reordered)
+    // index順を保存
+    const newOrders = {}
+    reordered.forEach((item, idx) => {
+      newOrders[item.id] = idx
+    })
+    setEditedOrders(newOrders)
+  }
+
+  // ドラッグ後の順序をfirestoreに一括保存
+  const handleBulkOrderSave = async () => {
+    setLoading(true)
+    try {
+      await Promise.all(
+        contents.map(item => {
+          const newOrder = editedOrders[item.id]
+          if (newOrder !== item.order) {
+            const docRef = doc(db, "content", item.id)
+            return updateDoc(docRef, { order: newOrder, updatedAt: new Date().toISOString() })
+          }
+          return null
+        })
+      )
+      alert("表示順序を更新しました！")
+      fetchContents()
+    } catch (error) {
+      console.error("Error updating orders:", error)
+      alert("順序の保存中にエラーが発生しました")
+    }
+    setLoading(false)
   }
 
   return (
@@ -120,12 +172,13 @@ const ContentManager = () => {
           </div>
           <div className="form-group">
             <label>表示順序</label>
+            {/* ドラッグで順序変更するためinputは新規追加/編集専用 */}
             <input type="number" value={order} onChange={(e) => setOrder(e.target.value)} min="0" />
           </div>
         </div>
         <div className="form-group">
-          <label>タイトル</label> {/* *を削除 */}
-          <input type="text" value={title} placeholder="コンテンツのタイトル" onChange={(e) => setTitle(e.target.value)} /> {/* requiredを削除 */}
+          <label>タイトル</label>
+          <input type="text" value={title} placeholder="コンテンツのタイトル" onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="form-group">
           <label>内容*</label>
@@ -156,27 +209,65 @@ const ContentManager = () => {
         {contents.length === 0 && !loading ? (
           <p className="no-content">コンテンツはまだありません</p>
         ) : (
-          <div className="content-cards">
-            {contents.map((item) => (
-              <div key={item.id} className="content-card">
-                <div className="content-header">
-                  <h3>{item.title || "（タイトルなし）"}</h3> {/* タイトルが空の場合の表示を追加 */}
-                  <span className="order-tag">順序: {item.order || 0}</span>
-                </div>
-                <div className="content-body">
-                  <p>{item.content}</p>
-                </div>
-                <div className="content-actions">
-                  <button className="btn edit-btn" onClick={() => handleEdit(item)}>
-                    編集
-                  </button>
-                  <button className="btn delete-btn" onClick={() => handleDelete(item.id)}>
-                    削除
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <>
+            <DragDropContext onDragEnd={handleDragEnd}>
+              <Droppable droppableId="contentListDroppable">
+                {(provided) => (
+                  <div
+                    className="content-cards"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {contents.map((item, idx) => (
+                      <Draggable key={item.id} draggableId={item.id} index={idx}>
+                        {(provided, snapshot) => (
+                          <div
+                            className="content-card"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={{
+                              ...provided.draggableProps.style,
+                              boxShadow: snapshot.isDragging ? "0 2px 8px #8888" : "none",
+                              background: snapshot.isDragging ? "#f0f0f0" : "#fff",
+                              marginBottom: 8,
+                            }}
+                          >
+                            <div className="content-header">
+                              <h3>{item.title || "（タイトルなし）"}</h3>
+                              <span className="order-tag">順序: {idx}</span>
+                            </div>
+                            <div className="content-body">
+                              <p>{item.content}</p>
+                            </div>
+                            <div className="content-actions">
+                              <button className="btn edit-btn" onClick={() => handleEdit(item)}>
+                                編集
+                              </button>
+                              <button className="btn delete-btn" onClick={() => handleDelete(item.id)}>
+                                削除
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            </DragDropContext>
+            {/* 一括順序保存ボタン */}
+            <div style={{ marginTop: 16, textAlign: "right" }}>
+              <button
+                className="btn update-btn"
+                disabled={loading}
+                onClick={handleBulkOrderSave}
+              >
+                {loading ? "処理中..." : "順序をまとめて保存"}
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>
