@@ -38,9 +38,9 @@
             background-position: center;
             background-size: contain; 
             background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-attachment: scroll;
             background-position: center top;
-            background-attachment: fixed;
+            
             height: 86vh;
             background-color: rgba(0, 0, 0, 0);
             opacity: 0;
@@ -54,7 +54,7 @@
         }
 
         .leaf {
-            position: absolute;
+            position: fixed;
             width: 50px;
             height: auto;
             opacity: 0.8;
@@ -62,28 +62,46 @@
             animation: fall 20s linear infinite;
             transform: translateZ(0);
             backface-visibility: hidden;
+            z-index: 1000;
+            pointer-events: none;
         }
-
+                                
         @keyframes fall {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            100% { transform: translate3d(0, 190vh, 0) rotate(360deg); opacity: 0.8; }
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(0, 190vh, 0) rotate(360deg);
+                opacity: 0.8;
+            }
         }
-
+        
         .safari-iphone13mini .leaf {
             animation: fall-safari 35s linear infinite;
             opacity: 1 !important;
-            transform: translate3d(0, 0, 0) !important;
         }
 
         @keyframes fall-safari {
-            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
-            50% { opacity: 0.9; }
-            100% { transform: translate3d(0, 300vh, 0) rotate(180deg); opacity: 0.8; }
+            0% {
+                transform: translate3d(0, -10vh, 0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate3d(0, 300vh, 0) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        header.hidden {
-            opacity: 0;
-        }
+        header.hidden { opacity: 0; }
 
         header h1 {
             margin: 0;
@@ -98,15 +116,8 @@
             font-size: 4rem;
         }
 
-        header h1 span.name {
-            font-size: 3rem;
-            font-weight: bold;
-            display: block;
-        }
-
-        header h1 span.title {
-            font-size: 1.5rem;
-        }
+        header h1 span.name { font-size: 3rem; font-weight: bold; display: block; }
+        header h1 span.title { font-size: 1.5rem; }
 
         .menu {
             position: fixed;
@@ -134,17 +145,9 @@
             z-index: 200;
         }
 
-        #menu {
-            display: none;
-        }
-
-        #menu:checked ~ .menu {
-            background-color: transparent;
-        }
-
-        #menu:checked ~ .nav {
-            left: 0;
-        }
+        #menu { display: none; }
+        #menu:checked ~ .menu { background-color: transparent; }
+        #menu:checked ~ .nav { left: 0; }
 
         .nav {
             position: fixed;
@@ -158,28 +161,10 @@
             z-index: 100;
         }
 
-        .nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 50px 0 0;
-        }
-
-        .nav ul li {
-            margin: 0;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .nav ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.2rem;
-            display: block;
-        }
-
-        .nav ul li a:hover {
-            background-color: #444;
-        }
+        .nav ul { list-style: none; padding: 0; margin: 50px 0 0; }
+        .nav ul li { margin: 0; padding: 15px; text-align: center; }
+        .nav ul li a { text-decoration: none; color: #fff; font-size: 1.2rem; display: block; }
+        .nav ul li a:hover { background-color: #444; }
 
         .language-toggle {
             position: fixed;
@@ -206,10 +191,7 @@
             border-radius: 5px;
         }
 
-        .language-toggle button:hover {
-            background-color: #ffdbac;
-            color: #804000;
-        }
+        .language-toggle button:hover { background-color: #ffdbac; color: #804000; }
 
         .scroll-container {
             position: absolute;
@@ -230,21 +212,10 @@
             transition: background-color 0.8s;
         }
 
-        .scroll-container:hover {
-            z-index: 20;
-        }
+        .scroll-container:hover { z-index: 20; }
+        .scroll-down:hover { background-color: #F7EAD9; color: #F7EAD9; z-index: 0; }
 
-        .scroll-down:hover {
-            background-color: #F7EAD9;
-            color: #F7EAD9;
-            z-index: 0;
-        }
-
-        @media (min-width: 480px) {
-            .scroll-container {
-                display: none;
-            }
-        }
+        @media (min-width: 480px) { .scroll-container { display: none; } }
 
         main {
             flex: 1;
@@ -255,7 +226,7 @@
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center top;
-            background-attachment: fixed;
+            background-attachment: scroll;
             margin-top: -30px;
             opacity: 0;
             transform: translateY(50px);
@@ -263,14 +234,9 @@
             z-index: -1;
         }
 
-        main.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        main.visible { opacity: 1; transform: translateY(0); }
 
-        section {
-            margin-bottom: 3rem;
-        }
+        section { margin-bottom: 3rem; }
 
         h2 {
             border-left: 4px solid #804000;
@@ -279,9 +245,7 @@
             margin-bottom: 1rem;
         }
 
-        p {
-            text-indent: 1em;
-        }
+        p { text-indent: 1em; }
 
         footer {
             height: auto; 
@@ -296,46 +260,49 @@
             margin-top: auto;
         }
 
-        footer a {
-            color: #ffdbac;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        footer a { color: #ffdbac; text-decoration: none; font-weight: bold; }
+        footer a:hover { text-decoration: underline; }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #804000;
-        }
+        .loading { text-align: center; padding: 20px; color: #804000; }
 
         @media (max-width: 767px) {
-            header h1 {
-                font-size: 2rem;
-                right: 20px;
-                top: 10%;
-                writing-mode: vertical-lr;
-            }
-
-            .menu {
-                top: 10px;
-                left: 10px;
-            }
-
-            .language-toggle {
-                top: 10px;
-                right: 10px;
-            }
+            header h1 { font-size: 2rem; right: 20px; top: 10%; writing-mode: vertical-lr; }
+            .menu { top: 10px; left: 10px; }
+            .language-toggle { top: 10px; right: 10px; }
         }
 
-        @media (max-width: 500px) {
-            header {
-                height: 82vh;
-            }
+        @media (max-width: 500px) { header { height: 82vh; } }
+
+        /* ▼▼▼ 追加：Instagramカードのサイズ統一 + 横スクロール ▼▼▼ */
+        .ig-carousel{
+          display:flex; gap:16px; overflow-x:auto; padding:6px 4px;
+          scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+          scrollbar-width:none;
         }
+        .ig-carousel::-webkit-scrollbar{ display:none; }
+
+        .ig-card{
+          flex:0 0 auto;
+          width: 320px;            /* 幅はここで調整可 */
+          height: 420px;           /* 高さはここで調整可 */
+          border-radius:12px; overflow:hidden; background:#fff;
+          box-shadow:0 6px 14px rgba(0,0,0,.08);
+          scroll-snap-align:center;
+          z-index: -2;
+        }
+
+        .ig-card .instagram-media{
+          margin:0 !important; width:100% !important; min-width:100% !important;
+          max-width:none !important; border:0 !important; background:#fff !important;
+        }
+        .ig-card .instagram-media iframe{
+          width:100% !important; height:100% !important;
+          border:0 !important; border-radius:0 !important; overflow:hidden !important;
+        }
+        @media (max-width:420px){
+          .ig-card{ width:260px; height:360px; }
+        }
+        /* ▲▲▲ ここまで追加 ▲▲▲ */
     </style>
 </head>
 <body>
@@ -376,9 +343,32 @@
 
     <main>
         <div id="loading-message" class="loading">プロフィールを読み込み中...</div>
-        <div id="profile-content">
-            </div>
+        <div id="profile-content"></div>
     </main>
+
+    <!-- ▼▼▼ Instagram埋め込みセクション（最小変更で更新） ▼▼▼ -->
+    <section id="instagram" style="margin:3rem 2rem;">
+        <h2></h2>
+        <div class="ig-carousel">
+          <div class="ig-card">
+            <blockquote class="instagram-media"
+              data-instgrm-permalink="https://www.instagram.com/p/DHtIJRATpR5/"
+              data-instgrm-version="14" data-instgrm-captioned>
+              <a href="https://www.instagram.com/p/DHtIJRATpR5/" target="_blank" rel="noopener"></a>
+            </blockquote>
+          </div>
+
+          <div class="ig-card">
+            <blockquote class="instagram-media"
+              data-instgrm-permalink="https://www.instagram.com/p/DNTSgxezyrT/"
+              data-instgrm-version="14" data-instgrm-captioned>
+              <a href="https://www.instagram.com/p/DNTSgxezyrT/" target="_blank" rel="noopener"></a>
+            </blockquote>
+          </div>
+          <!-- 必要に応じて .ig-card を複製して投稿を追加 -->
+        </div>
+    </section>
+    <!-- ▲▲▲ ここまで ▲▲▲ -->
 
     <footer id="contact">
         <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
@@ -425,7 +415,6 @@
                 loadingMessage.style.display = 'none';
                 
                 if (snapshot.empty) {
-                    // Fallback to default content if no content in Firebase
                     profileContent.innerHTML = `
                         <p>2000年東京都生まれ。世田谷三曲協会主催の体験教室に参加し、9歳より藤井治童氏に師事。</p>
                         <p>東京藝術大学音楽学部附属音楽高等学校、東京藝術大学音楽学部邦楽科尺八専攻及び同大学大学院修士課程を修了。</p>
@@ -547,5 +536,50 @@
             requestAnimationFrame(animation);
         }
     </script>
+
+    <!-- Instagram公式 embed スクリプト（1回だけ追加） -->
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script>
+      // 埋め込み処理＋iframeサイズをカードにフィット
+      function processIgEmbeds() {
+        if (window.instgrm && window.instgrm.Embeds && window.instgrm.Embeds.process) {
+          window.instgrm.Embeds.process();
+        }
+        setTimeout(() => {
+          document.querySelectorAll('.ig-card .instagram-media iframe').forEach(ifr => {
+            ifr.style.width = '100%';
+            ifr.style.height = '100%';
+          });
+        }, 800);
+      }
+      window.addEventListener('load', processIgEmbeds);
+
+      // 自動横スクロール（往復）
+      (function autoScroll(){
+        const rail = document.querySelector('.ig-carousel');
+        if (!rail) return;
+        let dir = 1;           // 1:右 / -1:左
+        let speed = 0.5;       // px/フレーム
+
+        let rafId;
+        function tick(){
+          rail.scrollLeft += speed * dir;
+          const end = rail.scrollWidth - rail.clientWidth - 1;
+          if (rail.scrollLeft >= end) dir = -1;
+          if (rail.scrollLeft <= 0)   dir = 1;
+          rafId = requestAnimationFrame(tick);
+        }
+        function start(){ cancelAnimationFrame(rafId); rafId = requestAnimationFrame(tick); }
+        function stop(){ cancelAnimationFrame(rafId); }
+
+        rail.addEventListener('mouseenter', stop);
+        rail.addEventListener('mouseleave', start);
+        rail.addEventListener('touchstart', stop, {passive:true});
+        rail.addEventListener('touchend', start, {passive:true});
+
+        start();
+      })();
+    </script>
+
 </body>
 </html>

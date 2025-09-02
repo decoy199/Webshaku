@@ -37,19 +37,22 @@
             }
         }
 
+        #clickable-load {
+            text-decoration: none;
+        }
+        
         .loader {
-            position: fixed;  /* Stays fixed when scrolling */
+            position: fixed;
             z-index: -1;
-            top: 5%;        /* Positioned in center of screen */
+            top: 5%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: auto;
             height: auto;
-            z-index: 90; /* Positioned in front of other elements */
-            
+            z-index: 90;
             display: block;
         }
-
+        
         .loader span {
             position: absolute;
             color: #fff;
@@ -57,40 +60,38 @@
             font-size: 38px;
             letter-spacing: 5px;
         }
-
+        
         @media only screen and (max-width: 375px) and (max-height: 812px) {
             .loader {
-                height: 30px; /* Smaller height for iPhone 13 mini */
+                height: 30px;
                 left: 55%;
             }
-
+        
             .loader span {
-                font-size: 24px; /* Smaller font size for iPhone 13 mini */
+                font-size: 24px;
             }
         }
-
+        
         .loader span:nth-child(1) {
             color: transparent;
             -webkit-text-stroke: 0.3px rgb(128, 198, 255);
         }
-
+        
         .loader span:nth-child(2) {
             color: rgb(128, 198, 255);
             -webkit-text-stroke: 1px rgb(128, 198, 255);
             animation: uiverse723 3s ease-in-out infinite;
         }
-
+        
         @keyframes uiverse723 {
             0%, 100% {
-                clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-                54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+                clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
             }
-
             50% {
-                clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-                51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+                clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
             }
         }
+        
         
         header h1 {
             margin: 0;
@@ -543,145 +544,145 @@
 <script>
     // Initialize Firebase
     const firebaseConfig = {
-        apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
-        authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
-        projectId: "shakuhachiweb-c6f85",
-        storageBucket: "shakuhachiweb-c6f85.appspot.com",
-        messagingSenderId: "536744242736",
-        appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
-        measurementId: "G-J9DCE1R7LT"
+      apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+      authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+      projectId: "shakuhachiweb-c6f85",
+      storageBucket: "shakuhachiweb-c6f85.appspot.com",
+      messagingSenderId: "536744242736",
+      appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+      measurementId: "G-J9DCE1R7LT"
     };
-    
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-    
-    // Function to format date for display
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
+  
+    // Initialize Firebase（互換SDK使用時の二重初期化ガード）
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
     }
-    
+    const db = firebase.firestore();
+  
+    // ▼▼▼ New logic for occurrences/firstDate ▼▼▼
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+  
+    function getOccurrences(event) {
+      if (Array.isArray(event.occurrences) && event.occurrences.length) return event.occurrences;
+      if (event.date) {
+        return [{ startDate: event.date, endDate: "", startTime: event.time || "", endTime: "" }];
+      }
+      return [];
+    }
+  
+    function isUpcoming(event) {
+      const today = new Date(); today.setHours(0,0,0,0);
+      return getOccurrences(event).some(o => {
+        const last = new Date(o.endDate || o.startDate);
+        last.setHours(23,59,59,999);
+        return last >= today;
+      });
+    }
+  
+    function renderOccurrenceLineEN(o) {
+      const range = (o.endDate && o.endDate !== "" && o.endDate !== o.startDate)
+        ? `${formatDate(o.startDate)} – ${formatDate(o.endDate)}`
+        : `${formatDate(o.startDate)}`;
+      const time = o.startTime ? ` / ${o.startTime}${o.endTime ? `–${o.endTime}` : ""}` : "";
+      return `${range}${time}`;
+    }
+    // ▲▲▲ end new logic ▲▲▲
+  
     // Function to load schedule from Firebase with language filtering
     async function loadSchedule() {
-        const scheduleList = document.getElementById('schedule-list');
-        const loadingMessage = document.getElementById('loading-message');
-        const errorMessage = document.getElementById('error-message');
-        
-        try {
-            // Get today's date at midnight
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            // Get schedules from Firebase that are in English, ordered by date
-            const snapshot = await db.collection('schedules')
-                .where('language', '==', 'en') // Only get English events
-                .orderBy('date')
-                .get();
-                
-            // Hide loading message
-            loadingMessage.style.display = 'none';
-            
-            // Check if there are any events
-            if (snapshot.empty) {
-                scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
-                return;
-            }
-            
-            // Process each event
-            snapshot.forEach(doc => {
-                const event = doc.data();
-                const eventDate = new Date(event.date);
-                
-                // Only display future events
-                if (eventDate >= today) {
-                    // Create accordion item
-                    const listItem = document.createElement('li');
-                    
-                    // Format the title and date for display
-                    const formattedDate = formatDate(event.date);
-                    
-                    // Create HTML for the event
-                    listItem.innerHTML = `
-                        <details class="c-accordion">
-                            <summary class="c-accordion__header">
-                                <p class="c-accordion__close-heading">${formattedDate}: ${event.title}</p>
-                                <p class="c-accordion__open-heading">Close</p>
-                                <div class="c-accordion__plus"></div>
-                            </summary>
-                            <div class="c-accordion__content">
-                                ${event.image ? `<img src="${event.image}" alt="${event.title}" class="event-image">` : ''}
-                                <p>${event.title}</p>
-                                <p><strong>Date＆Time:</strong> ${event.date}　${event.time}</p>
-                                <p><strong>Location:</strong> ${event.location}</p>
-                                <p><strong>Description:</strong> ${event.details}</p>
-                            </div>
-                        </details>
-                    `;
-                    
-                    scheduleList.appendChild(listItem);
-                }
-            });
-            
-            // If no future events were added to the page
-            if (scheduleList.children.length === 0) {
-                scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
-            }
-            
-        } catch (error) {
-            console.error("Error loading schedule:", error);
-            loadingMessage.style.display = 'none';
-            errorMessage.textContent = "Unable to load schedule. Please try again later.";
-            errorMessage.style.display = 'block';
+      const scheduleList = document.getElementById('schedule-list');
+      const loadingMessage = document.getElementById('loading-message');
+      const errorMessage = document.getElementById('error-message');
+  
+      try {
+        // インデックス不要化のため orderBy を外し、取得後にクライアント側ソート
+        const snapshot = await db.collection('schedules')
+          .where('language', '==', 'en')
+          .get();
+  
+        // Hide loading message
+        loadingMessage.style.display = 'none';
+  
+        if (snapshot.empty) {
+          scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
+          return;
         }
+  
+        // 取得後に並び替え（firstDate → date → occurrences[0].startDate）
+        const docs = [];
+        snapshot.forEach(d => docs.push({ id: d.id, ...d.data() }));
+        const getHead = (ev) =>
+          ev.firstDate ||
+          ev.date ||
+          (Array.isArray(ev.occurrences) && ev.occurrences[0]?.startDate) ||
+          '9999-12-31';
+        docs.sort((a, b) => getHead(a).localeCompare(getHead(b)));
+  
+        let appended = 0;
+  
+        // Process each event
+        docs.forEach(event => {
+          if (!isUpcoming(event)) return;
+  
+          const occs = getOccurrences(event);
+          const dateLines = occs.map(renderOccurrenceLineEN).map(line => `<li>${line}</li>`).join("");
+          const headingDate = event.firstDate || event.date || (occs[0]?.startDate || "");
+  
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <details class="c-accordion">
+              <summary class="c-accordion__header">
+                <p class="c-accordion__close-heading">${formatDate(headingDate)}: ${event.title}</p>
+                <p class="c-accordion__open-heading">Close</p>
+                <div class="c-accordion__plus"></div>
+              </summary>
+              <div class="c-accordion__content">
+                ${event.image ? `<img src="${event.image}" alt="${event.title}" class="event-image">` : ''}
+                <p>${event.title}</p>
+                <p><strong>Date & Time:</strong></p>
+                <ul style="margin-top:6px; padding-left:18px;">${dateLines}</ul>
+                <p><strong>Location:</strong> ${event.location}</p>
+                ${event.details ? `<p><strong>Description:</strong> ${event.details}</p>` : ""}
+              </div>
+            </details>
+          `;
+  
+          scheduleList.appendChild(listItem);
+          appended++;
+        });
+  
+        if (!appended) {
+          scheduleList.innerHTML = '<p>No upcoming events scheduled at this time. Please check back later.</p>';
+        }
+  
+      } catch (error) {
+        console.error("Error loading schedule:", error);
+        loadingMessage.style.display = 'none';
+        errorMessage.textContent = "Unable to load schedule. Please try again later.";
+        errorMessage.style.display = 'block';
+      }
     }
-    
+  
     // Load schedule when the page loads
     window.addEventListener('DOMContentLoaded', loadSchedule);
-    
+  
     function setLanguage(lang) {
-        if (lang === 'ja') {
-            location.href = 'schedule2.html'; // Navigate to Japanese page
-        }
+      if (lang === 'ja') {
+        location.href = 'schedule2.html'; // Navigate to Japanese page
+      }
     }
-
+  
     // Close the menu when clicking a navigation link
     document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById('menu').checked = false; // Close menu
-        });
+      link.addEventListener('click', function() {
+        document.getElementById('menu').checked = false; // Close menu
+      });
     });
-</script>
-
-<script>
-    // Get header element
-    const languageToggle = document.querySelector('.language-toggle');
-
-    // Listen for scroll events
-    window.addEventListener('scroll', function() {
-        // Change button position when scrolled more than 100px
-        if (window.scrollY > 600) {
-            languageToggle.classList.add('language-toggle-scrolled'); // Change to scrolled position
-        } else {
-            languageToggle.classList.remove('language-toggle-scrolled'); // Return to original position
-        }
-    });
-</script>
-
-<script>
-    function detectSafariOnIPhone13Mini() {
-        var ua = navigator.userAgent;
-        var isSafari = /^((?!chrome|android).)*safari/i.test(ua); // Detect Safari
-        var isIPhone = /iPhone/i.test(ua);
-        var isMini = window.screen.width === 375 && window.screen.height === 812; // iPhone 13 mini screen size
-
-        if (isSafari && isIPhone && isMini) {
-            document.body.classList.add("safari-iphone13mini");
-        }
-    }
-
-    detectSafariOnIPhone13Mini();
-</script>
+  </script>
+  
 </body>
 </html>

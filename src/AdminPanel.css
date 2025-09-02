@@ -357,6 +357,26 @@
   font-size: 14px;
 }
 
+/* 追加: 複数日程行の装飾 */
+.occurrence-row {
+  background: #fff;
+  border: 1px dashed #e1e4e8;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.occurrence-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.occurrence-preview {
+  font-size: 14px;
+  color: #555;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .form-row {
