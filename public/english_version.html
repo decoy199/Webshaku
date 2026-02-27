@@ -78,12 +78,10 @@
         
         /* 修正後 */
         .safari-iphone13mini .leaf {
-        animation: fall-safari 35s linear infinite;
-        opacity: 1 !important;          /* これは残してOK */
-        /* transform: translate3d(0, 0, 0) !important; ← 削除 */
+            animation: fall-safari 35s linear infinite;
+            opacity: 1 !important;
         }
 
-        
         @keyframes fall-safari {
             0% {
                 transform: translate3d(0, -10vh, 0) rotate(0deg);
@@ -509,6 +507,185 @@
                 text-align: left;
             }
         }
+
+        /* ===== Ponts Sonores Paris 2025 Popup (English) ===== */
+        .concert-modal-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.55);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.4s ease;
+          /* ★ ここを追加：端で切れにくいように余白＋ボックスサイズ指定 */
+          padding: 1rem;
+          box-sizing: border-box;
+        }
+
+        .concert-modal-overlay.active {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .concert-modal {
+          max-width: 780px;
+          width: 90%;
+          background:
+            radial-gradient(circle at 0 0, rgba(202, 165, 106, 0.25), transparent 55%),
+            radial-gradient(circle at 100% 100%, rgba(36, 59, 118, 0.18), transparent 60%),
+            #fdf8ef;
+          border-radius: 22px;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+          overflow: hidden;
+          position: relative;
+          color: #2b2113;
+          /* ★ ここを追加：画面より高くならないようにして内部スクロール */
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        .concert-modal::before {
+          content: "";
+          position: absolute;
+          right: -40px;
+          bottom: -40px;
+          width: 160px;
+          height: 160px;
+          background: conic-gradient(
+            from 140deg,
+            rgba(202, 165, 106, 0.6),
+            transparent,
+            rgba(36, 59, 118, 0.6)
+          );
+          opacity: 0.4;
+          mix-blend-mode: multiply;
+          pointer-events: none;
+        }
+
+        .concert-modal-body {
+          display: grid;
+          grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.7fr);
+          gap: 0;
+        }
+
+        .concert-modal-photo {
+  position: relative;
+  overflow: hidden;
+  background-color: #fdf8ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+
+  /* ここを追加：縦方向に並べる（画像の下にボタン） */
+  flex-direction: column;
+}
+
+.concert-modal-photo img {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: contain;
+  display: block;
+
+  /* 画像とボタンの間に少し余白 */
+  margin-bottom: 0.75rem;
+}
+
+
+        .concert-modal-text {
+          padding: 1.4rem 1.6rem;
+          font-family: 'Yu Mincho', serif;
+        }
+
+        .concert-modal-badge {
+          font-size: 0.75rem;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #243b76;
+          margin-bottom: 0.4rem;
+        }
+
+        .concert-modal-title-jp {
+          font-size: 1.2rem;
+          margin-bottom: 0.2rem;
+          color: #804000;
+        }
+
+        .concert-modal-title-en {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.1rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          margin-bottom: 0.5rem;
+        }
+
+        .concert-modal-tagline {
+          font-size: 0.9rem;
+          margin-bottom: 0.6rem;
+        }
+
+        .concert-modal-date {
+          font-size: 0.9rem;
+          margin-bottom: 0.6rem;
+        }
+
+        .concert-modal-close {
+          position: absolute;
+          top: 6px;
+          right: 10px;
+          border: none;
+          background: transparent;
+          font-size: 1.6rem;
+          line-height: 1;
+          cursor: pointer;
+          color: #8a6b3c;
+          z-index: 2;
+        }
+
+        .concert-modal-close:hover { color: #c64545; }
+
+        .concert-modal-flags {
+          margin-top: 0.3rem;
+          font-size: 0.9rem;
+        }
+
+        /* 既存の .concert-modal-button に、画像下用のスタイルを少し足すと良いです */
+.concert-modal-button {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #caa56a, #243b76);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  /* 追加：中央寄せ＆幅を抑えめに */
+  text-align: center;
+  width: 100%;
+  max-width: 260px;
+}
+
+.concert-modal-button:hover {
+  opacity: 0.9;
+}
+
+        @media (max-width: 700px) {
+          .concert-modal-body { grid-template-columns: 1fr; }
+          .concert-modal-text { padding: 1rem 1.2rem 1.2rem; }
+
+          /* ★ スマホでは上寄せ＋ノッチ/アドレスバーを避ける */
+          .concert-modal-overlay {
+            align-items: flex-start;
+            padding-top: calc(1.5rem + env(safe-area-inset-top, 0px));
+          }
+        }
     </style>
 </head>
 <body>
@@ -526,6 +703,7 @@
                 <li><a href="scheduleE.html">SCHEDULE</a></li>
                 <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
                 <li><a href="contactE.html">CONTACT</a></li>
+                <li><a href="contactE.html#lesson">LESSON　INFO</a></li>
             </ul>
         </nav>
         
@@ -553,6 +731,44 @@
             <!-- Profile content will be loaded from Firebase -->
         </div>
     </main>
+
+    <!-- Ponts Sonores Paris 2025 Popup (English) -->
+    <div id="concert-modal-overlay" class="concert-modal-overlay">
+      <div class="concert-modal">
+        <button class="concert-modal-close" aria-label="Close">&times;</button>
+        <div class="concert-modal-body">
+          <div class="concert-modal-photo">
+            <!-- Change src to your actual image path -->
+            <img src="paris.png" alt="Ponts Sonores Paris 2025 Main Visual">
+            <a href="paris2025_en.html" class="concert-modal-button">
+                Go to Ponts Sonores Paris 2025 Special Page
+              </a>
+          </div>
+          <div class="concert-modal-text">
+            <div class="concert-modal-badge">PONTS SONORES PARIS 2025</div>
+            <div class="concert-modal-title-jp">Performance at Théâtre de la Tour Eiffel, Paris</div>
+            <div class="concert-modal-title-en">A Symphony of Friendship between France and Japan</div>
+
+            <p class="concert-modal-tagline">
+              Kodo Ishibashi will appear at the concert “Ponts Sonores Paris 2025”<br>
+              held at Théâtre de la Tour Eiffel in Paris 🇫🇷
+            </p>
+
+            <p class="concert-modal-date">
+              <strong>Date:</strong> Tuesday, December 9, 2025<br>
+              <strong>Venue:</strong> Théâtre de la Tour Eiffel, Paris
+            </p>
+
+            <p class="concert-modal-flags">
+              🇯🇵 Japanese Sounds × 🇫🇷 Parisian Elegance
+            </p>
+
+            <!-- Change href to the actual special page URL for English -->
+            
+          </div>
+        </div>
+      </div>
+    </div>
     
     <footer id="contact">
         <p>If you have any questions or performance requests, feel free to contact the following email or Instagram direct message:</p>
@@ -565,10 +781,10 @@
     </footer>
 
     <script>
-
-if (performance.navigation.type === 1) { // Type 1 means navigation was a reload
+        if (performance.navigation.type === 1) { // Type 1 means navigation was a reload
             window.location.href = "https://webshaku.vercel.app";
         }
+
         // Initialize Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
@@ -720,5 +936,54 @@ if (performance.navigation.type === 1) { // Type 1 means navigation was a reload
             requestAnimationFrame(animation);
         }
     </script>
+
+    <!-- Ponts Sonores Paris 2025 Popup Control (English) -->
+    <!--<script>
+        (function () {
+          function initPopup() {
+            const overlay = document.getElementById('concert-modal-overlay');
+            if (!overlay) {
+              console.warn('concert-modal-overlay element not found');
+              return;
+            }
+  
+            const closeBtn = overlay.querySelector('.concert-modal-close');
+  
+            function closeModal() {
+              overlay.classList.remove('active');
+            }
+  
+            function openModal() {
+              overlay.classList.add('active');
+              // Auto close after 7 seconds
+              setTimeout(closeModal, 15000);
+            }
+  
+            // Open 1.5 seconds after page load
+            setTimeout(openModal, 1500);
+  
+            if (closeBtn) {
+              closeBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeModal();
+              });
+            }
+  
+            // Close when clicking on overlay background
+            overlay.addEventListener('click', function (e) {
+              if (e.target === overlay) {
+                closeModal();
+              }
+            });
+          }
+  
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPopup);
+          } else {
+            initPopup();
+          }
+        })();
+    </script>
+    -->
 </body>
 </html>

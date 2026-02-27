@@ -8,76 +8,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shakuhachi Performer Kodo Ishibashi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <style>
-html {
-    margin: 0;
-    padding: 0;
-    background-color: #F7EAD9;
-}
+        html {
+            margin: 0;
+            padding: 0;
+            background-color: #F7EAD9;
+            scroll-behavior: smooth;
+        }
+
         /* Overall Styles */
         body {
             font-family: 'Yu Mincho', serif;
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            
             z-index: 1;
             color: #0b0b0b;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            background-color: #F7EAD9;
         }
 
- /* Header Adjustments */
+        /* Header Adjustments */
+        header {
+            position: fixed;
+            z-index: 9999;
+            width: 100%;
+        }
 
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            writing-mode: vertical-rl;
+            position: absolute;
+            right: 20%;
+            top: 30%;
+            transform: translateY(0);
+            font-size: 4rem;
+        }
 
- header {
-          
-          position: fixed; /* これはすでにOK */
-          z-index: 9999;   /* 一番前面に */
-  }
+        header h1 span.name {
+            font-size: 3rem;
+            font-weight: bold;
+            display: block;
+        }
 
+        header h1 span.title {
+            font-size: 1.5rem;
+        }
 
-header h1 {
-    margin: 0;
-    font-size: 2.8rem;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    writing-mode: vertical-rl; /* Keep vertical writing */
-    position: absolute;
-    right: 20%; 
-    top: 30%;
-    transform: translateY(0);
-    font-size: 4rem;
-}
+        /* Menu and header overlap adjustment */
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 50px;
+            height: 50px;
+            background-color: #deb068;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+        }
 
-header h1 span.name {
-    font-size: 3rem; /* Make Kodo Ishibashi larger */
-    font-weight: bold;
-    display: block;
-}
-
-header h1 span.title {
-    font-size: 1.5rem; /* Make Shakuhachi Performer smaller */
-}
-
-
- /* Menu and header overlap adjustment */
-.menu {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50px;
-    height: 50px;
-    background-color: #deb068;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 200;
-}
         .menu span {
             display: block;
             width: 50%;
@@ -135,21 +136,21 @@ header h1 span.title {
             background-color: #444;
         }
 
-/* Language toggle button position adjustment */
-.language-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    z-index: 3;
-}
-/* Class to move below main */
-.language-toggle-scrolled {
-        position: absolute;
-        top: calc(100vh + 20px); /* Position below main */
-        right: 20px;
-    }
+        /* Language toggle button position adjustment */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 300;
+        }
+
+        .language-toggle-scrolled {
+            position: absolute;
+            top: calc(100vh + 20px);
+            right: 20px;
+        }
 
         .language-toggle button {
             background-color: #deb068;
@@ -166,155 +167,265 @@ header h1 span.title {
             color: #804000;
         }
 
-
         #clickable-load {
-    text-decoration: none;
-  }
-    
+            text-decoration: none;
+        }
 
-
-  .loader {
-    position: fixed;  /* Make sure it stays fixed on the screen */
-    top: 7%;         /* Center vertically */
-    left: 50%;        /* Center horizontally */
-    transform: translate(-50%, -50%);  /* Adjust for perfect centering */
-    z-index: 90;
-    display: block;
-    width: auto;
-    height: auto;
+        .loader {
+            position: fixed;
+            top: 7%;
+            left: 50%;
+            transform: translateX(-50%, -50%);
+            z-index: 90;
+            width: auto;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 }
+        
+        .loader span {
+            position: absolute;
+            left: 50%;
+            
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 38px;
+            letter-spacing: 5px;
+            white-space: nowrap;
+        }
 
-@media only screen and (max-width: 375px) and (max-height: 812px) {
-    .loader {
-        top: 8%;  /* Adjust the top position for smaller screens */
-        left: 50%; /* Keep horizontally centered */
-        transform: translate(-50%, -50%);  /* Ensure it's centered properly */
-        height: 30px;  /* Adjust loader height for smaller screens */
-    }
+        @media only screen and (max-width: 375px) and (max-height: 812px) {
+            .loader {
+                top: 6%;
+                left: 55%;
+                transform: translateX(-50%, -50%);
+                height: 35px;
+            }
 
-    .loader span {
-        font-size: 24px;  /* Adjust font size */
-    }
-}
+            .loader span {
+                font-size: 24px;
+                
+            }
+        }
+        
 
+        
 
+        .loader span:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+        }
 
+        .loader span:nth-child(2) {
+            color: rgb(128, 198, 255);
+            -webkit-text-stroke: 1px rgb(128, 198, 255);
+            animation: uiverse723 3s ease-in-out infinite;
+        }
 
-.loader span {
-  position: absolute;
-  color: #fff;
-  transform: translate(-50%, -50%);
-  font-size: 38px;
-  letter-spacing: 5px;
-}
+        @keyframes uiverse723 {
+            0%, 100% {
+                clip-path: polygon(0% 45%, 15% 44%, 32% 50%,
+                54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+            }
 
+            50% {
+                clip-path: polygon(0% 60%, 16% 65%, 34% 66%,
+                51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+            }
+        }
 
-@media only screen and (max-width: 375px) and (max-height: 812px) {
-    .loader {
-        height: 35px; /* Smaller height for iPhone 13 mini */
-        left: 55%;
-    }
-
-    .loader span {
-        font-size: 24px; /* Smaller font size for iPhone 13 mini */
-    }
-}
-
-.loader span:nth-child(1) {
-  color: transparent;
-  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
-}
-
-.loader span:nth-child(2) {
-  color: rgb(128, 198, 255);
-  -webkit-text-stroke: 1px rgb(128, 198, 255);
-  animation: uiverse723 3s ease-in-out infinite;
-}
-
-@keyframes uiverse723 {
-  0%, 100% {
-    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
-     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
-  }
-
-  50% {
-    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
-     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
-  }
-}
-
-
-
-
-
-
-
-
- 
-a.btn_21 {
-            display: flex; /* from 'flex items-center justify-center' */
-            align-items: center; /* from 'items-center' */
-            justify-content: center; /* from 'justify-center' */
+        a.btn_21 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             vertical-align: middle;
             text-decoration: none;
             width: 200px;
-            margin: auto; /* from 'mx-auto' */
-            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            margin: auto;
+            padding: 0.5rem 1rem;
             font-weight: bold;
             border: 2px solid #1557e7;
-            background: #deb068; /* from 'bg-black' */
-            color: #fff; /* from 'text-white' */
-            border-radius: 9999px; /* from 'rounded-full' */
+            background: #deb068;
+            color: #fff;
+            border-radius: 9999px;
             transition: 0.5s;
             animation: move_c 1s infinite;
         }
+
         @keyframes move_c {
-            0% {transform: translate(0px, 0)}
-            50% {transform: translate(0px, 0) rotateZ(5deg)}
+            0% {
+                transform: translate(0px, 0);
+            }
+            50% {
+                transform: translate(0px, 0) rotateZ(5deg);
+            }
         }
+
         a.btn_21:hover {
             color: #1557e7;
             background: #fff;
         }
 
-
         a.btn_22 {
-            display: flex; /* from 'flex items-center justify-center' */
-            align-items: center; /* from 'items-center' */
-            justify-content: center; /* from 'justify-center' */
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             vertical-align: middle;
             text-decoration: none;
             width: 200px;
-            margin: auto; /* from 'mx-auto' */
-            padding: 0.5rem 1rem; /* from 'py-2 px-4' */
+            margin: auto;
+            padding: 0.5rem 1rem;
             font-weight: bold;
             border: 2px solid #df508b;
-            background: #deb068; /* from 'bg-black' */
-            color: #fff; /* from 'text-white' */
-            border-radius: 9999px; /* from 'rounded-full' */
+            background: #deb068;
+            color: #fff;
+            border-radius: 9999px;
             transition: 0.5s;
             animation: move_c 1s infinite;
         }
-        @keyframes move_c {
-            0% {transform: translate(0px, 0)}
-            50% {transform: translate(0px, 0) rotateZ(5deg)}
-        }
+
         a.btn_22:hover {
             color: #df508b;
             background: #fff;
         }
 
+        /* Contact Section */
+        .contact-section {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 16px 40px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+        }
 
+        .contact-heading-space {
+            height: 20px;
+        }
 
-  /* Footer */
- 
-  footer {
-            height: auto; 
-            min-height: 10px; /* Slightly lower height */
-            padding: 1rem 0; /* Adjust top/bottom padding */
-            font-size: 16px; /* Slightly smaller font size */
+        .lesson-jump-wrap {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .lesson-jump-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            background-color: #9DBDAE;
+            color: #fff;
+            border: 2px solid #7da391;
+            border-radius: 9999px;
+            padding: 0.85rem 1.8rem;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: 0.3s ease;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .lesson-jump-btn:hover {
+            background-color: #ffffff;
+            color: #6d8f81;
+            border-color: #6d8f81;
+            transform: translateY(-2px);
+        }
+
+        /* Lesson Section */
+        .lesson-section {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+            scroll-margin-top: 110px;
+        }
+
+        .lesson-wrapper {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 18px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 40px 30px;
+        }
+
+        .lesson-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #6b4b1f;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+
+        .lesson-card {
+            background-color: #fffaf3;
+            border: 1px solid #ead7b7;
+            border-radius: 14px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .lesson-card h3 {
+            position: static;
+            margin: 0 0 12px 0;
+            font-size: 1.3rem;
+            color: #7a5523;
+        }
+
+        .lesson-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #b35b2f;
+            margin-bottom: 12px;
+        }
+
+        .lesson-card ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+
+        .lesson-card ul li {
+            margin-bottom: 8px;
+        }
+
+        .lesson-info {
+            background-color: #fffdf8;
+            border: 1px solid #ead7b7;
+            border-radius: 14px;
+            padding: 24px 20px;
+            margin-bottom: 24px;
+        }
+
+        .lesson-info p {
+            margin: 0 0 10px 0;
+        }
+
+        .lesson-contact {
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #5e4420;
+        }
+
+        /* Footer */
+        footer {
+            height: auto;
+            min-height: 10px;
+            padding: 1rem 0;
+            font-size: 16px;
             background-color: #9DBDAE;
             color: #fff;
             text-align: center;
@@ -333,170 +444,241 @@ a.btn_21 {
             text-decoration: underline;
         }
 
-/* Animation */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-/* Mobile responsiveness */
+        /* Mobile responsiveness */
+        @media (max-width: 767px) {
+            header {
+                min-height: 50px;
+                background-size: cover;
+            }
 
-   
- @media (max-width: 767px) {
-    header {
-        min-height: 50px; /* Adjust as needed */
-        
-        background-size: cover; /* Ensures the image covers the entire header */
-      
-  
-       
-    }
-    header h1 {
-        font-size: 2rem;
-        right: 20px; /* Mobile margin from right */
-        top: 10%; /* Maintain proper margin from top */
-        writing-mode: vertical-lr; /* Mobile vertical writing direction */
-    }
+            header h1 {
+                font-size: 2rem;
+                right: 20px;
+                top: 10%;
+                writing-mode: vertical-lr;
+            }
 
-    header p {
-        font-size: 1rem;
-        margin-top: 20px; /* Mobile p position adjustment */
-    }
+            header p {
+                font-size: 1rem;
+                margin-top: 20px;
+            }
 
-    .menu {
-        top: 10px; /* Menu position adjustment */
-        left: 10px;
-    }
+            .menu {
+                top: 10px;
+                left: 10px;
+            }
 
-    .language-toggle {
-        top: 10px; /* Language button position adjustment */
-        right: 10px;
-    }
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
 
-}
+            .contact-section {
+                padding: 95px 12px 30px;
+            }
 
+            .lesson-section {
+                padding: 0 16px;
+                margin-bottom: 50px;
+                scroll-margin-top: 90px;
+            }
 
+            .lesson-wrapper {
+                padding: 28px 18px;
+            }
+
+            .lesson-title {
+                font-size: 1.6rem;
+            }
+
+            .lesson-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lesson-jump-btn {
+                width: 100%;
+                max-width: 320px;
+                text-align: center;
+                font-size: 0.95rem;
+                padding: 0.9rem 1.2rem;
+            }
+        }
     </style>
 </head>
-<header>
-    <a href="english_version.html" id="clickable-load">  
-        <div class="loader">
-            <span>SHAKUHACHI</span>
-            <span>SHAKUHACHI</span>
-        </div>
-    </a>
 
-    <input type="checkbox" id="menu" />
-    <label for="menu" class="menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </label>
-
-    <nav class="nav">
-        <ul>
-            <li><a href="english_version.html">HOME</a></li>
-            <li><a href="scheduleE.html">SCHEDULE</a></li>
-            <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
-            <li><a href="contactE.html">CONTACT</a></li>
-        </ul>
-    </nav>
-    
-    <div class="language-toggle">
-        <button onclick="setLanguage('ja')">JP</button>
-    </div>
-</header>
 <body class="bg-cover bg-center">
-    <title>
-        Contact Page
-       </title>
-       <script src="https://cdn.tailwindcss.com">
-       </script>
-       <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-      </head>
-      
-      <div class="flex flex-col items-center justify-center min-h-screen py-12 relative z-[2]">
-        <h1 class="text-white text-xl mb-8"></h1>
-        <div class="w-full max-w-5xl mx-auto px-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-8">
-      
-            <!-- Mail Section (1st) -->
-            <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
-              <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
-                Mail
-              </div>
-              <img alt="Mail icon" class="mx-auto mb-4" height="50" src="email.png" width="50"/>
-              <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
-                kodo.bambooflute@gmail.com
-              </p>
-              <a href="mailto:kodo.bambooflute@gmail.com" class="btn_21">
-                Click Here
-                <i class="fas fa-envelope"></i>
-              </a>
+    <header>
+        <a href="english_version.html" id="clickable-load">
+            <div class="loader">
+                <span>SHAKUHACHI</span>
+                <span>SHAKUHACHI</span>
             </div>
-      
-            <!-- Instagram Section (2nd) -->
-            <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
-              <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
-                Instagram
-              </div>
-              <img alt="Instagram icon" class="mx-auto mb-4" height="50" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="50"/>
-              <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
-                0425erikaaa
-              </p>
-              <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_22">
-                Click Here
-                <i class="fa-brands fa-instagram ml-2" aria-hidden="true"></i>
-              </a>
-            </div>
-      
-            <!-- Facebook Section (3rd) -->
-            <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
-              <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
-                Facebook
-              </div>
-              <img alt="Facebook icon" class="mx-auto mb-4" height="50" src="facebook.png" width="50"/>
-              <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
-                Kodo Ishibashi
-              </p>
-              <a href="https://m.facebook.com/ishibashikodo/" target="_blank" class="btn_21">
-                Click Here
-                <i class="fab fa-facebook"></i>
-              </a>
-            </div>
-          </div>
+        </a>
+
+        <input type="checkbox" id="menu" />
+        <label for="menu" class="menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="english_version.html">HOME</a></li>
+                <li><a href="scheduleE.html">SCHEDULE</a></li>
+                <li><a href="appearanceE.html">PAST APPEARANCE</a></li>
+                <li><a href="contactE.html">CONTACT</a></li>
+                <li><a href="contactE.html#lesson">LESSON　INFO</a></li>
+
+            </ul>
+        </nav>
+
+        <div class="language-toggle">
+            <button onclick="setLanguage('ja')">JP</button>
         </div>
-      </div>
-      
-      
-    </body>
+    </header>
 
- <footer>
+    <section class="contact-section">
+        <div class="contact-heading-space"></div>
 
-            <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
-</footer>
+        <div class="w-full max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-8">
 
+                <!-- Mail Section (1st) -->
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
+                    <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+                        Mail
+                    </div>
+                    <img alt="Mail icon" class="mx-auto mb-4" height="50" src="email.png" width="50"/>
+                    <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
+                        kodo.bambooflute@gmail.com
+                    </p>
+                    <a href="mailto:kodo.bambooflute@gmail.com" class="btn_21">
+                        Click Here
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
 
-<script>
-    function setLanguage(lang) {
-        if (lang === 'en') {
-            location.href = 'contactE.html'; // 英語ページに遷移
-        } else if (lang === 'ja') {
-            location.href = 'contact.html'; // 日本語ページに遷移
+                <!-- Instagram Section (2nd) -->
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
+                    <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+                        Instagram
+                    </div>
+                    <img alt="Instagram icon" class="mx-auto mb-4" height="50" src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" width="50"/>
+                    <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
+                        0425erikaaa
+                    </p>
+                    <a href="https://www.instagram.com/0425erikaaa/" target="_blank" class="btn_22">
+                        Click Here
+                        <i class="fa-brands fa-instagram ml-2" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <!-- Facebook Section (3rd) -->
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center relative z-10 max-w-xs mx-auto w-full">
+                    <div class="absolute top-0 left-0 mt-2 ml-2 text-gray-500">
+                        Facebook
+                    </div>
+                    <img alt="Facebook icon" class="mx-auto mb-4" height="50" src="facebook.png" width="50"/>
+                    <p class="text-lg font-semibold mb-2 break-all" style="overflow-wrap:anywhere;">
+                        Kodo Ishibashi
+                    </p>
+                    <a href="https://m.facebook.com/ishibashikodo/" target="_blank" class="btn_21">
+                        Click Here
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lesson-jump-wrap">
+                <a href="#lesson" class="lesson-jump-btn">
+                    Click here for lesson information
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lesson Section -->
+    <section id="lesson" class="lesson-section">
+        <div class="lesson-wrapper">
+            <h2 class="lesson-title">Lessons</h2>
+
+            <div class="lesson-grid">
+                <div class="lesson-card">
+                    <h3>Beginner Lesson</h3>
+                    <div class="lesson-price">Monthly Fee ¥5,000</div>
+                    <ul>
+                        <li>2 lessons per month, 40 minutes each</li>
+                        <li>Bring your own shakuhachi, or a free instrument rental is available for the first six months (after that, you will be asked to purchase one)</li>
+                        <li>Accessories (cap, moisture swab, shakuhachi bag, sheet music, etc.) must be purchased individually by each student</li>
+                        <li>Students will move to the experienced lesson course according to their progress (approximately after 1 year)</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>Experienced Lesson</h3>
+                    <div class="lesson-price">Monthly Fee ¥8,000</div>
+                    <ul>
+                        <li>2 lessons per month, 1 hour each</li>
+                        <li>Bring your own shakuhachi, or a free instrument rental is available for the first six months (after that, you will be asked to purchase one)</li>
+                        <li>Accessories (cap, moisture swab, shakuhachi bag, sheet music, etc.) must be purchased individually by each student</li>
+                    </ul>
+                </div>
+
+                <div class="lesson-card">
+                    <h3>Experienced Lesson (Advanced)</h3>
+                    <div class="lesson-price">¥5,000 per lesson</div>
+                    <ul>
+                        <li>1 hour per lesson</li>
+                        <li>Accessories (cap, moisture swab, shakuhachi bag, sheet music, etc.) must be purchased individually by each student</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lesson-info">
+                <p>〇 Enrollment system / Admission fee: None</p>
+                <p>〇 Lesson dates: To be arranged individually</p>
+                <p>〇 Practice location: To be discussed at the first meeting</p>
+            </div>
+
+            <p class="lesson-contact">
+                To apply for lessons, please contact us via the email address on the Contact page. We look forward to hearing from you!
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shakuhachi Performer Kodo Ishibashi</p>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            if (lang === 'en') {
+                location.href = 'contactE.html';
+            } else if (lang === 'ja') {
+                location.href = 'contact.html';
+            }
         }
-    }
-    
-    // ナビゲーションメニューのリンククリックでメニューを閉じる
-    document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            document.getElementById('menu').checked = false; // メニューを閉じる
+
+        // Close the navigation menu when a link is clicked
+        document.querySelectorAll('.nav a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                document.getElementById('menu').checked = false;
+            });
         });
-    });
     </script>
- <html>
+</body>
+</html>

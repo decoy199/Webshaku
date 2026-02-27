@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="尺八教室の応募フォームページです。" />
+  <title>尺八教室 応募フォーム</title>
+
+  <!-- フォント & アイコン -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Firebase (homepageと同じ) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    html { margin:0; padding:0; background-color:#F7EAD9; }
+    body{
+      font-family:'Yu Mincho', serif;
+      line-height:1.8;
+      margin:0; padding:0;
+      color:#0b0b0b;
+      min-height:100vh;
+      background-color:#F7EAD9;
+    }
+
+    /* ===== loader（ご指定のまま） ===== */
+    #clickable-load { text-decoration:none; }
+    .loader{
+      position: fixed;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: auto; height: auto;
+      z-index: 90;
+      display: block;
+    }
+    .loader span{
+      position:absolute;
+      color:#fff;
+      transform: translate(-50%, -50%);
+      font-size:38px;
+      letter-spacing:5px;
+    }
+    @media only screen and (max-width: 375px) and (max-height: 812px) {
+      .loader{ height:30px; left:55%; }
+      .loader span{ font-size:24px; }
+    }
+    .loader span:nth-child(1){
+      color:transparent;
+      -webkit-text-stroke:0.3px rgb(128, 198, 255);
+    }
+    .loader span:nth-child(2){
+      color:rgb(128, 198, 255);
+      -webkit-text-stroke:1px rgb(128, 198, 255);
+      animation:uiverse723 3s ease-in-out infinite;
+    }
+    @keyframes uiverse723{
+      0%,100%{ clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%); }
+      50%{ clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%); }
+    }
+
+    /* ===== nav（homepageと同じ構造） ===== */
+    header{
+      position:relative;
+      height: 18vh;
+      min-height: 140px;
+      background: rgba(0,0,0,0);
+      overflow:hidden;
+    }
+
+    .menu{
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      width:50px; height:50px;
+      background-color:#deb068;
+      border-radius:50%;
+      cursor:pointer;
+      z-index:200;
+    }
+    .menu span{
+      display:block;
+      width:50%;
+      height:2%;
+      background-color:#555;
+      margin:5px 0;
+      transition:transform 250ms ease;
+      z-index:200;
+    }
+    #menu{ display:none; }
+    #menu:checked ~ .menu{ background-color: transparent; }
+    #menu:checked ~ .nav{ left:0; }
+
+    .nav{
+      position: fixed;
+      top:0;
+      left:-250px;
+      width:250px;
+      height:100%;
+      background-color:#333;
+      color:#fff;
+      transition:left 0.3s ease;
+      z-index:100;
+    }
+    .nav ul{ list-style:none; padding:0; margin:50px 0 0; }
+    .nav ul li{ margin:0; padding:15px; text-align:center; }
+    .nav ul li a{ text-decoration:none; color:#fff; font-size:1.2rem; display:block; }
+    .nav ul li a:hover{ background-color:#444; }
+
+    .language-toggle{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display:flex;
+      gap:10px;
+      z-index: 300;
+    }
+    .language-toggle button{
+      background-color:#deb068;
+      color:white;
+      border:none;
+      padding:0.5rem 1rem;
+      font-size:0.9rem;
+      cursor:pointer;
+      border-radius:5px;
+    }
+    .language-toggle button:hover{ background-color:#ffdbac; color:#804000; }
+
+    @media (max-width: 767px) {
+      .menu{ top:10px; left:10px; }
+      .language-toggle{ top:10px; right:10px; }
+    }
+
+    /* ===== content ===== */
+    main{
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.2rem 1.4rem 3rem;
+    }
+    h1{
+      margin: 0 0 1rem;
+      color:#804000;
+      border-left: 4px solid #804000;
+      padding-left: 0.6rem;
+      font-size: 1.3rem;
+    }
+    .card{
+      background:#fff;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      padding: 1.2rem;
+    }
+    .note{
+      font-size: 0.92rem;
+      color:#5a4a2f;
+      margin-bottom: 1rem;
+    }
+
+    form{ display:grid; gap: 0.9rem; }
+    label{ font-size: 0.95rem; color:#2b2113; }
+    .req{ color:#c64545; margin-left: 0.25rem; font-weight: bold; }
+    input, select, textarea{
+      width:100%;
+      box-sizing:border-box;
+      padding: 0.75rem 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #e1d5c2;
+      background: #fffdf9;
+      font-family:'Yu Mincho', serif;
+      font-size: 1rem;
+      outline:none;
+    }
+    input:focus, select:focus, textarea:focus{
+      border-color:#caa56a;
+      box-shadow: 0 0 0 3px rgba(202,165,106,.18);
+    }
+    textarea{ min-height: 130px; resize: vertical; }
+
+    .row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+    @media (max-width: 700px){
+      .row{ grid-template-columns: 1fr; }
+    }
+
+    .actions{
+      display:flex;
+      gap: 0.8rem;
+      align-items:center;
+      justify-content:flex-end;
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+    }
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 0.75rem 1.3rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+    }
+    .btn-primary{
+      background: linear-gradient(90deg, #caa56a, #243b76);
+      color:#fff;
+    }
+    .btn-primary:hover{ opacity:0.92; }
+    .btn-ghost{
+      background: transparent;
+      border: 1px solid #caa56a;
+      color:#804000;
+    }
+    .btn-ghost:hover{ background:#fff7ea; }
+
+    .status{
+      margin-top: 0.8rem;
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      display:none;
+      font-size: 0.95rem;
+    }
+    .status.ok{ display:block; background: #f2fff6; border: 1px solid #9ad0ad; color: #155b2a; }
+    .status.ng{ display:block; background: #fff3f3; border: 1px solid #f1a3a3; color: #7a1d1d; }
+
+    footer{
+      margin-top: 2rem;
+      padding: 1rem 0;
+      font-size: 14px;
+      background-color: #9DBDAE;
+      color: #fff;
+      text-align: center;
+    }
+    footer a{ color:#ffdbac; text-decoration:none; font-weight:bold; }
+    footer a:hover{ text-decoration:underline; }
+  </style>
+</head>
+
+<body>
+  <!-- loader（ページ上部に追加） -->
+  <a href="main3.html" id="clickable-load">
+    <div class="loader" aria-label="SHAKUHACHI">
+      <span>SHAKUHACHI</span>
+      <span>SHAKUHACHI</span>
+    </div>
+  </a>
+
+  <header>
+    <!-- nav（homepageと同じ） -->
+    <input type="checkbox" id="menu" />
+    <label for="menu" class="menu" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav class="nav" aria-label="サイトメニュー">
+      <ul>
+        <li><a href="main3.html">ホーム</a></li>
+        <li><a href="schedule2.html">スケジュール</a></li>
+        <li><a href="appearance.html">過去の出演情報</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+        <li><a href="paris.html">Ponts Sonores Paris 2025</a></li>
+      </ul>
+    </nav>
+
+    <div class="language-toggle">
+      <button onclick="setLanguage('en')">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <h1>尺八教室 応募フォーム</h1>
+
+    <div class="card">
+      <div class="note">
+        必須項目をご入力ください。送信内容は確認後、折り返しご連絡いたします。<br>
+        <span style="opacity:.8;">（送信すると Firebase に保存されます）</span>
+      </div>
+
+      <form id="applyForm">
+        <div class="row">
+          <div>
+            <label>お名前<span class="req">*</span></label>
+            <input type="text" name="name" required placeholder="例：山田 太郎" />
+          </div>
+          <div>
+            <label>ふりがな</label>
+            <input type="text" name="kana" placeholder="例：やまだ たろう" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>メールアドレス<span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="example@email.com" />
+          </div>
+          <div>
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="090-0000-0000" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>ご希望のレッスン形態<span class="req">*</span></label>
+            <select name="type" required>
+              <option value="">選択してください</option>
+              <option value="対面">対面</option>
+              <option value="オンライン">オンライン</option>
+              <option value="どちらでも">どちらでも</option>
+            </select>
+          </div>
+          <div>
+            <label>尺八経験<span class="req">*</span></label>
+            <select name="experience" required>
+              <option value="">選択してください</option>
+              <option value="未経験">未経験</option>
+              <option value="初心者">初心者</option>
+              <option value="経験あり">経験あり</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label>希望曜日・時間帯（複数可）</label>
+          <input type="text" name="availability" placeholder="例：平日夜／土日午前 など" />
+        </div>
+
+        <div>
+          <label>メッセージ<span class="req">*</span></label>
+          <textarea name="message" required placeholder="目的（趣味/本格的に学びたい 等）、希望内容、質問など"></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="reset" class="btn btn-ghost">リセット</button>
+          <button type="submit" class="btn btn-primary" id="submitBtn">送信する</button>
+        </div>
+
+        <div id="statusOk" class="status ok">送信しました。ありがとうございます！</div>
+        <div id="statusNg" class="status ng">送信に失敗しました。時間をおいて再度お試しください。</div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>ご質問や演奏のご依頼は、以下のメールアドレス、またはインスタグラムのメッセージまでお問い合わせください：</p>
+    <p><a href="mailto:kodo.bambooflute@gmail.com">kodo.bambooflute@gmail.com</a></p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/0425erikaaa/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://m.facebook.com/ishibashikodo/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+    <p>&copy; 2025 尺八奏者 石橋紅童</p>
+  </footer>
+
+  <script>
+    // Firebase（homepageと同じ設定）
+    const firebaseConfig = {
+      apiKey: "AIzaSyClcc3_N7WbmMICfexx_lQi_IGrkl8vWhY",
+      authDomain: "shakuhachiweb-c6f85.firebaseapp.com",
+      projectId: "shakuhachiweb-c6f85",
+      storageBucket: "shakuhachiweb-c6f85.appspot.com",
+      messagingSenderId: "536744242736",
+      appId: "1:536744242736:web:2c95eb68d4cfd66a2a87f5",
+      measurementId: "G-J9DCE1R7LT"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function setLanguage(lang) {
+      if (lang === 'en') location.href = 'english_version.html';
+      if (lang === 'ja') location.href = 'main3.html';
+    }
+
+    // navクリックで閉じる（homepage同様）
+    document.querySelectorAll('.nav a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('menu').checked = false;
+      });
+    });
+
+    // フォーム送信 → Firestore保存
+    const form = document.getElementById('applyForm');
+    const statusOk = document.getElementById('statusOk');
+    const statusNg = document.getElementById('statusNg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusOk.classList.remove('ok'); statusOk.style.display = 'none';
+      statusNg.classList.remove('ng'); statusNg.style.display = 'none';
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+      data.page = "lesson_apply";
+
+      try {
+        await db.collection('lesson_applications').add(data);
+
+        statusOk.classList.add('ok');
+        statusOk.style.display = 'block';
+        form.reset();
+
+      } catch (err) {
+        console.error(err);
+        statusNg.classList.add('ng');
+        statusNg.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '送信する';
+      }
+    });
+  </script>
+</body>
+</html>
